@@ -8,7 +8,7 @@
 ![License](https://img.shields.io/github/license/Aas-ee/open-websearch)
 ![Issues](https://img.shields.io/github/issues/Aas-ee/open-websearch)
 
-**[🇨🇳 中文](./README-zh.md) | 🇺🇸 English**
+** 🇺🇸 English**
 
 </div>
 
