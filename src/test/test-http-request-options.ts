@@ -30,10 +30,10 @@ function main(): void {
 
         const trustedStaticHostOptions = buildAxiosRequestOptions({ trustedStaticHost: true });
         assert(trustedStaticHostOptions.proxy === false, 'trusted static host requests should still disable axios env proxy resolution');
-        assert(!trustedStaticHostOptions.httpAgent, 'trusted static host direct requests should not use the filtering http agent');
-        assert(!trustedStaticHostOptions.httpsAgent, 'trusted static host direct requests should not use the filtering https agent');
+        assert(trustedStaticHostOptions.httpAgent, 'trusted static host requests must filter blocked destination prefixes');
+        assert(trustedStaticHostOptions.httpsAgent instanceof https.Agent, 'trusted static host https requests must filter blocked destination prefixes');
         assert(trustedStaticHostOptions.maxRedirects === 0, 'trusted static host requests should force redirects off');
-        console.log('✅ trusted static host request options bypass DNS private-network filtering and force redirects off');
+        console.log('✅ trusted static host requests enforce destination filtering and force redirects off');
 
         const tlsBoundTrustedStaticHostOptions = buildAxiosRequestOptions({
             trustedStaticHost: true,
@@ -49,7 +49,7 @@ function main(): void {
         console.log('✅ trusted static host request options force redirects off');
 
         const insecureTrustedStaticHostOptions = buildAxiosRequestOptions({ trustedStaticHost: true, allowInsecureTls: true });
-        assert(!insecureTrustedStaticHostOptions.httpAgent, 'trusted static host insecure requests should not use the filtering http agent');
+        assert(insecureTrustedStaticHostOptions.httpAgent, 'insecure TLS must not disable destination filtering');
         assert(insecureTrustedStaticHostOptions.httpsAgent instanceof https.Agent, 'trusted static host insecure requests should use a direct https agent');
         assert((insecureTrustedStaticHostOptions.httpsAgent as any).options.rejectUnauthorized === false, 'trusted static host insecure requests should disable TLS verification when requested');
         assert(insecureTrustedStaticHostOptions.maxRedirects === 0, 'trusted static host insecure requests should still force redirects off');

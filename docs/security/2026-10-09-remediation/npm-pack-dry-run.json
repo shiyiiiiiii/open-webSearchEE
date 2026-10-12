@@ -1,0 +1,506 @@
+[
+  {
+    "id": "open-websearch@2.2.0",
+    "name": "open-websearch",
+    "version": "2.2.0",
+    "size": 170124,
+    "unpackedSize": 731649,
+    "shasum": "42724f7b32836bd8db43017a8858616ee892e6c3",
+    "integrity": "sha512-37bJyZT/avgEYeyKced5YcF3tleieYDm01TggX8SfJM8dzYHARLDAsLkl7KDI8e7DrJ0acitJV81V5wYJkEjVw==",
+    "filename": "open-websearch-2.2.0.tgz",
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 11368,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 29939,
+        "mode": 420
+      },
+      {
+        "path": "build/adapters/http/localDaemon.js",
+        "size": 13032,
+        "mode": 420
+      },
+      {
+        "path": "build/cli/protocol.js",
+        "size": 468,
+        "mode": 420
+      },
+      {
+        "path": "build/cli/runCli.js",
+        "size": 46485,
+        "mode": 420
+      },
+      {
+        "path": "build/config.js",
+        "size": 12381,
+        "mode": 420
+      },
+      {
+        "path": "build/core/fetch/fetchServices.js",
+        "size": 1064,
+        "mode": 420
+      },
+      {
+        "path": "build/core/search/searchEngines.js",
+        "size": 1702,
+        "mode": 420
+      },
+      {
+        "path": "build/core/search/searchService.js",
+        "size": 2587,
+        "mode": 420
+      },
+      {
+        "path": "build/core/validation/targetValidation.js",
+        "size": 1327,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/baidu/baidu.js",
+        "size": 4928,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/baidu/index.js",
+        "size": 94,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/bing/bing.js",
+        "size": 29373,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/bing/index.js",
+        "size": 66,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/bing/parser.js",
+        "size": 7284,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/brave/brave.js",
+        "size": 3432,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/brave/index.js",
+        "size": 42,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/csdn/csdn.js",
+        "size": 2149,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/csdn/fetchCsdnArticle.js",
+        "size": 3513,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/csdn/index.js",
+        "size": 40,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/duckduckgo/index.js",
+        "size": 58,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/duckduckgo/searchDuckDuckGo.js",
+        "size": 10937,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/exa/exa.js",
+        "size": 2489,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/exa/index.js",
+        "size": 38,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/github/github.js",
+        "size": 5799,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/github/index.js",
+        "size": 49,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/hackernews/hackernews.js",
+        "size": 5121,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/hackernews/index.js",
+        "size": 115,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/juejin/fetchJuejinArticle.js",
+        "size": 3038,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/juejin/index.js",
+        "size": 44,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/juejin/juejin.js",
+        "size": 3642,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/linuxdo/fetchLinuxDoArticle.js",
+        "size": 2523,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/linuxdo/index.js",
+        "size": 46,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/linuxdo/linuxdo.js",
+        "size": 1640,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/sogou/index.js",
+        "size": 94,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/sogou/sogou.js",
+        "size": 6594,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/startpage/index.js",
+        "size": 50,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/startpage/startpage.js",
+        "size": 6283,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/web/fetchWebContent.js",
+        "size": 27536,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/web/index.js",
+        "size": 153,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/zhihu/fetchZhihuArticle.js",
+        "size": 4566,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/zhihu/index.js",
+        "size": 102,
+        "mode": 420
+      },
+      {
+        "path": "build/engines/zhihu/zhihu.js",
+        "size": 1232,
+        "mode": 420
+      },
+      {
+        "path": "build/index.js",
+        "size": 10034,
+        "mode": 420
+      },
+      {
+        "path": "build/runtime/createRuntime.js",
+        "size": 2609,
+        "mode": 420
+      },
+      {
+        "path": "build/runtime/runtimeSelection.js",
+        "size": 178,
+        "mode": 420
+      },
+      {
+        "path": "build/runtime/runtimeTypes.js",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "build/test/fetchCsdnArticleTests.js",
+        "size": 2102,
+        "mode": 420
+      },
+      {
+        "path": "build/test/fetchJuejinArticleTests.js",
+        "size": 1091,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-article-fetch-live.js",
+        "size": 3460,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-baidu.js",
+        "size": 5233,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-bing-http.js",
+        "size": 4776,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-bing-live.js",
+        "size": 4235,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-bing-parser.js",
+        "size": 4226,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-bing-playwright-cross-restart-concurrency.js",
+        "size": 29753,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-bing.js",
+        "size": 1091,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-brave.js",
+        "size": 1069,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-browser-path-guard.js",
+        "size": 12013,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-browser-redirect-safety.js",
+        "size": 6757,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-browser-sharing.js",
+        "size": 10466,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-cli-search.js",
+        "size": 40610,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-core-fetch-services.js",
+        "size": 4308,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-core-search.js",
+        "size": 6202,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-core-target-validation.js",
+        "size": 2233,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-csdn.js",
+        "size": 1064,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-dialog-capture.js",
+        "size": 4820,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-duckduckgo-preload-url.js",
+        "size": 1162,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-duckduckgo.js",
+        "size": 1180,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-engine-normalization.js",
+        "size": 2438,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-exa.js",
+        "size": 1057,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-github.js",
+        "size": 5366,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-hackernews.js",
+        "size": 9573,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-http-request-options.js",
+        "size": 5838,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-juejin.js",
+        "size": 1064,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-linuxdo.js",
+        "size": 1081,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-local-daemon.js",
+        "size": 19169,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-mcp-adapter.js",
+        "size": 32118,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-no-window.js",
+        "size": 6032,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-page-pool-lock.js",
+        "size": 3641,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-redirect-safety.js",
+        "size": 4080,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-runtime.js",
+        "size": 5261,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-sogou.js",
+        "size": 4842,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-startpage.js",
+        "size": 1079,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-url-safety.js",
+        "size": 9994,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-web-content-live.js",
+        "size": 3972,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-web-content.js",
+        "size": 36724,
+        "mode": 420
+      },
+      {
+        "path": "build/test/test-zhihu.js",
+        "size": 1069,
+        "mode": 420
+      },
+      {
+        "path": "build/tools/runCurrentTests.js",
+        "size": 8710,
+        "mode": 420
+      },
+      {
+        "path": "build/tools/setupTools.js",
+        "size": 15256,
+        "mode": 420
+      },
+      {
+        "path": "build/types.js",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "build/utils/browserCookies.js",
+        "size": 19640,
+        "mode": 420
+      },
+      {
+        "path": "build/utils/browserPaths.js",
+        "size": 1402,
+        "mode": 420
+      },
+      {
+        "path": "build/utils/httpRequest.js",
+        "size": 7718,
+        "mode": 420
+      },
+      {
+        "path": "build/utils/nativeInterop.js",
+        "size": 20603,
+        "mode": 420
+      },
+      {
+        "path": "build/utils/playwrightClient.js",
+        "size": 82204,
+        "mode": 420
+      },
+      {
+        "path": "build/utils/urlSafety.js",
+        "size": 3706,
+        "mode": 420
+      },
+      {
+        "path": "build/version.js",
+        "size": 439,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 3456,
+        "mode": 420
+      }
+    ],
+    "entryCount": 98,
+    "bundled": []
+  }
+]

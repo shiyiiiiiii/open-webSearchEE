@@ -1,0 +1,43 @@
+ M Dockerfile
+ M README.md
+ M docs/http-api.md
+ M package-lock.json
+ M package.json
+ M skills/open-websearch/references/setup.md
+ M src/adapters/http/localDaemon.ts
+ M src/cli/runCli.ts
+ M src/config.ts
+ M src/core/fetch/fetchServices.ts
+ M src/core/search/searchEngines.ts
+ M src/core/search/searchService.ts
+ M src/engines/bing/bing.ts
+ M src/engines/juejin/fetchJuejinArticle.ts
+ M src/engines/web/fetchWebContent.ts
+ M src/index.ts
+ M src/runtime/runtimeSelection.ts
+ M src/test/test-bing-live.ts
+ M src/test/test-browser-path-guard.ts
+ M src/test/test-dialog-capture.ts
+ M src/test/test-http-request-options.ts
+ M src/test/test-page-pool-lock.ts
+ M src/test/test-redirect-safety.ts
+ M src/test/test-url-safety.ts
+ M src/test/test-web-content.ts
+ M src/tools/setupTools.ts
+ M src/utils/browserCookies.ts
+ M src/utils/browserPaths.ts
+ M src/utils/httpRequest.ts
+ M src/utils/nativeInterop.ts
+ M src/utils/playwrightClient.ts
+ M src/utils/urlSafety.ts
+?? .nvmrc
+?? docs/security-code-audit-2026-10-09.md
+?? docs/security-code-audit-2026-10-09/
+?? docs/security/
+?? src/adapters/http/serverOptions.ts
+?? src/adapters/http/sessionLimiter.ts
+?? src/test/test-browser-redirect-safety.ts
+?? src/test/test-destination-ip-filter.ts
+?? src/test/test-mcp-resource-limits.ts
+?? src/test/test-resource-limits.ts
+?? src/utils/resourceLimits.ts

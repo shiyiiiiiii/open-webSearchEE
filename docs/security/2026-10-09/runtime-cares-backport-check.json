@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-09T02:54:40.995Z",
+  "node": "v22.23.2",
+  "library": "c-ares",
+  "version": "1.34.6",
+  "nodeSource": "https://raw.githubusercontent.com/nodejs/node/v22.23.2/deps/cares/src/lib/ares_process.c",
+  "comparisons": [
+    {
+      "tag": "v1.34.6",
+      "url": "https://raw.githubusercontent.com/c-ares/c-ares/v1.34.6/src/lib/ares_process.c",
+      "sha256": "7cd0b7cd02a2492ffad7ca848d5cbb97aa6cc9bfc69c76aeb79476bd8e41a04e",
+      "nodeSourceSha256": "7cd0b7cd02a2492ffad7ca848d5cbb97aa6cc9bfc69c76aeb79476bd8e41a04e",
+      "matchesNodeSource": true
+    },
+    {
+      "tag": "v1.34.7",
+      "url": "https://raw.githubusercontent.com/c-ares/c-ares/v1.34.7/src/lib/ares_process.c",
+      "sha256": "8d3ea0ef9f3334733b73e9a0b51ed112ba9be98c58af236e0b283b7d9186f68f",
+      "nodeSourceSha256": "7cd0b7cd02a2492ffad7ca848d5cbb97aa6cc9bfc69c76aeb79476bd8e41a04e",
+      "matchesNodeSource": false
+    }
+  ],
+  "conclusion": "The official Node source ares_process.c matches upstream v1.34.6 exactly and differs from patched v1.34.7. Actual installed binary build provenance was not verified."
+}

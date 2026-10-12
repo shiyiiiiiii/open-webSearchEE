@@ -1,0 +1,11 @@
+{
+  "node": "v24.21.0",
+  "core": "1.62.1",
+  "browser": {
+    "available": true,
+    "reason": null
+  },
+  "developmentCompilerAbsent": true,
+  "fullPlaywrightAbsent": true,
+  "fseventsAbsent": true
+}

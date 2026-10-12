@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-10-09T03:01:54.506Z",
+  "workspaceCveCount": 54,
+  "workspaceAdvisoryCount": 55,
+  "allWorkspaceFindingsInProductionTree": true,
+  "containerPlatformFindingsIdentical": true,
+  "reportsHaveNoUndefinedFields": true,
+  "localReportLinksExist": true,
+  "dependencyHashesUnchanged": true
+}

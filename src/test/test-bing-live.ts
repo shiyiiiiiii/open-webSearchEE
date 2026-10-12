@@ -90,7 +90,7 @@ async function main(): Promise<void> {
         console.error('\nLive Bing test failed:', message);
 
         if (/playwright|chromium/i.test(message)) {
-            console.error('Playwright/Chromium issue detected. Install a client manually if you want browser mode: npm install playwright && npx playwright install chromium');
+            console.error('Playwright/Chromium issue detected. Install a client manually if you want browser mode: npm install playwright-core && npx playwright-core install chromium');
             console.error('For an existing external client, set PLAYWRIGHT_MODULE_PATH or PLAYWRIGHT_PACKAGE=playwright-core with PLAYWRIGHT_EXECUTABLE_PATH / PLAYWRIGHT_WS_ENDPOINT / PLAYWRIGHT_CDP_ENDPOINT');
         }
         if (/EAI_AGAIN|getaddrinfo|TLS|socket|timeout|network/i.test(message)) {

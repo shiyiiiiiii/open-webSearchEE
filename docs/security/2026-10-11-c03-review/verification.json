@@ -1,0 +1,192 @@
+{
+  "date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "node": "v22.23.3",
+  "playwright": "1.62.1",
+  "results": [
+    {
+      "name": "build",
+      "code": 0,
+      "milliseconds": 2282,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-network-policy",
+      "code": 0,
+      "milliseconds": 3150,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-page-pool-lock",
+      "code": 0,
+      "milliseconds": 113,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-egress-proxy",
+      "code": 0,
+      "milliseconds": 152,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-path-guard",
+      "code": 0,
+      "milliseconds": 113,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-redirect-safety",
+      "code": 0,
+      "milliseconds": 21014,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-web-content",
+      "code": 0,
+      "milliseconds": 656,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-url-safety",
+      "code": 0,
+      "milliseconds": 107,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-destination-ip-filter",
+      "code": 0,
+      "milliseconds": 216,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-http-request-options",
+      "code": 0,
+      "milliseconds": 191,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-redirect-safety",
+      "code": 0,
+      "milliseconds": 298,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-core-fetch-services",
+      "code": 0,
+      "milliseconds": 95,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-core-target-validation",
+      "code": 0,
+      "milliseconds": 93,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-core-search",
+      "code": 0,
+      "milliseconds": 71,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-engine-normalization",
+      "code": 0,
+      "milliseconds": 101,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-bing-parser",
+      "code": 0,
+      "milliseconds": 301,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-bing-http",
+      "code": 0,
+      "milliseconds": 324,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-cli-search",
+      "code": 0,
+      "milliseconds": 911,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-local-daemon",
+      "code": 0,
+      "milliseconds": 999,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-mcp-adapter",
+      "code": 0,
+      "milliseconds": 7918,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-runtime",
+      "code": 0,
+      "milliseconds": 697,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-duckduckgo-preload-url",
+      "code": 0,
+      "milliseconds": 279,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-resource-limits",
+      "code": 1,
+      "milliseconds": 689,
+      "preExisting": true,
+      "skipped": false
+    },
+    {
+      "name": "test-mcp-resource-limits",
+      "code": 1,
+      "milliseconds": 980,
+      "preExisting": true,
+      "skipped": false
+    }
+  ],
+  "passed": 22,
+  "preExistingFailures": [
+    "test-resource-limits",
+    "test-mcp-resource-limits"
+  ],
+  "unexpectedFailures": [],
+  "changedExistingSources": [],
+  "newSources": [],
+  "deployment": {
+    "executed": false,
+    "reason": "Docker is not installed and WSL has no usable distribution on this Windows development host"
+  },
+  "liveBing": {
+    "executed": false,
+    "reason": "Requires verified egress in the target deployment; no unsafe default-context fallback"
+  }
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "test": "test-url-safety",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 97,
+    "skipped": false
+  },
+  {
+    "test": "test-destination-ip-filter",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 217,
+    "skipped": false
+  },
+  {
+    "test": "test-redirect-safety",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 275,
+    "skipped": false
+  },
+  {
+    "test": "test-http-request-options",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 177,
+    "skipped": false
+  },
+  {
+    "test": "test-browser-path-guard",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 111,
+    "skipped": false
+  },
+  {
+    "test": "test-core-target-validation",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 87,
+    "skipped": false
+  },
+  {
+    "test": "test-core-fetch-services",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 91,
+    "skipped": false
+  },
+  {
+    "test": "test-core-search",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 67,
+    "skipped": false
+  },
+  {
+    "test": "test-engine-normalization",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 100,
+    "skipped": false
+  },
+  {
+    "test": "test-cli-search",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 923,
+    "skipped": false
+  },
+  {
+    "test": "test-local-daemon",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 993,
+    "skipped": false
+  },
+  {
+    "test": "test-mcp-adapter",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 7715,
+    "skipped": false
+  },
+  {
+    "test": "test-runtime",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 659,
+    "skipped": false
+  },
+  {
+    "test": "test-web-content",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 651,
+    "skipped": false
+  },
+  {
+    "test": "test-bing-parser",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 303,
+    "skipped": false
+  },
+  {
+    "test": "test-bing-http",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 292,
+    "skipped": false
+  },
+  {
+    "test": "test-duckduckgo-preload-url",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 265,
+    "skipped": false
+  },
+  {
+    "test": "test-baidu",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 298,
+    "skipped": false
+  },
+  {
+    "test": "test-sogou",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 290,
+    "skipped": false
+  },
+  {
+    "test": "test-hackernews",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 612,
+    "skipped": false
+  },
+  {
+    "test": "test-page-pool-lock",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 101,
+    "skipped": false
+  },
+  {
+    "test": "test-resource-limits",
+    "exitCode": 1,
+    "signal": null,
+    "durationMs": 680,
+    "skipped": false
+  },
+  {
+    "test": "test-mcp-resource-limits",
+    "exitCode": 1,
+    "signal": null,
+    "durationMs": 976,
+    "skipped": false
+  },
+  {
+    "test": "test-browser-redirect-safety",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 3251,
+    "skipped": false
+  }
+]

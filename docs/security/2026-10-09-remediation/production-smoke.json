@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-09T03:40:53.4768054Z",
+  "fixture": "C:\\Users\\xukai\\AppData\\Local\\Temp\\open-websearch-remediation-20261009-production-21000",
+  "node": "24.21.0",
+  "ciExitCode": 0,
+  "cliHelp": "passed",
+  "mcpAdapter": "passed",
+  "localDaemon": "passed",
+  "browserClient": "passed",
+  "scope": "Windows production layout with test fixtures; Docker image and Linux native bindings not built"
+}

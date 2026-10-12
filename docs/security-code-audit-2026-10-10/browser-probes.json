@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "browserVersion": "154.0.4258.62",
+    "executablePath": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "node": "v22.23.3"
+  },
+  "fixture": "Node preflight DNS is simulated as public while an isolated Chromium resolver maps test hosts to audit-owned loopback. This models resolver disagreement/rebinding; it does not claim real DNS infrastructure was attacked.",
+  "dnsChecks": [
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-destination.test",
+    "audit-destination.test",
+    "audit-destination.test",
+    "audit-destination.test",
+    "audit-destination.test",
+    "audit-destination.test",
+    "audit-destination.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test"
+  ],
+  "results": [
+    {
+      "test": "navigation-redirect-blocked",
+      "privateHits": [],
+      "finalUrl": "about:blank",
+      "navigationError": "page.goto: net::ERR_BLOCKED_BY_CLIENT at http://audit-public.test:52944/redirect\nCall log:\n\u001b[2m  - navigating to \"http://audit-public.test:52944/redirect\", waiting until \"load\"\u001b[22m\n",
+      "pageCount": 1,
+      "bodyContainsPrivateSentinel": false,
+      "bodyContainsPrivateWebSocketSentinel": false
+    },
+    {
+      "test": "image-redirect-blocked",
+      "privateHits": [],
+      "finalUrl": "http://audit-public.test:52944/image-page",
+      "pageCount": 1,
+      "bodyContainsPrivateSentinel": false,
+      "bodyContainsPrivateWebSocketSentinel": false
+    },
+    {
+      "test": "popup-first-request",
+      "privateHits": [
+        {
+          "kind": "http",
+          "path": "/popup-target",
+          "host": "127.0.0.1:52943"
+        }
+      ],
+      "finalUrl": "http://audit-public.test:52944/popup",
+      "pageCount": 2,
+      "bodyContainsPrivateSentinel": false,
+      "bodyContainsPrivateWebSocketSentinel": false
+    },
+    {
+      "test": "websocket-request",
+      "privateHits": [
+        {
+          "kind": "websocket",
+          "path": "/ws-target",
+          "origin": "http://audit-public.test:52944"
+        }
+      ],
+      "finalUrl": "http://audit-public.test:52944/websocket",
+      "pageCount": 1,
+      "bodyContainsPrivateSentinel": false,
+      "bodyContainsPrivateWebSocketSentinel": true
+    },
+    {
+      "test": "browser-resolver-disagreement",
+      "privateHits": [
+        {
+          "kind": "http",
+          "path": "/resolver-target",
+          "host": "audit-destination.test:52943"
+        }
+      ],
+      "finalUrl": "http://audit-destination.test:52943/resolver-target",
+      "pageCount": 1,
+      "bodyContainsPrivateSentinel": true,
+      "bodyContainsPrivateWebSocketSentinel": false
+    },
+    {
+      "test": "fetchWebContent-browser-resolver-disagreement",
+      "privateHits": [
+        {
+          "kind": "http",
+          "path": "/tool-resolver-target",
+          "host": "audit-destination.test:52943"
+        }
+      ],
+      "returnedPrivateContent": true,
+      "retrievalMethod": "browser-html",
+      "finalUrl": "http://audit-destination.test:52943/tool-resolver-target"
+    },
+    {
+      "test": "browser-evaluate-has-no-deadline",
+      "configuredNavigationTimeoutMs": 1000,
+      "observationMs": 4001,
+      "sizeEstimateGetterEntered": true,
+      "settled": false,
+      "afterOwnedBrowserKilled": {
+        "settled": true,
+        "result": "rejected",
+        "error": "page.evaluate: cdpSession.detach: Browser closed"
+      }
+    }
+  ]
+}

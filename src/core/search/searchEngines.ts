@@ -1,3 +1,5 @@
+import { RESOURCE_LIMITS } from '../../utils/resourceLimits.js';
+
 export const SUPPORTED_SEARCH_ENGINES = [
     'baidu',
     'bing',
@@ -63,10 +65,16 @@ export function resolveRequestedEngines(
     allowedSearchEngines: string[],
     defaultSearchEngine: string
 ): string[] {
-    if (allowedSearchEngines.length === 0) {
-        return requestedEngines;
+    if (requestedEngines.length === 0 || requestedEngines.length > RESOURCE_LIMITS.maxEngineInputs) {
+        throw new Error(`engines must contain between 1 and ${RESOURCE_LIMITS.maxEngineInputs} entries`);
     }
-
-    const filteredEngines = requestedEngines.filter((engine) => allowedSearchEngines.includes(engine));
-    return filteredEngines.length > 0 ? filteredEngines : [defaultSearchEngine];
+    const uniqueEngines = [...new Set(requestedEngines.map(normalizeEngineName))];
+    const filteredEngines = allowedSearchEngines.length === 0
+        ? uniqueEngines
+        : uniqueEngines.filter(engine => allowedSearchEngines.includes(engine));
+    const result = filteredEngines.length > 0 ? filteredEngines : [defaultSearchEngine];
+    if (result.length > RESOURCE_LIMITS.maxSearchEngines) {
+        throw new Error(`engines must contain at most ${RESOURCE_LIMITS.maxSearchEngines} different engines`);
+    }
+    return result;
 }

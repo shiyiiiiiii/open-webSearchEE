@@ -1,0 +1,136 @@
+[
+  {
+    "id": "C01",
+    "severity": "high",
+    "title": "MCP HTTP 无认证且默认监听所有接口",
+    "cwe": ["CWE-306"],
+    "conditions": "调用者能连接 HTTP 端口，且部署层未额外隔离或认证。",
+    "verification": "loopback MCP 无认证初始化及工具发现成功；默认地址由实际解析函数确认；工具执行无授权经调用链确认。",
+    "locations": [
+      { "path": "src/adapters/http/serverOptions.ts", "line": 30 },
+      { "path": "src/index.ts", "line": 145 },
+      { "path": "src/index.ts", "line": 265 }
+    ],
+    "evidence": ["adapter-probes.json"],
+    "status": "open"
+  },
+  {
+    "id": "C02",
+    "severity": "high",
+    "title": "MCP 与 daemon 缺少 Host / Origin 校验",
+    "cwe": ["CWE-346"],
+    "conditions": "浏览器及本地网络策略允许相关访问；完整 DNS 重绑定攻击未执行。",
+    "verification": "非法 Host / Origin 的 MCP 初始化与 daemon 测试业务请求被接受。",
+    "locations": [
+      { "path": "src/index.ts", "line": 172 },
+      { "path": "src/adapters/http/localDaemon.ts", "line": 175 }
+    ],
+    "evidence": ["adapter-probes.json"],
+    "status": "open"
+  },
+  {
+    "id": "C03",
+    "severity": "high",
+    "title": "浏览器守卫遗漏弹窗首请求与 WebSocket",
+    "cwe": ["CWE-918"],
+    "conditions": "启用浏览器抓取、加载恶意页面，浏览器网络策略允许相关连接。",
+    "verification": "项目实际守卫与真实隔离 Chromium 下，私网测试服务收到弹窗请求和 WebSocket 握手，页面读到 WebSocket 标记。",
+    "locations": [
+      { "path": "src/utils/browserCookies.ts", "line": 187 },
+      { "path": "src/utils/browserCookies.ts", "line": 239 }
+    ],
+    "evidence": ["browser-probes.json"],
+    "status": "open"
+  },
+  {
+    "id": "C04",
+    "severity": "high",
+    "title": "DNS 预检未绑定代理 / 浏览器实际连接目标",
+    "cwe": ["CWE-918"],
+    "conditions": "使用代理或浏览器，且预检与实际解析不同或发生解析切换。测试模拟分歧，不是生产 DNS 攻击。",
+    "verification": "实际 HTTP helper 与完整 browser fetchWebContent 路径返回自建私网服务标记；直连过滤 agent 不在此结论范围。",
+    "locations": [
+      { "path": "src/utils/urlSafety.ts", "line": 101 },
+      { "path": "src/utils/httpRequest.ts", "line": 207 },
+      { "path": "src/utils/httpRequest.ts", "line": 264 },
+      { "path": "src/utils/browserCookies.ts", "line": 174 }
+    ],
+    "evidence": ["network-probes.json", "browser-probes.json"],
+    "status": "open"
+  },
+  {
+    "id": "C05",
+    "severity": "high",
+    "title": "跨源重定向保留 Cookie / Authorization",
+    "cwe": ["CWE-201"],
+    "conditions": "源请求携带有效敏感头，源站重定向可被攻击者控制或诱导。",
+    "verification": "不同 hostname 的测试服务收到虚构 Cookie 与 Authorization；未发送真实凭据。",
+    "locations": [
+      { "path": "src/utils/httpRequest.ts", "line": 266 },
+      { "path": "src/utils/httpRequest.ts", "line": 285 },
+      { "path": "src/engines/web/fetchWebContent.ts", "line": 245 }
+    ],
+    "evidence": ["network-probes.json"],
+    "status": "open"
+  },
+  {
+    "id": "C06",
+    "severity": "high",
+    "title": "配置凭据经日志及未认证错误响应泄露",
+    "cwe": ["CWE-532", "CWE-209"],
+    "conditions": "代理或浏览器 URL 含有效凭据；错误响应变体需要浏览器连接失败。",
+    "verification": "虚构密码 / token 出现在启动日志；未认证 daemon 503 响应含虚构浏览器 token。",
+    "locations": [
+      { "path": "src/config.ts", "line": 175 },
+      { "path": "src/config.ts", "line": 193 },
+      { "path": "src/utils/playwrightClient.ts", "line": 2356 },
+      { "path": "src/adapters/http/localDaemon.ts", "line": 302 }
+    ],
+    "evidence": ["information-probes.json"],
+    "status": "open"
+  },
+  {
+    "id": "C07",
+    "severity": "medium",
+    "title": "浏览器页面求值没有整体期限",
+    "cwe": ["CWE-400"],
+    "conditions": "抓取恶意脚本页面；可长期占据浏览器与抓取槽位。未执行四槽位耗尽攻击。",
+    "verification": "实际 fetchWebContent 导航预算 1000ms，进入恶意 Blob 后观察 4001ms 仍未结束，终止自建浏览器后才拒绝。",
+    "locations": [
+      { "path": "src/utils/browserCookies.ts", "line": 437 },
+      { "path": "src/core/fetch/fetchServices.ts", "line": 14 }
+    ],
+    "evidence": ["browser-probes.json"],
+    "status": "open"
+  },
+  {
+    "id": "C08",
+    "severity": "medium",
+    "title": "清理失效浏览器记录时终止未验证 PID",
+    "cwe": ["CWE-20", "CWE-807"],
+    "conditions": "失效 metadata 与 PID 复用；伪造 / 负 PID 变体另需本地记录写入条件。操作受运行账号权限约束。",
+    "verification": "原源码函数在 VM 模拟系统操作：负 PID 被接受，验证不到浏览器仍产生 kill / taskkill。实际信号与文件删除均为 0。",
+    "locations": [
+      { "path": "src/utils/playwrightClient.ts", "line": 960 },
+      { "path": "src/utils/playwrightClient.ts", "line": 1411 },
+      { "path": "src/utils/playwrightClient.ts", "line": 1704 }
+    ],
+    "evidence": ["metadata-probe.json"],
+    "status": "open"
+  },
+  {
+    "id": "C09",
+    "severity": "low",
+    "title": "源码硬编码 Cookie 与 CSRF 值",
+    "cwe": ["CWE-798"],
+    "conditions": "未验证凭据有效性或登录状态，不代表有效账户泄露。",
+    "verification": "AST 静态识别三个敏感头字面量，只记录位置与长度，原文省略。",
+    "locations": [
+      { "path": "src/engines/csdn/csdn.ts", "line": 19 },
+      { "path": "src/engines/linuxdo/fetchLinuxDoArticle.ts", "line": 31 },
+      { "path": "src/engines/linuxdo/fetchLinuxDoArticle.ts", "line": 33 }
+    ],
+    "evidence": ["static-inventory.json"],
+    "status": "open"
+  }
+]

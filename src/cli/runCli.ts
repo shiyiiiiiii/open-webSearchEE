@@ -47,7 +47,7 @@ function formatCliHelp(): string {
         'open-websearch CLI',
         '',
         'Daemon control:',
-        '  open-websearch serve [--host HOST] [--port PORT]',
+        '  open-websearch serve [--host HOST] [--port PORT] [--local-only]',
         '    Start the local daemon in the foreground.',
         '  open-websearch status [--base-url URL] [--json]',
         '    Check daemon status. `status` uses --base-url, not --daemon-url.',
@@ -71,6 +71,8 @@ function formatCliHelp(): string {
         '    Output only the structured JSON envelope for scripting or agent use.',
         '',
         'Execution model:',
+        '  - MCP startup: open-websearch [--port PORT] [--local-only]. PORT defaults to 3000; --local-only binds 127.0.0.1.',
+        '  - LOCAL_ONLY=true also enables local-only binding. Startup flags override PORT.',
         '  - Use `open-websearch serve` to start the local daemon.',
         '  - Use `open-websearch status` to check daemon status.',
         '  - `status` uses --base-url. Action commands such as `search` and `fetch-web` use --daemon-url.',
@@ -435,9 +437,15 @@ export function parseStatusArgs(argv: string[]): ParsedStatusArgs {
 export function parseServeArgs(argv: string[]): ParsedServeArgs {
     let host = process.env.OPEN_WEBSEARCH_DAEMON_HOST || '127.0.0.1';
     let port = Number(process.env.OPEN_WEBSEARCH_DAEMON_PORT || '3210');
+    let localOnly = process.env.LOCAL_ONLY === 'true';
 
     for (let index = 0; index < argv.length; index += 1) {
         const arg = argv[index];
+
+        if (arg === '--local-only') {
+            localOnly = true;
+            continue;
+        }
 
         if (arg === '--host') {
             const next = argv[index + 1];
@@ -471,7 +479,7 @@ export function parseServeArgs(argv: string[]): ParsedServeArgs {
     }
 
     return {
-        host,
+        host: localOnly ? '127.0.0.1' : host,
         port
     };
 }
@@ -1386,7 +1394,7 @@ export async function runCli(
         } catch (error) {
             const message = error instanceof Error ? error.message : String(error);
             io.stderr(message);
-            io.stderr('Usage: open-websearch serve [--host HOST] [--port PORT]');
+            io.stderr('Usage: open-websearch serve [--host HOST] [--port PORT] [--local-only]');
             return 1;
         }
 

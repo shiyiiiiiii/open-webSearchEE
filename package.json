@@ -3,6 +3,13 @@
   "version": "2.2.0",
   "description": "web search the internet",
   "type": "module",
+  "os": [
+    "win32",
+    "linux"
+  ],
+  "engines": {
+    "node": "^22.23.3"
+  },
   "bin": {
     "open-websearch": "./build/index.js"
   },
@@ -28,6 +35,8 @@
     "test:cli": "tsc && node build/test/test-cli-search.js",
     "test:cli-search": "tsc && node build/test/test-cli-search.js",
     "test:core-search": "tsc && node build/test/test-core-search.js",
+    "test:resource-limits": "tsc && node build/test/test-resource-limits.js",
+    "test:mcp-resource-limits": "tsc && node build/test/test-mcp-resource-limits.js",
     "test:core-fetch-services": "tsc && node build/test/test-core-fetch-services.js",
     "test:core-target-validation": "tsc && node build/test/test-core-target-validation.js",
     "test:engine-normalization": "tsc && node build/test/test-engine-normalization.js",
@@ -46,10 +55,11 @@
     "test:web-content:live": "tsc && node build/test/test-web-content-live.js",
     "test:bing:live": "tsc && node build/test/test-bing-live.js",
     "test:article-fetch:live": "tsc && node build/test/test-article-fetch-live.js",
-    "test:dialog-capture": "tsc && node build/test/test-dialog-capture.js"
+    "test:dialog-capture": "tsc && node build/test/test-dialog-capture.js",
+    "test:browser-security": "tsc && node build/test/test-browser-network-policy.js && node build/test/test-page-pool-lock.js && node build/test/test-browser-egress-proxy.js && node build/test/test-browser-redirect-safety.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.11.2",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "@mozilla/readability": "^0.6.0",
     "@types/cheerio": "^0.22.35",
     "axios": "^1.16.0",
@@ -60,7 +70,7 @@
     "ipaddr.js": "^2.3.0",
     "jsdom": "^26.1.0",
     "koffi": "^2.16.0",
-    "request-filtering-agent": "^3.2.0",
+    "request-filtering-agent": "^3.2.1",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -68,7 +78,7 @@
     "@types/express": "^5.0.6",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20.17.10",
-    "playwright": "^1.61.1",
+    "playwright-core": "^1.62.1",
     "typescript": "^5.3.3"
   }
 }

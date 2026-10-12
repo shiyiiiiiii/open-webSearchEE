@@ -1,0 +1,239 @@
+{
+  "checkedAt": "2026-10-09T02:48:10.939Z",
+  "source": "https://openssl-library.org/news/vulnerabilities/",
+  "openssl": "3.5.7",
+  "kind": "Upstream version-range matches; binary backport verification pending",
+  "totalParsed": 297,
+  "matches": [
+    {
+      "cve": "CVE-2026-35189",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "Excessive Memory Allocation in Relative CRLDP Processing",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8 from 3.0.0 before 3.0.23 from 1.1.1 before 1.1.1zj from 1.0.2 before 1.0.2zs",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-35191",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "QUIC Unvalidated Amplification Credit may be Over Accounted",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-42772",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "Potential CPU DoS via O(n^2) Fragment Reassembly in QUIC",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-54872",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "Timing Side-Channel in Scalar Multiplication for Non-NIST EC Curves",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8 from 3.0.0 before 3.0.23 from 1.1.1 before 1.1.1zj from 1.0.2 before 1.0.2zs",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-54873",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "QUIC STREAM Fragment Metadata DoS",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-54875",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "Non-Constant-Time SM2 Scalar Multiplication on ARM64 and RISC-V",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-72897",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "Out-of-Bounds Access After SSL_set_SSL_CTX() During a Handshake",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-75804",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "QUIC Connection-Level Flow Control is Not Enforced for Streams",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-75805",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "NULL Pointer Dereference in CMP Client Revocation Response Handling",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8 from 3.0.0 before 3.0.23",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-75806",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "Unauthenticated and Undersized DTLS 1.2 AEAD Record Causes DoS",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8 from 3.0.0 before 3.0.23 from 1.1.1 before 1.1.1zj",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-77696",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "Timing Side-Channel in SM2 Signature Generation",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8 from 3.0.0 before 3.0.23 from 1.1.1 before 1.1.1zj",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-84782",
+      "severity": "High",
+      "published": "29 September 2026",
+      "title": "DTLS Retransmits Handshake Messages From a Stale Buffer Offset",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8 from 3.0.0 before 3.0.23 from 1.1.1 before 1.1.1zj from 1.0.2 before 1.0.2zs",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-84784",
+      "severity": "Low",
+      "published": "29 September 2026",
+      "title": "QUIC: Unbounded RETIRE_CONNECTION_ID Backlog",
+      "affected": "from 4.0.0 before 4.0.3 from 3.6.0 before 3.6.5 from 3.5.0 before 3.5.9 from 3.4.0 before 3.4.8",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260929.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-75803",
+      "severity": "Low",
+      "published": "25 August 2026",
+      "title": "AEAD Forgeries with Empty Ciphertext When Using EVP_Cipher()",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8 from 3.4.0 before 3.4.7 from 3.0.0 before 3.0.22",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-14457",
+      "severity": "Low",
+      "published": "25 August 2026",
+      "title": "RPK Server Signature Algorithm Selection Can Dereference a Missing Certificate",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8 from 3.4.0 before 3.4.7",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-18798",
+      "severity": "Moderate",
+      "published": "25 August 2026",
+      "title": "QUIC Server May Trigger Double Free When Processing INITIAL Packet",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-54874",
+      "severity": "Low",
+      "published": "25 August 2026",
+      "title": "Excessive Memory Use Buffering DTLS Records for a Future Epoch",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8 from 3.4.0 before 3.4.7 from 3.0.0 before 3.0.22 from 1.1.1 before 1.1.1zi from 1.0.2 before 1.0.2zr",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-63072",
+      "severity": "Moderate",
+      "published": "25 August 2026",
+      "title": "Heap Buffer Overflow in CMS Key Unwrapping",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8 from 3.4.0 before 3.4.7 from 3.0.0 before 3.0.22 from 1.1.1 before 1.1.1zi",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-63073",
+      "severity": "Low",
+      "published": "25 August 2026",
+      "title": "Untrusted Sender DN Used as Format String in CMP Response Validation",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8 from 3.4.0 before 3.4.7",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-63074",
+      "severity": "Low",
+      "published": "25 August 2026",
+      "title": "CMP Indefinite Cache Growth of ExtraCerts",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8 from 3.4.0 before 3.4.7 from 3.0.0 before 3.0.22",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-63075",
+      "severity": "Low",
+      "published": "25 August 2026",
+      "title": "QUIC ACK-only Packet Retention Can Cause Memory Exhaustion",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8 from 3.4.0 before 3.4.7",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-63076",
+      "severity": "Moderate",
+      "published": "25 August 2026",
+      "title": "Invalid Pointer Dereference in CMP Server via Crafted protectionAlg",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8 from 3.4.0 before 3.4.7 from 3.0.0 before 3.0.22",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260825.txt"
+      ]
+    },
+    {
+      "cve": "CVE-2026-14456",
+      "severity": "Low",
+      "published": "13 August 2026",
+      "title": "Unbounded Memory Growth in QUIC Server Incoming Channel Queue",
+      "affected": "from 4.0.0 before 4.0.2 from 3.6.0 before 3.6.4 from 3.5.0 before 3.5.8",
+      "advisories": [
+        "https://openssl-library.org/news/secadv/20260813.txt"
+      ]
+    }
+  ]
+}

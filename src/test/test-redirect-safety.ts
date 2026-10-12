@@ -1,4 +1,6 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { __setDnsLookupForTests } from '../utils/urlSafety.js';
+import { fetchJuejinArticle } from '../engines/juejin/fetchJuejinArticle.js';
 import {
     __setAxiosRequestForTests,
     requestWithSafeRedirects
@@ -65,11 +67,28 @@ async function assertPrivateRedirectRejected(from: string, to: string, label: st
 }
 
 async function run(): Promise<void> {
+    __setDnsLookupForTests(async hostname => {
+        if (hostname === '127.0.0.1.nip.io') return [{ address: '127.0.0.1' }];
+        if (hostname === 'blocked-dns.example') return [{ address: '172.64.1.2' }];
+        if (hostname === 'juejin.cn') return [{ address: '8.8.8.8' }];
+        throw new Error(`unexpected DNS target: ${hostname}`);
+    });
     await assertPrivateRedirectRejected('http://8.8.8.8/', 'http://127.0.0.1/admin', 'redirect to literal private IPv4 is rejected');
     await assertPrivateRedirectRejected('http://8.8.8.8/', 'http://[::1]:8080/secret', 'redirect to [::1] (bracketed IPv6 loopback) is rejected');
     await assertPrivateRedirectRejected('http://8.8.8.8/', 'http://169.254.169.254/latest/meta-data/', 'redirect to 169.254.169.254 (IMDS) is rejected');
     // DNS-resolved private hop — exercises the async path proxy mode needs.
     await assertPrivateRedirectRejected('http://8.8.8.8/', 'http://127.0.0.1.nip.io/admin', 'redirect to hostname that DNS-resolves to 127.0.0.1 is rejected', /resolves to private IP/);
+
+    for (const address of ['10.1.2.3', '172.0.0.1', '172.32.0.1', '172.64.1.2', '172.255.255.255', '192.1.2.3', '192.255.255.255', '[::ffff:192.1.2.3]']) {
+        await assertPrivateRedirectRejected('http://8.8.8.8/', `http://${address}/admin`, `redirect to blocked prefix ${address} is rejected`);
+        stubAxios({});
+        await assertRejects(() => requestWithSafeRedirects('GET', `http://${address}/admin`), /private or local network/, `direct access to ${address}`);
+    }
+    await assertPrivateRedirectRejected('http://8.8.8.8/', 'http://blocked-dns.example/admin', 'redirect to blocked DNS prefix is rejected', /resolves to private IP/);
+
+    stubAxios({ 'https://juejin.cn/post/test': { status: 302, location: 'http://blocked-dns.example/admin' } });
+    await assertRejects(() => fetchJuejinArticle('https://juejin.cn/post/test'), /resolves to private IP/, 'Juejin fetch must validate DNS at every redirect');
+    console.log('✅ Juejin fetch shares the blocked-prefix redirect policy');
 
     // Public-to-public redirect: helper follows cleanly, responseUrl tracks final hop.
     stubAxios({
@@ -106,6 +125,7 @@ async function run(): Promise<void> {
     console.log('✅ relative Location header resolves against current URL');
 
     __setAxiosRequestForTests();
+    __setDnsLookupForTests();
     console.log('\nRedirect safety tests passed.');
 }
 

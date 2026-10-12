@@ -117,6 +117,54 @@ async function runDnsResolvedCases(): Promise<void> {
     }
 }
 
+async function runBlockedPrefixCases(): Promise<void> {
+    const { config } = await import('../config.js');
+    const previousFakeIpCidrs = [...config.fakeIpCidrs];
+    try {
+        // Even the broadest fake-IP allowlists cannot override these prefixes.
+        config.fakeIpCidrs = ['0.0.0.0/0', '::/0'];
+        for (const firstOctet of [10, 172, 192]) {
+            for (const suffix of ['0.0.0', '0.0.1', '1.2.3', '15.255.255', '16.0.1', '31.255.255', '32.0.1', '168.1.1', '255.255.255']) {
+                const address = `${firstOctet}.${suffix}`;
+                assertEqual(isPrivateOrLocalHostname(address), true, `entire prefix must be blocked: ${address}`);
+                assertEqual(isPublicHttpUrl(`http://${address}/`), false, `literal URL must be blocked: ${address}`);
+                assertEqual(isPublicHttpUrl(`http://[::ffff:${address}]/`), false, `mapped URL must be blocked: ${address}`);
+                for (const resolvedAddress of [address, `::ffff:${address}`]) {
+                    __setDnsLookupForTests(async () => [{ address: resolvedAddress }]);
+                    let rejected = false;
+                    try {
+                        await assertPublicHttpUrlResolved('https://blocked-dns.example/');
+                    } catch (error) {
+                        rejected = error instanceof Error && error.message.includes('FAKE_IP_CIDRS cannot allow');
+                    }
+                    assertEqual(rejected, true, `fake-IP allowlist must not bypass blocked DNS answer: ${resolvedAddress}`);
+                }
+            }
+            console.log(`✅ entire ${firstOctet}.0.0.0/8 blocked as literal, mapped IPv6 and DNS answer`);
+        }
+        for (const url of ['http://167772161/', 'http://0xac000001/', 'http://0xc0010203/']) {
+            assertEqual(isPublicHttpUrl(url), false, `numeric/hex prefix URL must be blocked: ${url}`);
+        }
+        for (const address of ['9.1.2.3', '11.1.2.3', '171.1.2.3', '173.1.2.3', '191.1.2.3', '193.1.2.3']) {
+            assertEqual(isPublicHttpUrl(`http://${address}/`), true, `adjacent public prefix must remain allowed: ${address}`);
+        }
+        __setDnsLookupForTests(async () => [{ address: '8.8.8.8' }, { address: '172.64.1.2' }]);
+        let mixedRejected = false;
+        try {
+            await assertPublicHttpUrlResolved('https://mixed-dns.example/');
+        } catch {
+            mixedRejected = true;
+        }
+        assertEqual(mixedRejected, true, 'one blocked DNS answer must reject the whole destination');
+        __setDnsLookupForTests(async () => [{ address: '8.8.8.8' }]);
+        await assertPublicHttpUrlResolved('https://192.example.com/');
+        console.log('✅ alternate encodings and mixed DNS answers blocked; adjacent prefixes and public numeric-looking domains allowed');
+    } finally {
+        config.fakeIpCidrs = previousFakeIpCidrs;
+        __setDnsLookupForTests();
+    }
+}
+
 async function runFakeIpCidrsCases(): Promise<void> {
     const { config } = await import('../config.js');
     const previousFakeIpCidrs = [...config.fakeIpCidrs];
@@ -172,6 +220,19 @@ async function runFakeIpCidrsCases(): Promise<void> {
         }
         assertEqual(blocked, true, 'FAKE_IP_CIDRS: literal private IP was NOT blocked');
         console.log('✅ FAKE_IP_CIDRS: literal private IP still blocked');
+
+        config.fakeIpCidrs = ['127.0.0.0/8', '::1/128', '::ffff:7f00:0/104'];
+        for (const address of ['127.0.0.1', '127.1.2.3', '::1', '::ffff:127.0.0.1']) {
+            __setDnsLookupForTests(async () => [{ address }]);
+            blocked = false;
+            try {
+                await assertPublicHttpUrlResolved('https://loopback-dns.example/');
+            } catch {
+                blocked = true;
+            }
+            assertEqual(blocked, true, `FAKE_IP_CIDRS must not exempt loopback DNS answer ${address}`);
+        }
+        console.log('✅ FAKE_IP_CIDRS: even explicit loopback CIDRs cannot allow loopback DNS answers');
     } finally {
         config.fakeIpCidrs = previousFakeIpCidrs;
         __setDnsLookupForTests();
@@ -227,11 +288,11 @@ async function runErrorMessageCases(): Promise<void> {
         message = await expectBlockedMessage('https://private-dns.example/');
         assertMessage(
             message,
-            ['private-dns.example', '192.168.1.10', 'FAKE_IP_CIDRS', '198.18.0.0/15'],
-            ['/10'],
+            ['private-dns.example', '192.168.1.10', 'FAKE_IP_CIDRS cannot allow'],
+            ['/10', '198.18.0.0/15'],
             'single private DNS answer'
         );
-        console.log('✅ error message: private DNS answer lists hostname, blocked IP and configured-CIDR hint');
+        console.log('✅ error message: mandatory blocked DNS answer explains that fake-IP exemptions cannot allow it');
 
         message = await expectBlockedMessage('https://multi-dns.example/');
         assertMessage(
@@ -251,6 +312,7 @@ async function main(): Promise<void> {
     runUrlCases();
     runAdvisoryBypassCases();
     await runDnsResolvedCases();
+    await runBlockedPrefixCases();
     await runFakeIpCidrsCases();
     await runErrorMessageCases();
     console.log('\nURL safety tests passed.');

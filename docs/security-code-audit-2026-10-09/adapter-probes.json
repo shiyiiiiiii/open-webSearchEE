@@ -1,0 +1,31 @@
+[
+  {
+    "test": "daemon-foreign-host-origin",
+    "status": 200,
+    "responseStatus": "ok"
+  },
+  {
+    "test": "duplicate-engine-amplification",
+    "inputEngines": 256,
+    "limit": 1,
+    "status": 200,
+    "executorCalls": 256
+  },
+  {
+    "test": "mcp-no-auth-foreign-host-origin",
+    "status": 200,
+    "sessionCreated": true,
+    "allowOrigin": "*"
+  },
+  {
+    "test": "unauthenticated-tool-discovery",
+    "status": 200,
+    "containsFetchWebTool": true,
+    "liveSessionsCreated": 3
+  },
+  {
+    "test": "credential-logging",
+    "proxyPasswordLogged": true,
+    "remoteTokenLogged": true
+  }
+]

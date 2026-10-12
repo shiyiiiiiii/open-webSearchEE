@@ -1,0 +1,2074 @@
+{
+  "capturedAt": "2026-10-10T09:37:02.870Z",
+  "gitHead": "7b348d9349de72404fea5c9eea4a7f542622984c",
+  "method": "Local TypeScript AST call-site inventory plus manual call-chain review; rules are not vulnerability verdicts.",
+  "summary": {
+    "sourceFiles": 103,
+    "testFiles": 43,
+    "otherSourceFiles": 60,
+    "sourceBytes": 797131,
+    "dependencyEntries": 185,
+    "dependencyDrift": 0
+  },
+  "runtime": {
+    "node": "v22.23.3",
+    "execPath": "C:\\Users\\xukai\\AppData\\Local\\Temp\\open-websearch-remediation-20261009-node22\\node.exe",
+    "versions": {
+      "node": "22.23.3",
+      "acorn": "8.16.0",
+      "ada": "2.9.2",
+      "amaro": "1.1.8",
+      "ares": "1.34.8",
+      "brotli": "1.1.0",
+      "cjs_module_lexer": "2.2.0",
+      "cldr": "48.0",
+      "icu": "78.3",
+      "llhttp": "9.4.3",
+      "modules": "127",
+      "napi": "10",
+      "nbytes": "0.1.3",
+      "ncrypto": "0.0.1",
+      "nghttp2": "1.69.0",
+      "openssl": "3.5.8",
+      "simdjson": "4.5.0",
+      "simdutf": "6.4.2",
+      "sqlite": "3.51.3",
+      "tz": "2026c",
+      "undici": "6.28.1",
+      "unicode": "17.0",
+      "uv": "1.51.0",
+      "uvwasi": "0.0.23",
+      "v8": "12.4.254.21-node.57",
+      "zlib": "1.3.1-e00f703",
+      "zstd": "1.5.7"
+    }
+  },
+  "inventory": [
+    {
+      "path": "src/adapters/http/localDaemon.ts",
+      "test": false,
+      "bytes": 15865,
+      "lines": 434,
+      "sha256": "37ba18a57581e23fabe0388c3fc5af1bc51ef89b681f5e28465b9ef1691879a9"
+    },
+    {
+      "path": "src/adapters/http/serverOptions.ts",
+      "test": false,
+      "bytes": 1316,
+      "lines": 32,
+      "sha256": "a7b70ee8a44cf79b987913916624084affa7fa265524a1a7558dbb5b60a20588"
+    },
+    {
+      "path": "src/adapters/http/sessionLimiter.ts",
+      "test": false,
+      "bytes": 1321,
+      "lines": 39,
+      "sha256": "71bf031a5a5bf8efa77a63f0291c32e3f0d25d20accd19fe59afb72de8646eb9"
+    },
+    {
+      "path": "src/cli/protocol.ts",
+      "test": false,
+      "bytes": 934,
+      "lines": 45,
+      "sha256": "915b8204aeaef621efd381e9f63709c0938478720143567386861ae24fae50f2"
+    },
+    {
+      "path": "src/cli/runCli.ts",
+      "test": false,
+      "bytes": 52758,
+      "lines": 1464,
+      "sha256": "b8d9fdf715a1059f5ff0d67772e6bfacb5ce1c9d57565834a2846ec6323d84d9"
+    },
+    {
+      "path": "src/config.ts",
+      "test": false,
+      "bytes": 15099,
+      "lines": 321,
+      "sha256": "dacb44a075926505480d8285d946beae8386720b21082e14549540330565974d"
+    },
+    {
+      "path": "src/core/fetch/fetchServices.ts",
+      "test": false,
+      "bytes": 2479,
+      "lines": 76,
+      "sha256": "4cec3ddd7611945a7d7d326f5e0116275f7f8795f0075c7060738168d9aa09ab"
+    },
+    {
+      "path": "src/core/search/searchEngines.ts",
+      "test": false,
+      "bytes": 2447,
+      "lines": 81,
+      "sha256": "82699656c91b38abad8e4a95bd31fcdbfa6131b70a6aaffbde05f13eddb90467"
+    },
+    {
+      "path": "src/core/search/searchService.ts",
+      "test": false,
+      "bytes": 5290,
+      "lines": 119,
+      "sha256": "cc7564590457256bd525416df53a730039dce4a840bceb718b74d7c227971342"
+    },
+    {
+      "path": "src/core/validation/targetValidation.ts",
+      "test": false,
+      "bytes": 1408,
+      "lines": 46,
+      "sha256": "0ceb6bfd58b67d4ca9739a351e7848607bee57638b918fc40c9c9cb86575f372"
+    },
+    {
+      "path": "src/engines/baidu/baidu.ts",
+      "test": false,
+      "bytes": 5385,
+      "lines": 141,
+      "sha256": "0ad031ea7d35369eec0519bbd193543c08a2ce4ff408035d7d06e9f26a583cd7"
+    },
+    {
+      "path": "src/engines/baidu/index.ts",
+      "test": false,
+      "bytes": 94,
+      "lines": 2,
+      "sha256": "02389838218f107535026b65eba43734db8cc505d8636391d7e6a3a348b3b8da"
+    },
+    {
+      "path": "src/engines/bing/bing.ts",
+      "test": false,
+      "bytes": 30966,
+      "lines": 794,
+      "sha256": "6c9068301d6f6f4028931d8254e5cffa88ea55ad4d11e147bc521600388d1bb6"
+    },
+    {
+      "path": "src/engines/bing/index.ts",
+      "test": false,
+      "bytes": 66,
+      "lines": 2,
+      "sha256": "20894d0faf8e856a695378751bb9874a49fb62382482e3b60d9717fda46a946b"
+    },
+    {
+      "path": "src/engines/bing/parser.ts",
+      "test": false,
+      "bytes": 7627,
+      "lines": 231,
+      "sha256": "33b5f374c06bfa7b1e3fb042175c8b6dc54fc8cd160f26cb53c348052fbf6154"
+    },
+    {
+      "path": "src/engines/brave/brave.ts",
+      "test": false,
+      "bytes": 3548,
+      "lines": 87,
+      "sha256": "55ec6460c276dfd4ca4866b9ad27d82eaa87fe0b9ff7152566eaeee565ad2a27"
+    },
+    {
+      "path": "src/engines/brave/index.ts",
+      "test": false,
+      "bytes": 42,
+      "lines": 2,
+      "sha256": "e31c74b601b9374f38b33505273f5b361d19cf180cf1e8f09ef8fd14df08431c"
+    },
+    {
+      "path": "src/engines/csdn/csdn.ts",
+      "test": false,
+      "bytes": 2315,
+      "lines": 61,
+      "sha256": "020844372797d5a0f3df295f0d11ea437215bcee72c1314fe66a984fb53c7996"
+    },
+    {
+      "path": "src/engines/csdn/fetchCsdnArticle.ts",
+      "test": false,
+      "bytes": 3633,
+      "lines": 103,
+      "sha256": "837a426390e28e1957df6bf96ab5564884ed1b81f4acf8a4c7008220fe8bd5b8"
+    },
+    {
+      "path": "src/engines/csdn/index.ts",
+      "test": false,
+      "bytes": 40,
+      "lines": 2,
+      "sha256": "42824d033ee4359c203d6673118aae2d85da1b33262b520f21b49d24aef34ebc"
+    },
+    {
+      "path": "src/engines/duckduckgo/index.ts",
+      "test": false,
+      "bytes": 58,
+      "lines": 2,
+      "sha256": "d4b5062c32662a3ec9de98c264c8c8be97ad3cfc9cb248f883a4452ad4215232"
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "test": false,
+      "bytes": 9835,
+      "lines": 303,
+      "sha256": "c25d88d95197031ada2cd001f24c4e24effc0d41e8edab744049e9b9e7751676"
+    },
+    {
+      "path": "src/engines/exa/exa.ts",
+      "test": false,
+      "bytes": 2806,
+      "lines": 83,
+      "sha256": "bc933e6fd652fd6610ed918bc3d5463a3efbc45597627403620294bd846b7e65"
+    },
+    {
+      "path": "src/engines/exa/index.ts",
+      "test": false,
+      "bytes": 38,
+      "lines": 2,
+      "sha256": "c6d60eb533e6fa3f9302fe34898c5e79a34cd396563788b2c9ddef02796f2271"
+    },
+    {
+      "path": "src/engines/github/github.ts",
+      "test": false,
+      "bytes": 5939,
+      "lines": 171,
+      "sha256": "79eb6ce7e0ba471d7a0197ed46e7a4760236c1bc3ac8e1b52e00faf8f9a05939"
+    },
+    {
+      "path": "src/engines/github/index.ts",
+      "test": false,
+      "bytes": 49,
+      "lines": 2,
+      "sha256": "c8cc368fc499930b2e7e91baf0791cd14b0546ca2eceba49ca277ad4435d0c83"
+    },
+    {
+      "path": "src/engines/hackernews/hackernews.ts",
+      "test": false,
+      "bytes": 5920,
+      "lines": 191,
+      "sha256": "9d6d8430a7bd6e0d797f33d9700a4db56056b17d6437aeb8cf469af6ab92d6a5"
+    },
+    {
+      "path": "src/engines/hackernews/index.ts",
+      "test": false,
+      "bytes": 127,
+      "lines": 6,
+      "sha256": "e100356e091319b6723ef32969b4a7a339e389313355fe24fa49ce1aea27c107"
+    },
+    {
+      "path": "src/engines/juejin/fetchJuejinArticle.ts",
+      "test": false,
+      "bytes": 3103,
+      "lines": 75,
+      "sha256": "1c94ce5d4c86c99b6f57ee19576d638f06fddf54c4c85d0f009f83a44c17a1d9"
+    },
+    {
+      "path": "src/engines/juejin/index.ts",
+      "test": false,
+      "bytes": 44,
+      "lines": 2,
+      "sha256": "19d2722ae0e8e8b58f71c44786bbabab84a7ab9979d0cdbd397130c072a78453"
+    },
+    {
+      "path": "src/engines/juejin/juejin.ts",
+      "test": false,
+      "bytes": 4671,
+      "lines": 128,
+      "sha256": "94cfe1e4ada686ec55ea487f855baa040244f0c400b2d11ccd962d1320791c16"
+    },
+    {
+      "path": "src/engines/linuxdo/fetchLinuxDoArticle.ts",
+      "test": false,
+      "bytes": 2566,
+      "lines": 45,
+      "sha256": "e2791d2c2e58d79df176cdd8bb18b1731b5c0665fa11d2ab1e0b9b6e9a49b04a"
+    },
+    {
+      "path": "src/engines/linuxdo/index.ts",
+      "test": false,
+      "bytes": 46,
+      "lines": 2,
+      "sha256": "c68a019defb6f234f908e32241465227e1b991b6c29eb4639c90af790dbf0a37"
+    },
+    {
+      "path": "src/engines/linuxdo/linuxdo.ts",
+      "test": false,
+      "bytes": 1724,
+      "lines": 46,
+      "sha256": "056945defa05cd19a744cc4f86de2d07d7e634e53e991662a390978361b00f7f"
+    },
+    {
+      "path": "src/engines/sogou/index.ts",
+      "test": false,
+      "bytes": 94,
+      "lines": 2,
+      "sha256": "a005030c62009dedf5aaac03a402b082347f68a7c9c6a35d6491e2661be35ed5"
+    },
+    {
+      "path": "src/engines/sogou/sogou.ts",
+      "test": false,
+      "bytes": 7190,
+      "lines": 223,
+      "sha256": "c1cae380af54484f35436f4daf32a5caf3a683a4f7318ba9e87aa7eb323e00f5"
+    },
+    {
+      "path": "src/engines/startpage/index.ts",
+      "test": false,
+      "bytes": 50,
+      "lines": 2,
+      "sha256": "0ac8278fd94974d6a90a2aec184aa3de68a1e451126cf4efd940f0fd06fba778"
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "test": false,
+      "bytes": 6890,
+      "lines": 226,
+      "sha256": "d89283d9573bf5f9ec86f400cad72f828aa65963d193790e41adb9ee076f4731"
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "test": false,
+      "bytes": 30740,
+      "lines": 723,
+      "sha256": "1eb14a5cadf0d6d060f83767755a36ad0afe230c79d47be3a8ce86d896eefe5d"
+    },
+    {
+      "path": "src/engines/web/index.ts",
+      "test": false,
+      "bytes": 153,
+      "lines": 2,
+      "sha256": "57c95f93c1b1f3f112daeee413ecba5622ba2cc12cf9780b776f547cd99bff1b"
+    },
+    {
+      "path": "src/engines/zhihu/fetchZhihuArticle.ts",
+      "test": false,
+      "bytes": 4698,
+      "lines": 130,
+      "sha256": "8320074829b94530fc797d36b786bf762a79afbf8475b0f4ec758aea0a675e4b"
+    },
+    {
+      "path": "src/engines/zhihu/index.ts",
+      "test": false,
+      "bytes": 103,
+      "lines": 4,
+      "sha256": "a088f78a44b848282f8dead3c4a4421fb6aec309ad8130e19c9372c9a85b0663"
+    },
+    {
+      "path": "src/engines/zhihu/zhihu.ts",
+      "test": false,
+      "bytes": 1323,
+      "lines": 38,
+      "sha256": "3e740ed11a8f11f9b230b68e2628f933c67c8a3f1c9253d0355e15aacbc24245"
+    },
+    {
+      "path": "src/index.ts",
+      "test": false,
+      "bytes": 12224,
+      "lines": 345,
+      "sha256": "10e084e2b91d6321ef2fd0e7c42da2bf2482a4824b071b62168e1e82c9b5b7b7"
+    },
+    {
+      "path": "src/runtime/createRuntime.ts",
+      "test": false,
+      "bytes": 3267,
+      "lines": 76,
+      "sha256": "91e7e0b29bcebf3176e62b43f8529b28fdba9674071ba2a4c59dbd09b2c72596"
+    },
+    {
+      "path": "src/runtime/runtimeSelection.ts",
+      "test": false,
+      "bytes": 283,
+      "lines": 7,
+      "sha256": "f14c68fa2bc435d61274c18cc8c8cf1e029017da53639ca19de3fb465fb2685a"
+    },
+    {
+      "path": "src/runtime/runtimeTypes.ts",
+      "test": false,
+      "bytes": 1211,
+      "lines": 40,
+      "sha256": "c0469abe6f53e022a20804960e8e19d8243f8fc3e429a18fd5d748bae5d80631"
+    },
+    {
+      "path": "src/test/fetchCsdnArticleTests.ts",
+      "test": true,
+      "bytes": 1987,
+      "lines": 76,
+      "sha256": "b24c0cdca9654f97a0e65888b6c17ce78079dc43ccd8e5b2d4c91216f97ed418"
+    },
+    {
+      "path": "src/test/fetchJuejinArticleTests.ts",
+      "test": true,
+      "bytes": 1032,
+      "lines": 37,
+      "sha256": "b4823afe29ea77412dffdb670408f70ca4ad7da248bf2f817a71e8a7aa4c7235"
+    },
+    {
+      "path": "src/test/test-article-fetch-live.ts",
+      "test": true,
+      "bytes": 3712,
+      "lines": 105,
+      "sha256": "d627145bf92aee5c3bc50ca914cb2993af5af8a87e8820fecfd9374ea9589958"
+    },
+    {
+      "path": "src/test/test-baidu.ts",
+      "test": true,
+      "bytes": 5697,
+      "lines": 148,
+      "sha256": "ae9410c104ad210d4b482a7242a33aa86bbb5a79934befefe3abd2d1bfec7b11"
+    },
+    {
+      "path": "src/test/test-bing-http.ts",
+      "test": true,
+      "bytes": 5110,
+      "lines": 130,
+      "sha256": "6513790aecf116e8738d716e746d3e28e074415d476ec004c705b2f223a32fec"
+    },
+    {
+      "path": "src/test/test-bing-live.ts",
+      "test": true,
+      "bytes": 4400,
+      "lines": 116,
+      "sha256": "a77f1388e6aad03aed1089176f606ce517940f20a81a329b6daae02913a5d019"
+    },
+    {
+      "path": "src/test/test-bing-parser.ts",
+      "test": true,
+      "bytes": 4323,
+      "lines": 95,
+      "sha256": "e7d26ccd5e06255f53826aabdd9ca7842941c54fabf076be7a814d93d856980b"
+    },
+    {
+      "path": "src/test/test-bing-playwright-cross-restart-concurrency.ts",
+      "test": true,
+      "bytes": 33401,
+      "lines": 864,
+      "sha256": "914a13951e6fed60eb6f06a01f92db605d67fd13d9d7c35ccee7b50f041052dc"
+    },
+    {
+      "path": "src/test/test-bing.ts",
+      "test": true,
+      "bytes": 1032,
+      "lines": 42,
+      "sha256": "867451a2e0eda38f0c34191c0b4fa6032d80465a4c59eea3084cf99c82e4c90e"
+    },
+    {
+      "path": "src/test/test-brave.ts",
+      "test": true,
+      "bytes": 994,
+      "lines": 39,
+      "sha256": "627b00b649d3b44c145292bdf5bb1c5c3a36218f37282ea3a7bd7010f5fd0393"
+    },
+    {
+      "path": "src/test/test-browser-path-guard.ts",
+      "test": true,
+      "bytes": 13090,
+      "lines": 312,
+      "sha256": "133a045591acb6c8994413d122707e50d6b7cc3ffc33e0e89dd14fe77cba12a5"
+    },
+    {
+      "path": "src/test/test-browser-redirect-safety.ts",
+      "test": true,
+      "bytes": 8355,
+      "lines": 169,
+      "sha256": "24d039eb0cddf4566c84d0d5824c57bf9ba5ceb42a715f0ea90712543e2302a4"
+    },
+    {
+      "path": "src/test/test-browser-sharing.ts",
+      "test": true,
+      "bytes": 10338,
+      "lines": 188,
+      "sha256": "45c5e9ea389e5a3932bd5cd6391d2e22f3b2afd1d17c793ec742c2b39d5bc0bb"
+    },
+    {
+      "path": "src/test/test-cli-search.ts",
+      "test": true,
+      "bytes": 45872,
+      "lines": 1150,
+      "sha256": "750244aa44d9557ccc212d8d389b0bb28f415b445ef75546cce6cf9ba07c9a7b"
+    },
+    {
+      "path": "src/test/test-core-fetch-services.ts",
+      "test": true,
+      "bytes": 4636,
+      "lines": 139,
+      "sha256": "2e5ddc515d3846ac187b4dc70af13ea90f3dbec5b3086d4b6e19399dbe19065f"
+    },
+    {
+      "path": "src/test/test-core-search.ts",
+      "test": true,
+      "bytes": 6788,
+      "lines": 183,
+      "sha256": "8c66b42b5d06fc2cbd201aa68cd314ab10124c212cdc30b8db769ec19f041450"
+    },
+    {
+      "path": "src/test/test-core-target-validation.ts",
+      "test": true,
+      "bytes": 2602,
+      "lines": 90,
+      "sha256": "c45a046a13bc76c0eb34a880eef8d6aa9478fa561e39268498d3b8d8ac54cbfa"
+    },
+    {
+      "path": "src/test/test-csdn.ts",
+      "test": true,
+      "bytes": 991,
+      "lines": 39,
+      "sha256": "2a612ada376b2ef03b1de5a693d085c0e3c8bfe92a340e817d30efcfe01afe56"
+    },
+    {
+      "path": "src/test/test-destination-ip-filter.ts",
+      "test": true,
+      "bytes": 4081,
+      "lines": 73,
+      "sha256": "6f119759503d2381463c705da45aba257d5e536d61f8ffd18db7da98f9cb9611"
+    },
+    {
+      "path": "src/test/test-dialog-capture.ts",
+      "test": true,
+      "bytes": 4887,
+      "lines": 104,
+      "sha256": "d4438d0cc9eed5d7e0b2a6b23bd3bab1fc5f62b54739de3944abfd2f4e2fad91"
+    },
+    {
+      "path": "src/test/test-duckduckgo-preload-url.ts",
+      "test": true,
+      "bytes": 1250,
+      "lines": 44,
+      "sha256": "11b97b95ffb735a5daa69f953f7282a37d8c0e9221a1f9c5a46bb3fba6c2cbe0"
+    },
+    {
+      "path": "src/test/test-duckduckgo.ts",
+      "test": true,
+      "bytes": 1103,
+      "lines": 40,
+      "sha256": "7af5eacc3255758d50424825ea0805ab6f91fa90e218f6087876cd2e959b6eb0"
+    },
+    {
+      "path": "src/test/test-engine-normalization.ts",
+      "test": true,
+      "bytes": 2692,
+      "lines": 88,
+      "sha256": "3f7a1675b18134a3b67518701f3bf62c58777719efd429835c8f7b8c3d5c7ebb"
+    },
+    {
+      "path": "src/test/test-exa.ts",
+      "test": true,
+      "bytes": 982,
+      "lines": 39,
+      "sha256": "0515cc114840489dff67b75902684a1bdbb5be4dcacac3bd066e6a9056c15fde"
+    },
+    {
+      "path": "src/test/test-github.ts",
+      "test": true,
+      "bytes": 5581,
+      "lines": 184,
+      "sha256": "e52891834c89207e7aa92569b1a955a54dcd1b35064b96e33628971c9210827a"
+    },
+    {
+      "path": "src/test/test-hackernews.ts",
+      "test": true,
+      "bytes": 9951,
+      "lines": 257,
+      "sha256": "590ab80b0060f1a4eddc01c6450698dc3af91935f7cb9ccd8b383fda6a4ba24a"
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "test": true,
+      "bytes": 5930,
+      "lines": 84,
+      "sha256": "f41626fa457c67331901d873fb3d29066160c9591cb094f1805488ef2338340b"
+    },
+    {
+      "path": "src/test/test-juejin.ts",
+      "test": true,
+      "bytes": 1057,
+      "lines": 40,
+      "sha256": "fe6a02208366a133bb52c6a1a788770227d4fd9ef85f827eb79941a0c01cd208"
+    },
+    {
+      "path": "src/test/test-linuxdo.ts",
+      "test": true,
+      "bytes": 1008,
+      "lines": 39,
+      "sha256": "dd1ecfb1e441cc4319692758a9eef6bf961184973014e1233feb8e854607b7ca"
+    },
+    {
+      "path": "src/test/test-local-daemon.ts",
+      "test": true,
+      "bytes": 22422,
+      "lines": 500,
+      "sha256": "4a3885bdd39f7d3137b8dca96b8637c1adff0dfdb8b2a8c9addfb06b1d5a8fd9"
+    },
+    {
+      "path": "src/test/test-mcp-adapter.ts",
+      "test": true,
+      "bytes": 35651,
+      "lines": 752,
+      "sha256": "acffc57d39fc4e1fbf78ac3b00e7ca1895c738d2cbdfb84ce48d1856548ece21"
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "test": true,
+      "bytes": 4837,
+      "lines": 90,
+      "sha256": "8e55baa4ddd66f0d9c8e7fcd9bb0d4bb31b1fe9ebaf5a05b50a32fb5610a6098"
+    },
+    {
+      "path": "src/test/test-no-window.ts",
+      "test": true,
+      "bytes": 6145,
+      "lines": 143,
+      "sha256": "68325673ab0c1c56cb321afd674d2ffd67a2cc96a587300a7c537fea67bf99ce"
+    },
+    {
+      "path": "src/test/test-page-pool-lock.ts",
+      "test": true,
+      "bytes": 5110,
+      "lines": 119,
+      "sha256": "55150bc67ecf226e341deab0d7a5e9bf8675dd23a9990e85cbc52e8b530f30b5"
+    },
+    {
+      "path": "src/test/test-redirect-safety.ts",
+      "test": true,
+      "bytes": 6105,
+      "lines": 136,
+      "sha256": "b17ec26dc293e80f856eb34ff305d3d180bb249f2f019ab1f25c6382e1df7c24"
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "test": true,
+      "bytes": 12917,
+      "lines": 228,
+      "sha256": "3651b0bc5a13a3290c9aaea209ee95524adc4863667bac2e791f7360e7c8e3e5"
+    },
+    {
+      "path": "src/test/test-runtime.ts",
+      "test": true,
+      "bytes": 5430,
+      "lines": 146,
+      "sha256": "f824d71bb6a861664015828a571facdfd40e5b8a486b46496193b542c34bb219"
+    },
+    {
+      "path": "src/test/test-sogou.ts",
+      "test": true,
+      "bytes": 5333,
+      "lines": 145,
+      "sha256": "c12d1cf921b07b7dea6d24de560b645e36cafe3ffc77cd773b2e5cc827411f40"
+    },
+    {
+      "path": "src/test/test-startpage.ts",
+      "test": true,
+      "bytes": 1006,
+      "lines": 38,
+      "sha256": "f83104f55605c49a55f54ca43f83f3946b16d8c8383839a7196ab8d540cdddb5"
+    },
+    {
+      "path": "src/test/test-url-safety.ts",
+      "test": true,
+      "bytes": 13308,
+      "lines": 325,
+      "sha256": "7204d923e0d747de874ab6ae1f253623d6b3672bba2c5310cd42ef3880995f63"
+    },
+    {
+      "path": "src/test/test-web-content-live.ts",
+      "test": true,
+      "bytes": 4184,
+      "lines": 106,
+      "sha256": "d415aea2aa9faf3b8b22e8194d458d8342f76f9d7c1731a9a4443da12951d6bf"
+    },
+    {
+      "path": "src/test/test-web-content.ts",
+      "test": true,
+      "bytes": 37562,
+      "lines": 836,
+      "sha256": "ffc3ff83bd076e8da88b179fd110500461e9b3243dacdf59e2c9f9774e953e9c"
+    },
+    {
+      "path": "src/test/test-zhihu.ts",
+      "test": true,
+      "bytes": 994,
+      "lines": 39,
+      "sha256": "9f3f992e4b8ae3a322652e441f512735f6010c46f50d5d0bd9eaaf68f8963033"
+    },
+    {
+      "path": "src/tools/runCurrentTests.ts",
+      "test": false,
+      "bytes": 9231,
+      "lines": 264,
+      "sha256": "9955e2c9762cea0af05cefbf7a237e89caf9881b2e6465b0eeb9af2a6c960749"
+    },
+    {
+      "path": "src/tools/setupTools.ts",
+      "test": false,
+      "bytes": 17279,
+      "lines": 393,
+      "sha256": "09e01cc07fe9ce067d4dd1ab21a198c4cc3e7675e377fa0850e21ed2f447e2dc"
+    },
+    {
+      "path": "src/types/koffi.d.ts",
+      "test": false,
+      "bytes": 533,
+      "lines": 18,
+      "sha256": "cc8a45bcbca2d844b31c0c7b12df0057b3239f8470d20bfec15472be03635c6a"
+    },
+    {
+      "path": "src/types/playwright.d.ts",
+      "test": false,
+      "bytes": 606,
+      "lines": 16,
+      "sha256": "3007a8ecce43c578d816d2a07c89bbf57539b77aeb38e2b18f71b9f980598a90"
+    },
+    {
+      "path": "src/types.ts",
+      "test": false,
+      "bytes": 135,
+      "lines": 8,
+      "sha256": "28fd4cad56415e3b4ffe3d737cc4094fffa67cb6b82b6558caa11b706f28a3e2"
+    },
+    {
+      "path": "src/utils/browserCookies.ts",
+      "test": false,
+      "bytes": 21121,
+      "lines": 489,
+      "sha256": "99ded915ce8029bbd15c8d0383f3bf48a1415608c7117ca6859fd7763b3dbad4"
+    },
+    {
+      "path": "src/utils/browserPaths.ts",
+      "test": false,
+      "bytes": 1783,
+      "lines": 34,
+      "sha256": "a3d6b5bc166b924ebf5b0180410fe908c92bd62e4ce8bd0993ed24ee8f3ca276"
+    },
+    {
+      "path": "src/utils/httpRequest.ts",
+      "test": false,
+      "bytes": 12323,
+      "lines": 310,
+      "sha256": "f076a42b5d406ae81d8f2f5542b48ebb3c24c386729af294c46a6f2f59b8ee6f"
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "test": false,
+      "bytes": 23261,
+      "lines": 681,
+      "sha256": "c949fa9363407552aecc355e9dfd33ad5bcad7f2804ce95cc060b956c807fe07"
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "test": false,
+      "bytes": 93063,
+      "lines": 2413,
+      "sha256": "f2c78bafd76c03b7b342c1f2e872fcf7b92fb8e7833d3f0b22a90356ce4e1df6"
+    },
+    {
+      "path": "src/utils/resourceLimits.ts",
+      "test": false,
+      "bytes": 737,
+      "lines": 25,
+      "sha256": "b36aa2411339a6d44073f0c9a64685016f0360d5a2b18c0fb12165fe7347e875"
+    },
+    {
+      "path": "src/utils/urlSafety.ts",
+      "test": false,
+      "bytes": 4850,
+      "lines": 127,
+      "sha256": "c6f2d98b25e1837595032a2476c46750756709459074a8a6b05a907c6804a8af"
+    },
+    {
+      "path": "src/version.ts",
+      "test": false,
+      "bytes": 538,
+      "lines": 21,
+      "sha256": "297bba33978a319e1a51f311d5329647756f82496e7b250afb81907dd3e678c4"
+    }
+  ],
+  "infrastructure": [
+    {
+      "path": "package.json",
+      "sha256": "fd398845c77f650d4f033f0a4f4ac8e0041bcdb6529e68e787e392607d27e240"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "e5164ad7dcb1d412abd2775ae7da74fdbf2d4c58be43684e0da19a98e94ea73e"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "7aa8a0f6f7f6a9da1b7d8fcb3bcff2aad4452a9ac46b54d6ce1221907e219a2c"
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "f08b03b3d58ae77164cd23e4f4797215d7325bf2d50f0720ec01f12e177afff4"
+    },
+    {
+      "path": ".dockerignore",
+      "sha256": "462311240dbe6ef0141bfba34a8704882c7450f79b7d55685ba01315a17fb97c"
+    },
+    {
+      "path": ".github/workflows/docker.yml",
+      "sha256": "f225a74fe92f86a6dfee5c0e58461af7ae05d4997251e47dbdfd2fbe2b24b964"
+    }
+  ],
+  "dependencyDrift": [],
+  "credentialLiterals": [
+    {
+      "path": "src/engines/csdn/csdn.ts",
+      "line": 19,
+      "key": "Cookie",
+      "characters": 651,
+      "valueOmitted": true
+    },
+    {
+      "path": "src/engines/linuxdo/fetchLinuxDoArticle.ts",
+      "line": 31,
+      "key": "x-csrf-token",
+      "characters": 86,
+      "valueOmitted": true
+    },
+    {
+      "path": "src/engines/linuxdo/fetchLinuxDoArticle.ts",
+      "line": 33,
+      "key": "Cookie",
+      "characters": 678,
+      "valueOmitted": true
+    }
+  ],
+  "sinks": [
+    {
+      "path": "src/cli/runCli.ts",
+      "line": 618,
+      "category": "network-or-content",
+      "name": "transport.request",
+      "test": false
+    },
+    {
+      "path": "src/cli/runCli.ts",
+      "line": 852,
+      "category": "execution",
+      "name": "spawn",
+      "test": false
+    },
+    {
+      "path": "src/engines/baidu/baidu.ts",
+      "line": 22,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/baidu/baidu.ts",
+      "line": 25,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/baidu/baidu.ts",
+      "line": 42,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/baidu/baidu.ts",
+      "line": 57,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/baidu/baidu.ts",
+      "line": 98,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/bing/bing.ts",
+      "line": 65,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/bing/bing.ts",
+      "line": 68,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/bing/bing.ts",
+      "line": 95,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/bing/bing.ts",
+      "line": 363,
+      "category": "network-or-content",
+      "name": "page.evaluate",
+      "test": false
+    },
+    {
+      "path": "src/engines/bing/bing.ts",
+      "line": 550,
+      "category": "network-or-content",
+      "name": "page.goto",
+      "test": false
+    },
+    {
+      "path": "src/engines/bing/parser.ts",
+      "line": 183,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/brave/brave.ts",
+      "line": 9,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/brave/brave.ts",
+      "line": 31,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/brave/brave.ts",
+      "line": 33,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/csdn/csdn.ts",
+      "line": 11,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/csdn/csdn.ts",
+      "line": 11,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/csdn/fetchCsdnArticle.ts",
+      "line": 23,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/csdn/fetchCsdnArticle.ts",
+      "line": 33,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/csdn/fetchCsdnArticle.ts",
+      "line": 49,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/csdn/fetchCsdnArticle.ts",
+      "line": 61,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/csdn/fetchCsdnArticle.ts",
+      "line": 80,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 50,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 71,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 76,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 123,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 208,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 220,
+      "category": "network-or-content",
+      "name": "axios.post",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 226,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 258,
+      "category": "network-or-content",
+      "name": "axios.post",
+      "test": false
+    },
+    {
+      "path": "src/engines/duckduckgo/searchDuckDuckGo.ts",
+      "line": 271,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/exa/exa.ts",
+      "line": 14,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/exa/exa.ts",
+      "line": 49,
+      "category": "network-or-content",
+      "name": "axios.post",
+      "test": false
+    },
+    {
+      "path": "src/engines/exa/exa.ts",
+      "line": 77,
+      "category": "network-or-content",
+      "name": "axios.isAxiosError",
+      "test": false
+    },
+    {
+      "path": "src/engines/github/github.ts",
+      "line": 79,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/github/github.ts",
+      "line": 80,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/hackernews/hackernews.ts",
+      "line": 25,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/hackernews/hackernews.ts",
+      "line": 28,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/hackernews/hackernews.ts",
+      "line": 93,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/hackernews/hackernews.ts",
+      "line": 173,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/juejin/fetchJuejinArticle.ts",
+      "line": 8,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/juejin/fetchJuejinArticle.ts",
+      "line": 8,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/juejin/fetchJuejinArticle.ts",
+      "line": 28,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/juejin/juejin.ts",
+      "line": 47,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/juejin/juejin.ts",
+      "line": 47,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/juejin/juejin.ts",
+      "line": 121,
+      "category": "network-or-content",
+      "name": "axios.isAxiosError",
+      "test": false
+    },
+    {
+      "path": "src/engines/linuxdo/fetchLinuxDoArticle.ts",
+      "line": 14,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/linuxdo/fetchLinuxDoArticle.ts",
+      "line": 14,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/linuxdo/fetchLinuxDoArticle.ts",
+      "line": 40,
+      "category": "network-or-content",
+      "name": "JSDOM",
+      "test": false
+    },
+    {
+      "path": "src/engines/sogou/sogou.ts",
+      "line": 19,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/sogou/sogou.ts",
+      "line": 22,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/sogou/sogou.ts",
+      "line": 31,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/sogou/sogou.ts",
+      "line": 115,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/sogou/sogou.ts",
+      "line": 152,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 21,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 45,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 80,
+      "category": "network-or-content",
+      "name": "axios.get",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 82,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 112,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 163,
+      "category": "network-or-content",
+      "name": "axios.post",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 166,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 182,
+      "category": "network-or-content",
+      "name": "axios.post",
+      "test": false
+    },
+    {
+      "path": "src/engines/startpage/startpage.ts",
+      "line": 185,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 124,
+      "category": "network-or-content",
+      "name": "JSDOM",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 135,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 189,
+      "category": "network-or-content",
+      "name": "JSDOM",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 194,
+      "category": "network-or-content",
+      "name": "JSDOM",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 233,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 311,
+      "category": "network-or-content",
+      "name": "JSDOM",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 367,
+      "category": "network-or-content",
+      "name": "page.goto",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 375,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects('GET', url, buildRequestOptions(cookieHeader), 'Request URL')\n                    .then((resp): HttpRaceOutcome => ({\n                        ok: true as const,\n                        contentType: String(resp.headers['content-type'] || '').toLowerCase(),\n                        raw: typeof resp.data === 'string' ? resp.data : '',\n                        // requestWithSafeRedirects 会在最终响应上回填重定向后的 URL（每一跳都经过公网校验），这里保留它作为 finalUrl，避免相对链接解析基于原始请求地址。\n                        finalUrl: resp.request?.res?.responseUrl || url\n                    }))\n                    .catch",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 375,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects('GET', url, buildRequestOptions(cookieHeader), 'Request URL')\n                    .then",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 375,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 414,
+      "category": "network-or-content",
+      "name": "page.evaluate",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 563,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/web/fetchWebContent.ts",
+      "line": 588,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/zhihu/fetchZhihuArticle.ts",
+      "line": 31,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": false
+    },
+    {
+      "path": "src/engines/zhihu/fetchZhihuArticle.ts",
+      "line": 41,
+      "category": "network-or-content",
+      "name": "cheerio.load",
+      "test": false
+    },
+    {
+      "path": "src/engines/zhihu/fetchZhihuArticle.ts",
+      "line": 75,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/zhihu/fetchZhihuArticle.ts",
+      "line": 87,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/engines/zhihu/fetchZhihuArticle.ts",
+      "line": 106,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": false
+    },
+    {
+      "path": "src/index.ts",
+      "line": 96,
+      "category": "network-or-content",
+      "name": "server.connect",
+      "test": false
+    },
+    {
+      "path": "src/index.ts",
+      "line": 208,
+      "category": "network-or-content",
+      "name": "server.connect",
+      "test": false
+    },
+    {
+      "path": "src/index.ts",
+      "line": 308,
+      "category": "network-or-content",
+      "name": "server.connect",
+      "test": false
+    },
+    {
+      "path": "src/test/test-bing-playwright-cross-restart-concurrency.ts",
+      "line": 229,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-bing-playwright-cross-restart-concurrency.ts",
+      "line": 254,
+      "category": "filesystem",
+      "name": "readFileSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-bing-playwright-cross-restart-concurrency.ts",
+      "line": 413,
+      "category": "network-or-content",
+      "name": "fetch",
+      "test": true
+    },
+    {
+      "path": "src/test/test-bing-playwright-cross-restart-concurrency.ts",
+      "line": 537,
+      "category": "execution",
+      "name": "spawn",
+      "test": true
+    },
+    {
+      "path": "src/test/test-bing-playwright-cross-restart-concurrency.ts",
+      "line": 615,
+      "category": "network-or-content",
+      "name": "fetch",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-redirect-safety.ts",
+      "line": 70,
+      "category": "network-or-content",
+      "name": "request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-redirect-safety.ts",
+      "line": 114,
+      "category": "network-or-content",
+      "name": "page.goto",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-redirect-safety.ts",
+      "line": 128,
+      "category": "network-or-content",
+      "name": "page.goto",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-redirect-safety.ts",
+      "line": 140,
+      "category": "network-or-content",
+      "name": "directPage.goto",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-redirect-safety.ts",
+      "line": 150,
+      "category": "network-or-content",
+      "name": "page.goto",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-redirect-safety.ts",
+      "line": 153,
+      "category": "network-or-content",
+      "name": "page.goto",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-sharing.ts",
+      "line": 25,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-sharing.ts",
+      "line": 39,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-sharing.ts",
+      "line": 45,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-browser-sharing.ts",
+      "line": 181,
+      "category": "filesystem",
+      "name": "rmSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-destination-ip-filter.ts",
+      "line": 45,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "line": 23,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "line": 31,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "line": 38,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "line": 47,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "line": 51,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "line": 58,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "line": 63,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-http-request-options.ts",
+      "line": 70,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-local-daemon.ts",
+      "line": 102,
+      "category": "network-or-content",
+      "name": "fetch",
+      "test": true
+    },
+    {
+      "path": "src/test/test-local-daemon.ts",
+      "line": 110,
+      "category": "network-or-content",
+      "name": "fetch",
+      "test": true
+    },
+    {
+      "path": "src/test/test-local-daemon.ts",
+      "line": 155,
+      "category": "network-or-content",
+      "name": "fetch",
+      "test": true
+    },
+    {
+      "path": "src/test/test-local-daemon.ts",
+      "line": 464,
+      "category": "network-or-content",
+      "name": "fetch",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-adapter.ts",
+      "line": 82,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 10,
+      "category": "network-or-content",
+      "name": "http.request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 33,
+      "category": "execution",
+      "name": "spawn",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 59,
+      "category": "network-or-content",
+      "name": "request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 63,
+      "category": "network-or-content",
+      "name": "request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 69,
+      "category": "network-or-content",
+      "name": "request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 70,
+      "category": "network-or-content",
+      "name": "request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 72,
+      "category": "network-or-content",
+      "name": "request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 74,
+      "category": "network-or-content",
+      "name": "request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-mcp-resource-limits.ts",
+      "line": 80,
+      "category": "network-or-content",
+      "name": "request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-no-window.ts",
+      "line": 24,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-no-window.ts",
+      "line": 33,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-no-window.ts",
+      "line": 41,
+      "category": "network-or-content",
+      "name": "koffiLib.load",
+      "test": true
+    },
+    {
+      "path": "src/test/test-no-window.ts",
+      "line": 131,
+      "category": "filesystem",
+      "name": "rmSync",
+      "test": true
+    },
+    {
+      "path": "src/test/test-redirect-safety.ts",
+      "line": 62,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/test/test-redirect-safety.ts",
+      "line": 85,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/test/test-redirect-safety.ts",
+      "line": 98,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/test/test-redirect-safety.ts",
+      "line": 110,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/test/test-redirect-safety.ts",
+      "line": 121,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 29,
+      "category": "network-or-content",
+      "name": "http.request",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 67,
+      "category": "network-or-content",
+      "name": "net.connect",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 84,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 84,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 191,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 195,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 198,
+      "category": "network-or-content",
+      "name": "buildAxiosRequestOptions",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 208,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 214,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/test/test-resource-limits.ts",
+      "line": 217,
+      "category": "network-or-content",
+      "name": "requestWithSafeRedirects",
+      "test": true
+    },
+    {
+      "path": "src/tools/runCurrentTests.ts",
+      "line": 116,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": false
+    },
+    {
+      "path": "src/tools/runCurrentTests.ts",
+      "line": 193,
+      "category": "execution",
+      "name": "spawn",
+      "test": false
+    },
+    {
+      "path": "src/utils/browserCookies.ts",
+      "line": 219,
+      "category": "network-or-content",
+      "name": "page.route",
+      "test": false
+    },
+    {
+      "path": "src/utils/browserCookies.ts",
+      "line": 220,
+      "category": "network-or-content",
+      "name": "route.request",
+      "test": false
+    },
+    {
+      "path": "src/utils/browserCookies.ts",
+      "line": 325,
+      "category": "network-or-content",
+      "name": "page.goto",
+      "test": false
+    },
+    {
+      "path": "src/utils/browserCookies.ts",
+      "line": 422,
+      "category": "network-or-content",
+      "name": "page.goto",
+      "test": false
+    },
+    {
+      "path": "src/utils/browserCookies.ts",
+      "line": 438,
+      "category": "network-or-content",
+      "name": "page.evaluate",
+      "test": false
+    },
+    {
+      "path": "src/utils/browserCookies.ts",
+      "line": 454,
+      "category": "network-or-content",
+      "name": "page.evaluate",
+      "test": false
+    },
+    {
+      "path": "src/utils/browserCookies.ts",
+      "line": 468,
+      "category": "network-or-content",
+      "name": "page.evaluate",
+      "test": false
+    },
+    {
+      "path": "src/utils/httpRequest.ts",
+      "line": 227,
+      "category": "network-or-content",
+      "name": "axios.request",
+      "test": false
+    },
+    {
+      "path": "src/utils/httpRequest.ts",
+      "line": 230,
+      "category": "network-or-content",
+      "name": "axios.request",
+      "test": false
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "line": 28,
+      "category": "network-or-content",
+      "name": "k.load",
+      "test": false
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "line": 75,
+      "category": "network-or-content",
+      "name": "k.load",
+      "test": false
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "line": 76,
+      "category": "network-or-content",
+      "name": "k.load",
+      "test": false
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "line": 180,
+      "category": "network-or-content",
+      "name": "k.load",
+      "test": false
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "line": 277,
+      "category": "filesystem",
+      "name": "openSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "line": 322,
+      "category": "filesystem",
+      "name": "openSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "line": 429,
+      "category": "filesystem",
+      "name": "openSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/nativeInterop.ts",
+      "line": 448,
+      "category": "filesystem",
+      "name": "openSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 149,
+      "category": "filesystem",
+      "name": "rmSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 453,
+      "category": "network-or-content",
+      "name": "playwright.chromium.connectOverCDP",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 984,
+      "category": "filesystem",
+      "name": "readFileSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1023,
+      "category": "filesystem",
+      "name": "writeFileSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1035,
+      "category": "filesystem",
+      "name": "readFileSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1051,
+      "category": "filesystem",
+      "name": "rmSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1142,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1155,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1237,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1261,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1396,
+      "category": "filesystem",
+      "name": "rmSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1446,
+      "category": "network-or-content",
+      "name": "fetch",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1707,
+      "category": "execution",
+      "name": "execFileSync",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1870,
+      "category": "execution",
+      "name": "spawn",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 1976,
+      "category": "execution",
+      "name": "spawn",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 2359,
+      "category": "network-or-content",
+      "name": "playwright.chromium.connect",
+      "test": false
+    },
+    {
+      "path": "src/utils/playwrightClient.ts",
+      "line": 2375,
+      "category": "network-or-content",
+      "name": "playwright.chromium.connectOverCDP",
+      "test": false
+    },
+    {
+      "path": "src/version.ts",
+      "line": 10,
+      "category": "filesystem",
+      "name": "readFileSync",
+      "test": false
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "node": "v22.23.3",
+  "playwright": "1.62.1",
+  "results": [
+    {
+      "name": "build",
+      "code": 0,
+      "milliseconds": 2214,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-network-policy",
+      "code": 0,
+      "milliseconds": 3151,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-page-pool-lock",
+      "code": 0,
+      "milliseconds": 121,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-egress-proxy",
+      "code": 0,
+      "milliseconds": 149,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-path-guard",
+      "code": 0,
+      "milliseconds": 117,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-redirect-safety",
+      "code": 0,
+      "milliseconds": 20882,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-web-content",
+      "code": 0,
+      "milliseconds": 658,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-url-safety",
+      "code": 0,
+      "milliseconds": 100,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-destination-ip-filter",
+      "code": 0,
+      "milliseconds": 219,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-http-request-options",
+      "code": 0,
+      "milliseconds": 173,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-redirect-safety",
+      "code": 0,
+      "milliseconds": 282,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-core-fetch-services",
+      "code": 0,
+      "milliseconds": 95,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-core-target-validation",
+      "code": 0,
+      "milliseconds": 92,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-core-search",
+      "code": 0,
+      "milliseconds": 66,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-engine-normalization",
+      "code": 0,
+      "milliseconds": 99,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-bing-parser",
+      "code": 0,
+      "milliseconds": 285,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-bing-http",
+      "code": 0,
+      "milliseconds": 283,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-cli-search",
+      "code": 0,
+      "milliseconds": 882,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-local-daemon",
+      "code": 0,
+      "milliseconds": 987,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-mcp-adapter",
+      "code": 0,
+      "milliseconds": 7864,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-runtime",
+      "code": 0,
+      "milliseconds": 650,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-duckduckgo-preload-url",
+      "code": 0,
+      "milliseconds": 271,
+      "preExisting": false,
+      "skipped": false
+    },
+    {
+      "name": "test-resource-limits",
+      "code": 1,
+      "milliseconds": 659,
+      "preExisting": true,
+      "skipped": false
+    },
+    {
+      "name": "test-mcp-resource-limits",
+      "code": 1,
+      "milliseconds": 942,
+      "preExisting": true,
+      "skipped": false
+    }
+  ],
+  "passed": 22,
+  "preExistingFailures": [
+    "test-resource-limits",
+    "test-mcp-resource-limits"
+  ],
+  "unexpectedFailures": [],
+  "changedExistingSources": [
+    "src/utils/urlSafety.ts",
+    "src/utils/playwrightClient.ts",
+    "src/utils/browserCookies.ts",
+    "src/tools/setupTools.ts",
+    "src/test/test-web-content.ts",
+    "src/test/test-runtime.ts",
+    "src/test/test-page-pool-lock.ts",
+    "src/test/test-mcp-adapter.ts",
+    "src/test/test-local-daemon.ts",
+    "src/test/test-cli-search.ts",
+    "src/test/test-browser-redirect-safety.ts",
+    "src/test/test-browser-path-guard.ts",
+    "src/runtime/runtimeTypes.ts",
+    "src/engines/web/fetchWebContent.ts",
+    "src/engines/bing/bing.ts",
+    "src/config.ts",
+    "src/adapters/http/localDaemon.ts",
+    "src/core/fetch/fetchServices.ts"
+  ],
+  "newSources": [
+    "src/utils/browserNetworkPolicy.ts",
+    "src/utils/browserEgressProxy.ts",
+    "src/tools/verifyBrowserEgress.ts",
+    "src/tools/browserWorker.ts",
+    "src/tools/browserEgressProxy.ts",
+    "src/tools/browserEgressCanary.ts",
+    "src/test/test-browser-network-policy.ts",
+    "src/test/test-browser-egress-proxy.ts",
+    "src/test/helpers/controlledBrowserMock.ts"
+  ],
+  "deployment": {
+    "executed": false,
+    "reason": "Docker is not installed and WSL has no usable distribution on this Windows development host"
+  },
+  "liveBing": {
+    "executed": false,
+    "reason": "Requires verified egress in the target deployment; no unsafe default-context fallback"
+  }
+}

@@ -1,0 +1,72 @@
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    ports: ["127.0.0.1:3000:3000"]
+    environment:
+      MODE: http
+      PLAYWRIGHT_WS_ENDPOINT: ws://172.30.0.3:3000/open-websearch
+      BROWSER_EGRESS_PROXY_URL: http://172.30.0.2:3128
+      BROWSER_EGRESS_ENFORCED: "true"
+    depends_on:
+      browser: { condition: service_healthy }
+    networks: [control, app-outbound]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+  browser:
+    build:
+      context: ../..
+      dockerfile: deploy/browser/Dockerfile
+    environment:
+      BROWSER_WORKER_ROLE: browser
+      BROWSER_EGRESS_PROXY_URL: http://172.30.0.2:3128
+      BROWSER_EGRESS_ENFORCED: "true"
+      PLAYWRIGHT_EXECUTABLE_PATH: /usr/bin/chromium
+    depends_on:
+      proxy: { condition: service_healthy }
+    networks:
+      control: { ipv4_address: 172.30.0.3 }
+    cap_drop: [ALL]
+    cap_add: [NET_ADMIN, SETUID, SETGID]
+    security_opt: ["no-new-privileges:true"]
+    read_only: true
+    tmpfs: [/tmp]
+    shm_size: 256mb
+    pids_limit: 256
+    mem_limit: 1g
+    healthcheck:
+      test: [CMD, node, -e, "require('fs').accessSync('/tmp/browser-worker-ready')"]
+      interval: 5s
+      timeout: 2s
+      retries: 12
+  proxy:
+    build:
+      context: ../..
+      dockerfile: deploy/browser/Dockerfile
+    environment:
+      BROWSER_WORKER_ROLE: proxy
+      BROWSER_EGRESS_LISTEN_HOST: 0.0.0.0
+      BROWSER_EGRESS_READY_FILE: /tmp/browser-proxy-ready
+    networks:
+      control: { ipv4_address: 172.30.0.2 }
+      proxy-outbound: {}
+    cap_drop: [ALL]
+    cap_add: [NET_ADMIN, SETUID, SETGID]
+    security_opt: ["no-new-privileges:true"]
+    read_only: true
+    tmpfs: [/tmp]
+    pids_limit: 64
+    mem_limit: 256m
+    healthcheck:
+      test: [CMD, node, -e, "require('fs').accessSync('/tmp/browser-proxy-ready')"]
+      interval: 5s
+      timeout: 2s
+      retries: 12
+networks:
+  control:
+    internal: true
+    ipam:
+      config: [{ subnet: 172.30.0.0/24 }]
+  app-outbound: {}
+  proxy-outbound: {}

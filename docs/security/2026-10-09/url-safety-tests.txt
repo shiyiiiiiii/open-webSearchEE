@@ -1,0 +1,61 @@
+
+> open-websearch@2.2.0 test:url-safety
+> tsc && node build/test/test-url-safety.js
+
+🔍 Default search engine: bing
+🔍 No search engine restrictions, all available engines can be used
+🔍 Search mode: AUTO (currently only affects Bing)
+🌐 No proxy configured (set USE_PROXY=true to enable)
+🔐 fetchWebContent TLS verification is enabled
+🧭 Playwright client source: auto
+🧭 Playwright headless: true
+🧭 Playwright navigation timeout: 20000ms
+🖥️ Server mode: BOTH
+🔒 CORS disabled (set ENABLE_CORS=true to enable)
+✅ host localhost -> private=true
+✅ host localhost. -> private=true
+✅ host foo.localhost. -> private=true
+✅ host 127.0.0.1 -> private=true
+✅ host 10.0.0.5 -> private=true
+✅ host 172.20.1.8 -> private=true
+✅ host 192.168.1.1 -> private=true
+✅ host 169.254.169.254 -> private=true
+✅ host ::1 -> private=true
+✅ host fd00::1 -> private=true
+✅ host example.com -> private=false
+✅ host 8.8.8.8 -> private=false
+✅ url https://example.com/skill.md -> allowed=true
+✅ url http://8.8.8.8/resource -> allowed=true
+✅ url ftp://example.com/file -> allowed=false
+✅ url http://localhost:3000/secret -> allowed=false
+✅ url http://foo.localhost./secret -> allowed=false
+✅ url http://127.0.0.1/admin -> allowed=false
+✅ url http://169.254.169.254/latest/meta-data -> allowed=false
+✅ advisory bypass blocked: http://[::1]/
+✅ advisory bypass blocked: http://[::]/
+✅ advisory bypass blocked: http://[::ffff:127.0.0.1]/
+✅ advisory bypass blocked: http://[::ffff:7f00:1]/
+✅ advisory bypass blocked: http://[0:0:0:0:0:ffff:127.0.0.1]/
+✅ advisory bypass blocked: http://[0:0:0:0:0:0:0:1]/
+✅ advisory bypass blocked: http://[::0:1]/
+✅ advisory bypass blocked: http://[0:0::1]/
+✅ advisory bypass blocked: http://[::ffff:a00:1]/
+✅ advisory bypass blocked: http://[::ffff:c0a8:1]/
+✅ advisory bypass blocked: http://[::ffff:a9fe:1]/
+✅ advisory bypass blocked: http://[::ffff:169.254.169.254]/latest/meta-data
+✅ public control allowed: http://[2001:4860:4860::8888]/
+✅ public control allowed: https://[2606:4700:4700::1111]/
+✅ public control allowed: https://example.com/
+✅ DNS-resolved private target blocked: private-dns.example
+✅ DNS-resolved public target allowed: public-dns.example
+✅ FAKE_IP_CIDRS: synthetic fake-ip DNS answer allowed
+✅ FAKE_IP_CIDRS: loopback DNS answer still blocked
+✅ FAKE_IP_CIDRS: LAN DNS answer still blocked
+✅ FAKE_IP_CIDRS: public DNS answer still allowed
+✅ FAKE_IP_CIDRS: literal private IP still blocked
+✅ error message: literal IPv4 shows target without fake-ip hint
+✅ error message: literal IPv6 shows target without fake-ip hint
+✅ error message: private DNS answer lists hostname, blocked IP and configured-CIDR hint
+✅ error message: multiple DNS answers list only blocked IPs
+
+URL safety tests passed.

@@ -1,0 +1,48 @@
+{
+  "fixture": "All sockets use audit-owned loopback services. A controlled CONNECT proxy models DNS disagreement. Credentials are fabricated.",
+  "connections": [
+    "audit-split.test:61043",
+    "juejin.cn:61044",
+    "audit-cookie-source.test:61044",
+    "audit-cookie-sink.test:61043",
+    "audit-split.test:61043"
+  ],
+  "results": [
+    {
+      "test": "proxy-resolver-disagreement",
+      "nodeDnsChecks": [
+        "audit-split.test"
+      ],
+      "returnedPrivateContent": true,
+      "privateHits": [
+        {
+          "path": "/split-dns",
+          "host": "audit-split.test:61043"
+        }
+      ]
+    },
+    {
+      "test": "juejin-private-redirect-blocked",
+      "error": "获取掘金文章失败: Redirect target (audit-private.test) resolves to private IP(s) (127.0.0.1), which is not allowed. These address ranges are always blocked; FAKE_IP_CIDRS cannot allow them.",
+      "privateHits": []
+    },
+    {
+      "test": "cross-origin-sensitive-header-forwarding",
+      "sinkRequests": [
+        {
+          "path": "/sink",
+          "host": "audit-cookie-sink.test:61043",
+          "cookie": "audit_session=DUMMY_NO_REAL_SECRET",
+          "authorization": "Bearer AUDIT_DUMMY"
+        }
+      ]
+    },
+    {
+      "test": "http-response-budget-enforced",
+      "maximumBytes": 2097152,
+      "fixtureBytes": 2097153,
+      "rejected": true,
+      "error": "maxContentLength size of 2097152 exceeded"
+    }
+  ]
+}

@@ -34,6 +34,8 @@ function createTestConfig(overrides: Partial<AppConfig> = {}): AppConfig {
         playwrightCdpEndpoint: undefined,
         playwrightHeadless: true,
         playwrightNavigationTimeoutMs: 20000,
+        browserEgressEnforced: false,
+        browserAllowedPorts: [80, 443],
         enableCors: false,
         corsOrigin: '*',
         enableHttpServer: true,

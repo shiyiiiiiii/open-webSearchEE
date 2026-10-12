@@ -3,6 +3,25 @@ import { isIP } from 'node:net';
 import ipaddr from 'ipaddr.js';
 import { config } from '../config.js';
 
+// These entire IPv4 prefixes are blocked by policy, including their mapped
+// IPv6 forms. They cannot be exempted by synthetic DNS configuration.
+export const BLOCKED_DESTINATION_CIDRS = [
+    '10.0.0.0/8', '127.0.0.0/8', '172.0.0.0/8', '192.0.0.0/8',
+    '::1/128',
+    '::ffff:a00:0/104', '::ffff:7f00:0/104',
+    '::ffff:ac00:0/104', '::ffff:c000:0/104'
+];
+const blockedDestinationNetworks = BLOCKED_DESTINATION_CIDRS.map(cidr => ipaddr.parseCIDR(cidr));
+
+export function isBlockedDestinationIp(address: string): boolean {
+    const host = stripIpv6Brackets(address);
+    if (isIP(host) === 0) return false;
+    const parsed = ipaddr.parse(host);
+    return blockedDestinationNetworks.some(([network, prefix]) =>
+        parsed.kind() === network.kind() && parsed.match(network, prefix)
+    );
+}
+
 // URL.hostname preserves the brackets for IPv6 literals (`[::1]`), which
 // break isIP and dns.lookup. Strip them once here.
 function stripIpv6Brackets(host: string): string {
@@ -13,7 +32,7 @@ function stripIpv6Brackets(host: string): string {
 }
 
 type LookupResult = Array<{ address: string }>;
-type DnsLookupFn = (hostname: string) => Promise<LookupResult>;
+export type DnsLookupFn = (hostname: string) => Promise<LookupResult>;
 
 let dnsLookupForSafety: DnsLookupFn = async (hostname) => {
     return dns.lookup(hostname, { all: true, verbatim: true });
@@ -25,6 +44,9 @@ function isAllowedFakeIp(address: string): boolean {
     }
     try {
         const parsed = ipaddr.parse(address);
+        if (isBlockedDestinationIp(address)) {
+            return false;
+        }
         return config.fakeIpCidrs.some((cidr) => parsed.match(ipaddr.parseCIDR(cidr)));
     } catch {
         return false;
@@ -44,7 +66,7 @@ export function isPrivateOrLocalHostname(hostname: string): boolean {
         return false;
     }
     try {
-        return ipaddr.parse(host).range() !== 'unicast';
+        return isBlockedDestinationIp(host) || ipaddr.process(host).range() !== 'unicast';
     } catch {
         return false;
     }
@@ -77,25 +99,39 @@ export function assertPublicHttpUrl(url: string | URL, label: string = 'URL'): v
 // DNS-resolves hostnames and rejects private answers. Needed for proxy mode,
 // where request-filtering-agent isn't in the chain.
 export async function assertPublicHttpUrlResolved(url: string | URL, label: string = 'URL'): Promise<void> {
+    await resolvePublicHttpAddresses(url, label);
+}
+
+// Return the validated addresses so a connection owner can pin the socket to
+// an IP rather than passing the hostname to another resolver. The browser
+// egress proxy never exempts synthetic DNS answers.
+export async function resolvePublicHttpAddresses(url: string | URL, label: string = 'URL', allowFakeIp = true, lookup: DnsLookupFn = dnsLookupForSafety): Promise<Array<{ address: string; family: number }>> {
     const parsed = typeof url === 'string' ? new URL(url) : url;
     assertPublicHttpUrl(parsed, label);
 
     const host = stripIpv6Brackets(parsed.hostname);
     if (isIP(host) !== 0) {
-        return;
+        return [{ address: host, family: isIP(host) }];
     }
 
     let resolved: LookupResult;
     try {
-        resolved = await dnsLookupForSafety(host);
+        resolved = await lookup(host);
     } catch {
         throw new Error(`${label} could not be resolved`);
     }
+    if (!resolved.length || resolved.some(entry => isIP(entry.address) === 0)) {
+        throw new Error(`${label} could not be resolved to valid IP addresses`);
+    }
     const blockedIps = resolved
-        .filter((entry) => isPrivateOrLocalHostname(entry.address) && !isAllowedFakeIp(entry.address))
+        .filter((entry) => isPrivateOrLocalHostname(entry.address) && !(allowFakeIp && isAllowedFakeIp(entry.address)))
         .map((entry) => entry.address);
     if (blockedIps.length > 0) {
         const ipList = blockedIps.join(', ');
-        throw new Error(`${label} (${parsed.hostname}) resolves to private IP(s) (${ipList}), which is not allowed. If these are synthetic fake-IP DNS results, set FAKE_IP_CIDRS to the CIDR configured by your proxy (for example 198.18.0.0/15)`);
+        const hint = blockedIps.some(isBlockedDestinationIp)
+            ? 'These address ranges are always blocked; FAKE_IP_CIDRS cannot allow them.'
+            : 'If these are synthetic fake-IP DNS results, set FAKE_IP_CIDRS to the CIDR configured by your proxy (for example 198.18.0.0/15)';
+        throw new Error(`${label} (${parsed.hostname}) resolves to private IP(s) (${ipList}), which is not allowed. ${hint}`);
     }
+    return resolved.map(entry => ({ address: entry.address, family: isIP(entry.address) }));
 }

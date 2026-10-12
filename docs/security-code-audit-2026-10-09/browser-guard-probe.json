@@ -1,0 +1,48 @@
+{
+  "fixture": "Initial public server is simulated with an isolated DNS safety hook and Chromium host mapping. All sockets target audit-owned loopback services.",
+  "dnsChecks": [
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test",
+    "audit-public.test"
+  ],
+  "results": [
+    {
+      "test": "navigation-redirect",
+      "privateHits": [
+        {
+          "path": "/redirect-target",
+          "host": "127.0.0.1:52754"
+        }
+      ],
+      "finalUrl": "http://127.0.0.1:52754/redirect-target",
+      "bodyContainsPrivateSentinel": true
+    },
+    {
+      "test": "subresource-redirect",
+      "privateHits": [
+        {
+          "path": "/image-target",
+          "host": "127.0.0.1:52754"
+        }
+      ],
+      "finalUrl": "http://audit-public.test:52755/image-page",
+      "bodyContainsPrivateSentinel": false
+    },
+    {
+      "test": "popup-first-request",
+      "privateHits": [
+        {
+          "path": "/popup-target",
+          "host": "127.0.0.1:52754"
+        },
+        {
+          "path": "/favicon.ico",
+          "host": "127.0.0.1:52754"
+        }
+      ],
+      "finalUrl": "http://audit-public.test:52755/popup",
+      "bodyContainsPrivateSentinel": false
+    }
+  ]
+}

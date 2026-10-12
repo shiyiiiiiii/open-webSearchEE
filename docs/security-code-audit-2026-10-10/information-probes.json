@@ -1,0 +1,18 @@
+{
+  "fixture": "Credentials are fabricated. The unavailable WS endpoint is loopback port 1. Browser navigation never starts, so 8.8.8.8 is not contacted.",
+  "results": [
+    {
+      "test": "startup-credential-logging",
+      "exitCode": 0,
+      "proxyPasswordInLog": true,
+      "browserTokenInLog": true
+    },
+    {
+      "test": "remote-browser-token-in-daemon-error",
+      "status": 503,
+      "errorCode": "browser_unavailable",
+      "browserTokenInError": true,
+      "redactedMessage": "Failed to connect to remote Playwright WebSocket endpoint ws://127.0.0.1:1/?token=[REDACTED_AUDIT_TOKEN]: browserType.connect: WebSocket error: connect ECONNREFUSED 127.0.0.1:1\nCall log:\n\u001b[2m  - <ws connecting> ws://127.0.0.1:1/\u001b[22m\n\u001b[2m  - <ws error> ws://127.0.0.1:1/ error connect ECONNREFUSED 127.0.0.1:1\u001b[22m\n\u001b[2m  - <ws connect error> ws://127.0.0.1:1/ connect ECONNREFUSED 127.0.0.1:1\u001b[22m\n\u001b[2m  - <ws disconnected> ws://127.0.0.1:1/ code=1006 reason=\u001b[22m\n"
+    }
+  ]
+}

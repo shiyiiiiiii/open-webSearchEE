@@ -1,0 +1,50 @@
+[
+  {
+    "test": "csdn-request-options",
+    "effectiveTimeoutMs": 0,
+    "effectiveMaxContentLength": -1,
+    "effectiveMaxBodyLength": -1,
+    "maxRedirects": 0,
+    "returnedContentChars": 2098176,
+    "exceedsGenericWeb2MiBLimit": true
+  },
+  {
+    "test": "juejin-request-options",
+    "effectiveTimeoutMs": 30000,
+    "effectiveMaxContentLength": -1,
+    "effectiveMaxBodyLength": -1,
+    "maxRedirects": "axios/follow-redirects default"
+  },
+  {
+    "test": "github-request-options",
+    "effectiveTimeoutMs": 10000,
+    "effectiveMaxContentLength": -1,
+    "effectiveMaxBodyLength": -1,
+    "maxRedirects": 0
+  },
+  {
+    "test": "linuxdo-request-options",
+    "effectiveTimeoutMs": 0,
+    "effectiveMaxContentLength": -1,
+    "effectiveMaxBodyLength": -1,
+    "maxRedirects": 0
+  },
+  {
+    "test": "article-url-validation",
+    "type": "csdn",
+    "url": "https://blog.csdn.net/not-an-article?x=/article/details/",
+    "accepted": true
+  },
+  {
+    "test": "article-url-validation",
+    "type": "juejin",
+    "url": "http://user:dummy@juejin.cn:8080/not-an-article#post=/post/",
+    "accepted": true
+  },
+  {
+    "test": "article-url-validation",
+    "type": "linuxdo",
+    "url": "ftp://linux.do/t/topic/1?x=.json",
+    "accepted": true
+  }
+]

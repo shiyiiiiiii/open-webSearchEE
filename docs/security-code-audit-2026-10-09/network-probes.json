@@ -1,0 +1,44 @@
+{
+  "connections": [
+    "audit-split.test:61250",
+    "juejin.cn:61251",
+    "audit-private.test:61250",
+    "audit-cookie-source.test:61251",
+    "audit-cookie-sink.test:61250"
+  ],
+  "results": [
+    {
+      "test": "proxy-split-dns",
+      "nodeDnsChecks": [
+        "audit-split.test"
+      ],
+      "bodyContainsPrivateSentinel": true,
+      "fixture": "Node preflight resolves to a simulated public answer; the controlled proxy resolves the same host to an audit-owned loopback service."
+    },
+    {
+      "test": "juejin-proxy-redirect-private-dns",
+      "inputAccepted": true,
+      "nodeDnsChecks": [],
+      "privateHits": [
+        {
+          "path": "/private-target",
+          "host": "audit-private.test:61250"
+        }
+      ],
+      "returnedContent": "AUDIT_PRIVATE_CONTENT",
+      "fixture": "A local proxy maps the allowlisted upstream to a local fixture that redirects to a hostname resolving to private IP. Upstream redirect control is required in a real deployment."
+    },
+    {
+      "test": "cross-origin-sensitive-header-forwarding",
+      "sinkRequests": [
+        {
+          "path": "/cookie-sink",
+          "host": "audit-cookie-sink.test:61250",
+          "cookie": "audit_session=DUMMY_NO_REAL_SECRET",
+          "authorization": "Bearer AUDIT_DUMMY"
+        }
+      ],
+      "fixture": "Only fabricated cookies and authorization values are used."
+    }
+  ]
+}

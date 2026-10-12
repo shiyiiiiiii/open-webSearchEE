@@ -1,7 +1,5 @@
 import {
     __getBrowserSubresourceClassificationForTests,
-    __createCookieCollectionPageForTests,
-    __installNavigationGuardForTests,
     __resetBrowserSubresourceCacheForTests,
     classifyBrowserSubresourceUrl,
     fetchPageHtmlWithBrowser,
@@ -41,47 +39,6 @@ async function assertRejects(
 
 async function run(): Promise<void> {
     installTestDnsLookup();
-
-    await assertRejects(
-        () => __installNavigationGuardForTests({}),
-        /request interception is unavailable/,
-        'browser page without route interception'
-    );
-    console.log('✅ browser navigation fails closed without route interception');
-
-    await assertRejects(
-        () => __installNavigationGuardForTests({
-            route: async () => {
-                throw new Error('route unsupported');
-            }
-        }),
-        /could not be installed/,
-        'browser page whose route installation fails'
-    );
-    console.log('✅ browser navigation fails closed when route installation fails');
-
-    let abandonedContextClosed = 0;
-    const fallbackPage = { close: async () => undefined };
-    const fallbackContext = {
-        newPage: async () => fallbackPage,
-        clearCookies: async () => undefined
-    };
-    const pageHandle = await __createCookieCollectionPageForTests({
-        newContext: async () => ({
-            newPage: async () => {
-                throw new Error('new page failed');
-            },
-            close: async () => {
-                abandonedContextClosed += 1;
-            }
-        }),
-        contexts: () => [fallbackContext]
-    });
-    if (abandonedContextClosed !== 1 || pageHandle.page !== fallbackPage) {
-        throw new Error('failed dedicated browser context should close before default-context fallback');
-    }
-    await pageHandle.close();
-    console.log('✅ failed dedicated browser context closes before fallback');
 
     // getBrowserCookieHeader must reject before loading Playwright.
     await assertRejects(

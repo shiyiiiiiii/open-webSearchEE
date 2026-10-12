@@ -1,0 +1,177 @@
+{
+  "generatedAt": "2026-10-09T03:01:54.515Z",
+  "files": [
+    {
+      "filename": "build-report.mjs",
+      "sha256": "6865ea82b63377d80271ced490890b7a47c238ab4ed5ce5d57b3647d4f4e824d"
+    },
+    {
+      "filename": "chrome-active-stable-releases.json",
+      "sha256": "85e2ccd670d10eee21a90f3edf96c8cc6c0b2ea1a8321be9bc8b05184eb4bbf6"
+    },
+    {
+      "filename": "chrome-stable-versions.json",
+      "sha256": "545f73cca5be02d5d721296f63334886556ba0a33d71751d2587e58e347e61af"
+    },
+    {
+      "filename": "compose-image-manifest.json",
+      "sha256": "4c25f52601f2c28f6a9ee111ce2b234bd7ec31094a29c49ee8c30e452d95181f"
+    },
+    {
+      "filename": "compose-image-version-drift.json",
+      "sha256": "e192283ffccc84a1aaa60a56d8b55f306329b80058de2cd519a36c83e136e05b"
+    },
+    {
+      "filename": "container-summary.json",
+      "sha256": "119b08f04060bb4a6f7a3993ee76f79890a45a23877146e783414e9543b75618"
+    },
+    {
+      "filename": "dependency-inventory.json",
+      "sha256": "081ab84903366eb83c44e0f7f611f0ae98c1e9f8179e5e85cb324c72cdd62788"
+    },
+    {
+      "filename": "findings.json",
+      "sha256": "eab718b26fc2e8b2b736e85d5d6f9f1cbc70ef92789c57fceeaa585f1bbb4d9b"
+    },
+    {
+      "filename": "github-actions-audit.json",
+      "sha256": "d7cba54452e34d6d5cbaf59462d74d33cd7160244e985bf8a4a0728410a956e0"
+    },
+    {
+      "filename": "inventory-and-osv.mjs",
+      "sha256": "c1520815b22e3a20f413428e9206c042cd14931f3372b9b40d763d65b1fb8d23"
+    },
+    {
+      "filename": "local-browser-versions.json",
+      "sha256": "8f3789b3545ae691c129c571960a83e9a6c695d983d2a19f62c46591d8f735e7"
+    },
+    {
+      "filename": "node-runtime-analysis.json",
+      "sha256": "c54bb20f7b19a114481fb4515325e93cca766a2442b6d7cb66ba6e77bfe9b129"
+    },
+    {
+      "filename": "nodeReleases.json",
+      "sha256": "caa82545db4271887e544c962fe701fb3492ec135ca2d278193d944aa536db11"
+    },
+    {
+      "filename": "nodeSchedule.json",
+      "sha256": "cd3318fe46de25085d9986b980c391758420c5aa30958e76ef144478cac29377"
+    },
+    {
+      "filename": "nodeSecurity.json",
+      "sha256": "92eb0c0e735d962384dc962d4a10b3f010aaa8daadce60ac6704f4d5dee65122"
+    },
+    {
+      "filename": "npm-audit-full.json",
+      "sha256": "5b92a44a607e93cb18dd9fc0b58d48062d917cfac68986c5f7a769ff80579e55"
+    },
+    {
+      "filename": "npm-audit-production.json",
+      "sha256": "5b92a44a607e93cb18dd9fc0b58d48062d917cfac68986c5f7a769ff80579e55"
+    },
+    {
+      "filename": "npm-installed-tree.json",
+      "sha256": "4ca5d3ffdee9419b83cb8ad5375ae957976457ca9cfdf15ee626678cadd4f27e"
+    },
+    {
+      "filename": "openssl-vulnerabilities-source.json",
+      "sha256": "53c6df374c626011542689f0b1725fbc7c7c30087c804aa9c5552ba714032f0e"
+    },
+    {
+      "filename": "osv-advisories.json",
+      "sha256": "b69523a6d9b6d7dccbfd1ee3c4cd4ba6319a7685547151f73fe605829e58610c"
+    },
+    {
+      "filename": "osv-batch.json",
+      "sha256": "3e816f9fa313809db39866e3ee926ba70006aa1304222f823f2a6db5d9004fa7"
+    },
+    {
+      "filename": "osv-scan-output.txt",
+      "sha256": "37b965b095031614955224c261b24de57dbf43557c24ad0adeb6f18fc12e10e2"
+    },
+    {
+      "filename": "redirect-safety-tests.txt",
+      "sha256": "7040602864bd04429f27ef820ca5a1fbd425379dad7c71e01ffe63cbd0c5f5b6"
+    },
+    {
+      "filename": "remediation-osv-verification.json",
+      "sha256": "b1ed5aab1ddf96da4d806ba624974097667b4ddce33c09d892f38a7e4b3a796c"
+    },
+    {
+      "filename": "remediation-versions.json",
+      "sha256": "faef5b1a5508f9d6e45cdbb9ca808d4ce93240560d3c5b2675a9fc9b558f5997"
+    },
+    {
+      "filename": "REPORT.zh-CN.md",
+      "sha256": "363c15ed28aba68413cc4d92192cb03b0c125dd465e4285370d35989225c5932"
+    },
+    {
+      "filename": "runtime-cares-advisories.json",
+      "sha256": "ff52764fcb2f8c71b0f99dc7af22267c3f4b5b774ab7cd6aa59e794f7d8030bf"
+    },
+    {
+      "filename": "runtime-cares-backport-check.json",
+      "sha256": "1ecec58da9a66ae86f51fa78a87254f43d66bc49f0eb420d632780bc5ca2a50c"
+    },
+    {
+      "filename": "runtime-openssl-version-matches.json",
+      "sha256": "79c2c1f39eb6d08bb4904404a8a75d92daeacdb474746601c5b3a8ad5ea2ef70"
+    },
+    {
+      "filename": "runtime-undici-additional-advisory.json",
+      "sha256": "25cf1a7997633a7931fdad32a1e10c70a35293d46b5928f463b790869b1e4821"
+    },
+    {
+      "filename": "sbom.cdx.json",
+      "sha256": "1369ae1092908e2f18fdfb1e15d11f2d807844759fd2a645a18a2d901e308037"
+    },
+    {
+      "filename": "trivy-compose-amd64-stderr.txt",
+      "sha256": "b6fb3859e177d66631e40c807ebfd1e901a4440fddb3750dd0651c3e137bc6be"
+    },
+    {
+      "filename": "trivy-compose-amd64.json",
+      "sha256": "951c15a82d87a8e619ef41b2ca134837c550aa90762fee155f4a8abe26978323"
+    },
+    {
+      "filename": "trivy-compose-arm64-stderr.txt",
+      "sha256": "2e7abaf4512a48b37a33d19389d4dbad64e1c975034b9cf8160d400167b60e9e"
+    },
+    {
+      "filename": "trivy-compose-arm64.json",
+      "sha256": "a1b67d5f9c2275e0809e503296ac75d7956b4567f9328d935b89f1a2dddd55cd"
+    },
+    {
+      "filename": "trivy-node20-alpine-amd64-stderr.txt",
+      "sha256": "81c259aab61558a9148cab514370b143fd328fb934808689784bdca762d99e6a"
+    },
+    {
+      "filename": "trivy-node20-alpine-amd64.json",
+      "sha256": "5da3131961b63646060167059ccf988875ec47616cd3a139d684e8fd1ecaa109"
+    },
+    {
+      "filename": "trivy-scanner-metadata.json",
+      "sha256": "7d0c2895da627ed560b8293460c8f65b48b64b6e2e2f8854a2de5caf9048684b"
+    },
+    {
+      "filename": "trivy-workspace-lock-stderr.txt",
+      "sha256": "e5178888b93c191efb72ccd92aa67f0827dcfc354b18bf721753ce74565a9553"
+    },
+    {
+      "filename": "trivy-workspace-lock.json",
+      "sha256": "7b5f715d283adea404802f7765f20d6757f6a6674817b6b5b9031762390fc672"
+    },
+    {
+      "filename": "url-safety-tests.txt",
+      "sha256": "1c234bffb7f2869102985510b3f31d6ec6797bdcfa14d6d8b733b3880696ca83"
+    },
+    {
+      "filename": "validation.json",
+      "sha256": "234cabfef1fa6d94f7353f91016ee91a3a0fff47d77973fee4a3385dc73d9a40"
+    },
+    {
+      "filename": "VULNERABILITY-DETAILS.zh-CN.md",
+      "sha256": "10ea1f43f4f3f7db6f246a8545076618317f10fc751e213cd8a6a047c77131cc"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-11",
+  "node": "v22.23.3",
+  "playwright": "1.62.1",
+  "results": [
+    {
+      "name": "build",
+      "code": 0,
+      "milliseconds": 2257,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-network-policy",
+      "code": 0,
+      "milliseconds": 3149,
+      "skipped": false
+    },
+    {
+      "name": "test-page-pool-lock",
+      "code": 0,
+      "milliseconds": 122,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-egress-proxy",
+      "code": 0,
+      "milliseconds": 149,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-path-guard",
+      "code": 0,
+      "milliseconds": 112,
+      "skipped": false
+    },
+    {
+      "name": "test-browser-redirect-safety",
+      "code": 0,
+      "milliseconds": 24750,
+      "skipped": false
+    },
+    {
+      "name": "test-web-content",
+      "code": 0,
+      "milliseconds": 659,
+      "skipped": false
+    },
+    {
+      "name": "test-core-fetch-services",
+      "code": 0,
+      "milliseconds": 94,
+      "skipped": false
+    },
+    {
+      "name": "probe-frame-lifecycle",
+      "code": 0,
+      "milliseconds": 13448,
+      "skipped": false
+    }
+  ],
+  "passed": 9,
+  "complete": true,
+  "changedSources": [
+    "src/test/test-browser-network-policy.ts",
+    "src/test/test-browser-redirect-safety.ts",
+    "src/test/helpers/controlledBrowserMock.ts",
+    "src/utils/browserNetworkPolicy.ts"
+  ],
+  "deploymentExecuted": false
+}

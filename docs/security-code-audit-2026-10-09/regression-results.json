@@ -1,0 +1,122 @@
+[
+  {
+    "test": "test-url-safety",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 96
+  },
+  {
+    "test": "test-redirect-safety",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 266
+  },
+  {
+    "test": "test-browser-path-guard",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 122
+  },
+  {
+    "test": "test-http-request-options",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 258
+  },
+  {
+    "test": "test-core-target-validation",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 98
+  },
+  {
+    "test": "test-core-fetch-services",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 113
+  },
+  {
+    "test": "test-core-search",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 76
+  },
+  {
+    "test": "test-engine-normalization",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 118
+  },
+  {
+    "test": "test-cli-search",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 959
+  },
+  {
+    "test": "test-local-daemon",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 1158
+  },
+  {
+    "test": "test-mcp-adapter",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 7929
+  },
+  {
+    "test": "test-runtime",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 661
+  },
+  {
+    "test": "test-web-content",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 669
+  },
+  {
+    "test": "test-bing-parser",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 469
+  },
+  {
+    "test": "test-bing-http",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 288
+  },
+  {
+    "test": "test-duckduckgo-preload-url",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 276
+  },
+  {
+    "test": "test-baidu",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 278
+  },
+  {
+    "test": "test-sogou",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 298
+  },
+  {
+    "test": "test-hackernews",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 611
+  },
+  {
+    "test": "test-page-pool-lock",
+    "exitCode": 0,
+    "signal": null,
+    "durationMs": 95
+  }
+]

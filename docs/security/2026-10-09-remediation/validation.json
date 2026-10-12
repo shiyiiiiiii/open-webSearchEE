@@ -1,0 +1,80 @@
+{
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "log": "build.log"
+  },
+  "tests": {
+    "passed": [
+      "test-baidu.js",
+      "test-bing-http.js",
+      "test-browser-path-guard.js",
+      "test-core-search.js",
+      "test-bing-parser.js",
+      "test-core-fetch-services.js",
+      "test-engine-normalization.js",
+      "test-core-target-validation.js",
+      "test-browser-sharing.js",
+      "test-no-window.js",
+      "test-duckduckgo-preload-url.js",
+      "test-http-request-options.js",
+      "test-brave.js",
+      "fetchCsdnArticleTests.js",
+      "fetchJuejinArticleTests.js",
+      "test-url-safety.js",
+      "test-redirect-safety.js",
+      "test-exa.js",
+      "test-page-pool-lock.js",
+      "test-cli-search.js",
+      "test-sogou.js",
+      "test-hackernews.js",
+      "test-csdn.js",
+      "test-local-daemon.js",
+      "test-web-content.js",
+      "test-runtime.js",
+      "test-startpage.js",
+      "test-zhihu.js",
+      "test-juejin.js",
+      "test-linuxdo.js",
+      "test-browser-redirect-safety.js",
+      "test-web-content-live.js",
+      "test-duckduckgo.js",
+      "test-bing.js",
+      "test-bing-live.js",
+      "test-mcp-adapter.js",
+      "test-github.js",
+      "test-dialog-capture.js"
+    ],
+    "networkExcused": [
+      "test-article-fetch-live.js"
+    ],
+    "failed": [],
+    "log": "npm-test-node24.log",
+    "invocation": "verified Node.js 24.21.0 -> npm-cli.js test"
+  },
+  "platformSmoke": {
+    "unsupportedStartupExit": 1,
+    "unsupportedBrowserCandidates": 0,
+    "unsupportedNativeFileLock": "rejected before native loading"
+  },
+  "productionSmoke": {
+    "checkedAt": "2026-10-09T03:40:53.4768054Z",
+    "fixture": "C:\\Users\\xukai\\AppData\\Local\\Temp\\open-websearch-remediation-20261009-production-21000",
+    "node": "24.21.0",
+    "ciExitCode": 0,
+    "cliHelp": "passed",
+    "mcpAdapter": "passed",
+    "localDaemon": "passed",
+    "browserClient": "passed",
+    "scope": "Windows production layout with test fixtures; Docker image and Linux native bindings not built"
+  },
+  "pack": {
+    "files": 98,
+    "size": 170124
+  },
+  "sourceSnapshot": {
+    "files": 100,
+    "checkedAt": "2026-10-09T03:37:30.129Z",
+    "changedDuringTests": []
+  }
+}

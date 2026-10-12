@@ -5,6 +5,7 @@ import { getSystemBrowserCandidates } from './utils/browserPaths.js';
 
 // src/config.ts
 import ipaddr from 'ipaddr.js';
+import { RESOURCE_LIMITS } from './utils/resourceLimits.js';
 
 export interface AppConfig {
     // Search engine configuration
@@ -27,6 +28,9 @@ export interface AppConfig {
     playwrightCdpEndpoint?: string;
     playwrightHeadless: boolean;
     playwrightNavigationTimeoutMs: number;
+    browserEgressProxyUrl?: string;
+    browserEgressEnforced: boolean;
+    browserAllowedPorts: number[];
     // CORS configuration
     enableCors: boolean;
     corsOrigin: string;
@@ -64,7 +68,10 @@ export const config: AppConfig = {
     playwrightWsEndpoint: readOptionalEnv('PLAYWRIGHT_WS_ENDPOINT'),
     playwrightCdpEndpoint: readOptionalEnv('PLAYWRIGHT_CDP_ENDPOINT'),
     playwrightHeadless: process.env.PLAYWRIGHT_HEADLESS !== 'false',
-    playwrightNavigationTimeoutMs: Number(process.env.PLAYWRIGHT_NAVIGATION_TIMEOUT_MS || 20000),
+    playwrightNavigationTimeoutMs: Number(process.env.PLAYWRIGHT_NAVIGATION_TIMEOUT_MS || RESOURCE_LIMITS.requestTimeoutMs),
+    browserEgressProxyUrl: readOptionalEnv('BROWSER_EGRESS_PROXY_URL'),
+    browserEgressEnforced: process.env.BROWSER_EGRESS_ENFORCED === 'true',
+    browserAllowedPorts: (process.env.BROWSER_ALLOWED_PORTS || '80,443').split(',').map(Number),
     // CORS configuration
     enableCors: process.env.ENABLE_CORS === 'true',
     corsOrigin: process.env.CORS_ORIGIN || '*',
@@ -118,8 +125,13 @@ if (config.fakeIpCidrs.length > 0) {
 }
 
 if (!Number.isFinite(config.playwrightNavigationTimeoutMs) || config.playwrightNavigationTimeoutMs <= 0) {
-    console.warn(`Invalid PLAYWRIGHT_NAVIGATION_TIMEOUT_MS: "${process.env.PLAYWRIGHT_NAVIGATION_TIMEOUT_MS}", falling back to 20000`);
-    config.playwrightNavigationTimeoutMs = 20000;
+    console.warn(`Invalid PLAYWRIGHT_NAVIGATION_TIMEOUT_MS: "${process.env.PLAYWRIGHT_NAVIGATION_TIMEOUT_MS}", falling back to 15000`);
+    config.playwrightNavigationTimeoutMs = RESOURCE_LIMITS.requestTimeoutMs;
+}
+config.playwrightNavigationTimeoutMs = Math.min(config.playwrightNavigationTimeoutMs, RESOURCE_LIMITS.requestTimeoutMs);
+
+if (config.browserAllowedPorts.length === 0 || config.browserAllowedPorts.some(port => !Number.isInteger(port) || port < 1 || port > 65535)) {
+    throw new Error('BROWSER_ALLOWED_PORTS must contain TCP port numbers from 1 to 65535');
 }
 
 if (config.playwrightWsEndpoint && config.playwrightCdpEndpoint) {

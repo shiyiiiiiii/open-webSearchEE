@@ -1,0 +1,8 @@
+{"counts":{"lockEntries":185,"uniqueLocked":178,"productionLockEntries":171,"developmentOnlyLockEntries":14,"installedEntries":185,"embeddedPackageMetadata":2,"uniqueQueried":180},"missing":[],"mismatched":[],"extraneous":[],"embeddedMetadata":[{"name":"benchmark","version":"1.0.0","location":"node_modules/fast-uri/benchmark","private":true,"kind":"Embedded package metadata; npm identity not assumed"},{"name":"cnoke","version":"4.0.3","location":"node_modules/koffi/src/cnoke","private":false,"kind":"Embedded package metadata; npm identity not assumed"}],"skipped":[]}
+OSV queried 100/180 package versions
+OSV queried 180/180 package versions
+{
+  "packageVersionsQueried": 180,
+  "affectedPackages": [],
+  "advisoryCount": 0
+}

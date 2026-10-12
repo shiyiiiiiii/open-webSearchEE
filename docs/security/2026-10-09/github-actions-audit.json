@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-09T02:52:50.781Z",
+  "ecosystem": "GitHub Actions",
+  "actions": [
+    {
+      "repo": "actions/checkout",
+      "tag": "v3",
+      "commit": "a37ce9120846195fa4ece8f58b268e6043cb2f26",
+      "version": "v3.7.0",
+      "osv": {}
+    },
+    {
+      "repo": "docker/setup-buildx-action",
+      "tag": "v3",
+      "commit": "8d2750c68a42422c14e847fe6c8ac0403b4cbd6f",
+      "version": "v3.12.0",
+      "osv": {}
+    },
+    {
+      "repo": "docker/setup-qemu-action",
+      "tag": "v3",
+      "commit": "c7c53464625b32c7a7e944ae62b3e17d2b600130",
+      "version": "v3.7.0",
+      "osv": {}
+    },
+    {
+      "repo": "docker/login-action",
+      "tag": "v3",
+      "commit": "c94ce9fb468520275223c153574b00df6fe4bcc9",
+      "version": "v3.7.0",
+      "osv": {}
+    },
+    {
+      "repo": "docker/build-push-action",
+      "tag": "v5",
+      "commit": "ca052bb54ab0790a636c9b5f226502c73d547a25",
+      "version": "v5.4.0",
+      "osv": {}
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "367ff5bff15dd546df4cf2f7c6530e2eeb8fc757f8c1980aa8678d0abe03d0e4"
+  },
+  {
+    "path": "deploy/browser/Dockerfile",
+    "sha256": "4c8d44376606cf0b1547981e024cf82dcf62ae0151e9ceda62b68576e1f3ad90"
+  },
+  {
+    "path": "deploy/browser/docker-compose.test.yml",
+    "sha256": "a9a84fb1504e9e37293f09b2b0d514da75007d85d043e456cb7d30873df33da3"
+  },
+  {
+    "path": "deploy/browser/docker-compose.yml",
+    "sha256": "bd045149aaa57b81fd4a4861b43f097334c6b0a81e1a894c1c55a119c1a8e306"
+  },
+  {
+    "path": "deploy/browser/entrypoint.sh",
+    "sha256": "3e62d5a241cae4e202d1187a476828e29bddcde487b4c5690deb32f550d3ebbd"
+  },
+  {
+    "path": "docs/http-api.md",
+    "sha256": "ed0d23eb74b4bd9a560023603dd10f214dc1987929d9ee87a41d25fea279a332"
+  },
+  {
+    "path": "docs/security/C03-browser-network-remediation.zh-CN.md",
+    "sha256": "f5ddbd7600f68ee67ca3c08d8b8df00ce591b9824de3b10330c9eac1fb49d211"
+  },
+  {
+    "path": "docs/security/browser-egress.zh-CN.md",
+    "sha256": "3cfc9eb33b7f5cf474cc0fdfab0964d6397fef7b71a6cde8471f5035dcdf8f7b"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/README.md",
+    "sha256": "df39da026fd415ce35fcd2a0cbb0fd0463400208ec78607030860ddbd84ddb0d"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/artifact-review.json",
+    "sha256": "9ae77733d9b7c416533c0a1cc53318dfc7726c44f0f78923484f71220f8bbcc2"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/build.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/run-verification.mjs",
+    "sha256": "30b9bec34ae82a86f97828e1924379525596328a97d9a53f03bdb5e2971ef5e1"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/source-after.json",
+    "sha256": "7c5e6a56ad9920b8e69e5af355fa0fac01ab69471d83a56200bfa0a72e225741"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/source-before.json",
+    "sha256": "ab87044e990b4cb44568da23fc8072df7449d20e3522150a8e812dfa7ad7f2ef"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-bing-http.log",
+    "sha256": "caa0719c7ce5509cd5e7f7bb7fcc8b43a0cdd5669e0a3aa519731f6865550ef8"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-bing-parser.log",
+    "sha256": "37ae26fe5022a3955aac5cffe69228e9ae1318d0a064a6ee4fb69b6e334c873d"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-browser-egress-proxy.log",
+    "sha256": "77b791377572d8963be2181fa1162a885cca6aa8759075adcaf0f39a6f4f1e18"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-browser-network-policy.log",
+    "sha256": "88d01dcc8fbb0515bb7a5f0dabf0888b7a6d8ae1d81ef57cfe33c77105acce27"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-browser-path-guard.log",
+    "sha256": "b0382175a2ae45c8e8720429e30415757b939deda20e549290bc0b44ab646ffe"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-browser-redirect-safety.log",
+    "sha256": "f3eeacd14f77c57bbde5aa80fbaf83ae1e4f8c7040ff47055432f7de6e1753bd"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-cli-search.log",
+    "sha256": "6d917f2dcd20f7934e9504a4cd99ab93ff6e22007ad86af72dbf65f91336416b"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-core-fetch-services.log",
+    "sha256": "e82def823681f3a9a4ba8005c97c6dce4d68c548b4ec3e7d0fb1bf0689532338"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-core-search.log",
+    "sha256": "c8804bae35dcf3893a7edb376178cb1b23995eeb3aa18dcb7595cdca39b11f1b"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-core-target-validation.log",
+    "sha256": "15f1a222b19ef5d44096004b3255f1beb879b73d06fc78d20e86e13f0714207d"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-destination-ip-filter.log",
+    "sha256": "ac8fc09ef6e2ac50790dc6ef4aa899bdba3716c7209d629dbcc6fe1e4a16bf72"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-duckduckgo-preload-url.log",
+    "sha256": "0d217607637b1f1f6f1a17229688f5dc6758dd63fbff69c1785dee2a47c0e31a"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-engine-normalization.log",
+    "sha256": "f56ef4ccc9b1d06119c1aac9b48c3422dbf34d383caa97fc77d7c52cfb46c9ca"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-http-request-options.log",
+    "sha256": "5093b3d01888946f3f51b6f73512ac7edf296718dd0c098159d7cb0233b5839f"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-local-daemon.log",
+    "sha256": "b1acd4c1ef65dcce06cf1713cc61bc7b8916f90b7107266f67e7c05e04072c5a"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-mcp-adapter.log",
+    "sha256": "548d8a029e73535e47e267eae7af2b32fb2b937c97e709f8d1aaba600bf490d0"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-mcp-resource-limits.log",
+    "sha256": "7c861c33285f5fca56fb8eddf837c6a8f2b3e6ea792bd715fdc62287e4b56d8a"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-page-pool-lock.log",
+    "sha256": "06a07f105927f84aa9832a6a4c4d60068dc9e89937f180ce2c111dbbe2f777ec"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-redirect-safety.log",
+    "sha256": "1ef3c1f2f3cd3812c6ff93421fbf5ec7c080327e6170976dda0c212a4c5b43af"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-resource-limits.log",
+    "sha256": "2fd2861435d3cb93242c6d75f5a7d14db94526680d7e5c3362c5fa38974e0059"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-runtime.log",
+    "sha256": "c310f2a5e3ec4f2220698ad6641835ad3f3c0d514b6e410a5e984f5a47d90469"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-url-safety.log",
+    "sha256": "8d4902dc8aa618ae05500fd4fb34ce25652524729c6bf0d92867c9ac6fa1a26b"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/test-web-content.log",
+    "sha256": "7c9a3fb05ae48c926b855845aa23c0d5bab9e61c9aaffb74caf750a293140b97"
+  },
+  {
+    "path": "docs/security/2026-10-11-c03/verification.json",
+    "sha256": "cde4a92ef97b81c1dd7be33bc4b17168976739ae6ccb34e77c26b5e1a8ba0973"
+  },
+  {
+    "path": "package.json",
+    "sha256": "f562400a0d715a523c8427eabcccea46c53011bb42c697a969423d9fe9dd7b73"
+  },
+  {
+    "path": "skills/open-websearch/references/setup.md",
+    "sha256": "f1d225e6c05cdb578a150d8e400b37dbac8a6fda92ddb7f70bd0b99d173efe46"
+  },
+  {
+    "path": "src/adapters/http/localDaemon.ts",
+    "sha256": "39100ac7d7cf86a3559f1e4cbbbb0c72ac64fb8ddfe4358026b202cc51f88981"
+  },
+  {
+    "path": "src/config.ts",
+    "sha256": "0267b8784ee2aadba85e9edeea3d4bf2d36c8d7cff192ea2fe02561e40206757"
+  },
+  {
+    "path": "src/core/fetch/fetchServices.ts",
+    "sha256": "a628dad1d859aeba1070d9237b656ddc48527bb6eaed77e5d19197c94518d066"
+  },
+  {
+    "path": "src/engines/bing/bing.ts",
+    "sha256": "f168c5d78f6870efd511059156ec353d59d4275d385af642e7f3618eb7edeb64"
+  },
+  {
+    "path": "src/engines/web/fetchWebContent.ts",
+    "sha256": "265b049d3da61be8e83b4401e7425af03a82f75bce70f7c87fa009c622779611"
+  },
+  {
+    "path": "src/runtime/runtimeTypes.ts",
+    "sha256": "f360665c248179abc6b34feeb25e980c5f246100d8676a71e382dffb42b53d56"
+  },
+  {
+    "path": "src/test/helpers/controlledBrowserMock.ts",
+    "sha256": "24a52644a221c325036559443405dc69aa4cea5e2ba12ffbe6df314cc7c49cbd"
+  },
+  {
+    "path": "src/test/test-browser-egress-proxy.ts",
+    "sha256": "1892c30b1f1ed127283f192859d08a00850806378c56830365bc8dc8ea8e74fa"
+  },
+  {
+    "path": "src/test/test-browser-network-policy.ts",
+    "sha256": "a05f5c5bdd6760a5dba882176a37f1ee5f72ea5eeca73d31b96908dd0d79ba1e"
+  },
+  {
+    "path": "src/test/test-browser-path-guard.ts",
+    "sha256": "56bc1777fb981ebd87e1ec315019a9dc0312f3df99f637e50c7c69c9e4f66ac5"
+  },
+  {
+    "path": "src/test/test-browser-redirect-safety.ts",
+    "sha256": "1b413b236d4870e2fd2d1a625c2871b40e7f27b863b96e7792c0951744a3e8d9"
+  },
+  {
+    "path": "src/test/test-cli-search.ts",
+    "sha256": "34ca2e81bcdda91f3d5d0ca5a17fe52a232b12694a518a2a90df935c4822d5ca"
+  },
+  {
+    "path": "src/test/test-local-daemon.ts",
+    "sha256": "2cf86f97405903ba601a5ba6d794a8e13f14a7edb20543cb4904195f716f4ea8"
+  },
+  {
+    "path": "src/test/test-mcp-adapter.ts",
+    "sha256": "a26451594be1347c8e5ffcc146df410e81972b10ce64e9238f550fbcd03d0dc9"
+  },
+  {
+    "path": "src/test/test-page-pool-lock.ts",
+    "sha256": "5e6c45409a72821d30e1043a96cf0f7fc644dc14e399f4bba1b6b8a636e090d1"
+  },
+  {
+    "path": "src/test/test-runtime.ts",
+    "sha256": "f311b2ee9cbb060f54a38ed9432ac543cbf6847caeaa8a9a6edc2de99aaaa807"
+  },
+  {
+    "path": "src/test/test-web-content.ts",
+    "sha256": "6707ccf704d249746d50b7998d1522ed5a593d11af040315bd3c731e281c9528"
+  },
+  {
+    "path": "src/tools/browserEgressCanary.ts",
+    "sha256": "dcaa8bc79aa95f7665d83a764ef00e2c874e44d2c6b7047e0c22de5e714c46cf"
+  },
+  {
+    "path": "src/tools/browserEgressProxy.ts",
+    "sha256": "4b50964630601d7993f88882bbc1cb8b2a1f7f6cdfc882ccd794141446d7c4d3"
+  },
+  {
+    "path": "src/tools/browserWorker.ts",
+    "sha256": "cb113986da65412afc0b73a9ee93d91116d872296e941e550e4bf3c9fc1a8f30"
+  },
+  {
+    "path": "src/tools/setupTools.ts",
+    "sha256": "7a86f24ce7f53b95769a1feb031dcba9f4856c5092430c255759e7abfff4d817"
+  },
+  {
+    "path": "src/tools/verifyBrowserEgress.ts",
+    "sha256": "ce7f30020fd8666abe550030bb89cd16fb4a31bcb6279623104627cfffc41e99"
+  },
+  {
+    "path": "src/utils/browserCookies.ts",
+    "sha256": "5193c307aa0affda3c3b65dab03262d665d1cd7286208a661edd3716c6ed15f7"
+  },
+  {
+    "path": "src/utils/browserEgressProxy.ts",
+    "sha256": "57031e7b30df061e968602883035dfe618c53a28f061d8fab0a70d078fed85ed"
+  },
+  {
+    "path": "src/utils/browserNetworkPolicy.ts",
+    "sha256": "7b03bd2ad627eb7139ff06b3d8d36b395676b7eb396909ebd4a744e0d1ba27ea"
+  },
+  {
+    "path": "src/utils/playwrightClient.ts",
+    "sha256": "180063eb72f0ac9b25282194d9c55fa9cf87a41fb2c4a20ea706bd454b864f07"
+  },
+  {
+    "path": "src/utils/urlSafety.ts",
+    "sha256": "805818373a24fc3a407af86de7d9fc1aa87cd7a1e70adbcf714cfa9c96bae9bc"
+  }
+]

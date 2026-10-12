@@ -1,0 +1,4 @@
+2026-10-09T10:53:59+08:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-09T10:53:59+08:00	INFO	[npm] Run "npm install" to collect the license information of packages	dir="node_modules"
+2026-10-09T10:53:59+08:00	INFO	Number of language-specific files	num=1
+2026-10-09T10:53:59+08:00	INFO	[npm] Detecting vulnerabilities...

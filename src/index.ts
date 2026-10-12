@@ -13,17 +13,22 @@ import { runCli } from './cli/runCli.js';
 import type { OpenWebSearchRuntime } from './runtime/runtimeTypes.js';
 import { shouldCreateFullRuntimeForInvocation } from './runtime/runtimeSelection.js';
 import { shutdownLocalPlaywrightBrowserSessions } from './utils/playwrightClient.js';
+import { isMcpServerInvocation, parseMcpHttpOptions } from './adapters/http/serverOptions.js';
+import { SessionLimiter, type SessionLease } from './adapters/http/sessionLimiter.js';
+import { RESOURCE_LIMITS } from './utils/resourceLimits.js';
 
 type StreamableSession = {
   server: McpServer;
   transport: StreamableHTTPServerTransport;
   closed: boolean;
+  lease: SessionLease;
 };
 
 type SseSession = {
   server: McpServer;
   transport: SSEServerTransport;
   closed: boolean;
+  lease: SessionLease;
 };
 
 function createServer(runtime: OpenWebSearchRuntime): McpServer {
@@ -50,7 +55,13 @@ function shouldSuppressStartupLogs(argv: string[]): boolean {
 }
 
 async function main() {
+  if (process.platform !== 'win32' && process.platform !== 'linux') {
+    process.exitCode = 1;
+    throw new Error(`open-websearch supports Windows and Linux only; unsupported platform: ${process.platform}`);
+  }
   const argv = process.argv.slice(2);
+  const isMcpInvocation = isMcpServerInvocation(argv);
+  const httpOptions = isMcpInvocation ? parseMcpHttpOptions(argv) : null;
   if (shouldSuppressStartupLogs(argv)) {
     process.env.OPEN_WEBSEARCH_QUIET_STARTUP = 'true';
   }
@@ -61,7 +72,7 @@ async function main() {
         config,
         services: {} as OpenWebSearchRuntime['services']
       } satisfies OpenWebSearchRuntime);
-  const cliExitCode = await runCli(argv, runtime, {
+  const cliExitCode = isMcpInvocation ? null : await runCli(argv, runtime, {
     stdout: (text) => console.log(text),
     stderr: (text) => console.error(text)
   });
@@ -113,20 +124,50 @@ async function main() {
       streamable: {} as Record<string, StreamableSession>,
       sse: {} as Record<string, SseSession>
     };
+    const sessionLimiter = new SessionLimiter();
+    const expiryTimer = setInterval(() => sessionLimiter.sweep(), 30_000);
+    expiryTimer.unref();
+    const rejectSessionCapacity = (res: express.Response) => {
+      res.setHeader('Retry-After', '30');
+      res.status(429).json({ error: 'resource_limit', message: `MCP session limit reached (${RESOURCE_LIMITS.maxMcpSessions}); close an existing session or retry later.` });
+    };
+    const expireSession = (session: StreamableSession | SseSession | undefined) => {
+      if (!session) return;
+      const id = session.transport?.sessionId;
+      if (id) {
+        if (transports.streamable[id] === session) delete transports.streamable[id];
+        if (transports.sse[id] === session) delete transports.sse[id];
+      }
+      void session.transport?.close().catch(error => console.error('Failed to expire idle MCP session:', error));
+    };
 
     // Handle POST requests for client-to-server communication
     app.post('/mcp', async (req, res) => {
       // Check for existing session ID
       const sessionId = req.headers['mcp-session-id'] as string | undefined;
       let transport: StreamableHTTPServerTransport;
+      let newSession: StreamableSession | undefined;
 
       if (sessionId && transports.streamable[sessionId]) {
         // Reuse existing transport
         transport = transports.streamable[sessionId].transport;
+        transports.streamable[sessionId].lease.touch();
       } else if (!sessionId && isInitializeRequest(req.body)) {
         // New initialization request
-        const server = createServer(runtime);
         const session = {} as StreamableSession;
+        const lease = sessionLimiter.acquire(() => expireSession(session));
+        if (!lease) {
+          rejectSessionCapacity(res);
+          return;
+        }
+        session.lease = lease;
+        let server: McpServer;
+        try {
+          server = createServer(runtime);
+        } catch (error) {
+          lease.release();
+          throw error;
+        }
 
         transport = new StreamableHTTPServerTransport({
           sessionIdGenerator: () => randomUUID(),
@@ -143,9 +184,11 @@ async function main() {
         session.server = server;
         session.transport = transport;
         session.closed = false;
+        newSession = session;
 
         // Clean up transport when closed
         transport.onclose = () => {
+          session.lease.release();
           if (transport.sessionId && transports.streamable[transport.sessionId] === session) {
             delete transports.streamable[transport.sessionId];
           }
@@ -164,6 +207,8 @@ async function main() {
         try {
           await server.connect(transport);
         } catch (error) {
+          session.lease.release();
+          if (transport.sessionId) delete transports.streamable[transport.sessionId];
           session.closed = true;
           void server.close().catch(closeError => {
             console.error('❌ Failed to close streamable MCP server after connect error:', closeError);
@@ -184,7 +229,17 @@ async function main() {
       }
 
       // Handle the request
-      await transport.handleRequest(req, res, req.body);
+      try {
+        await transport.handleRequest(req, res, req.body);
+      } finally {
+        // Protocol/header rejection may finish without initializing a session.
+        // Such requests must not retain a capacity reservation until the TTL.
+        if (newSession && !transport.sessionId) {
+          newSession.lease.release();
+          newSession.closed = true;
+          await newSession.server.close().catch(error => console.error('Failed to close uninitialized MCP server:', error));
+        }
+      }
     });
 
     // Reusable handler for GET and DELETE requests
@@ -196,6 +251,7 @@ async function main() {
       }
 
       const transport = transports.streamable[sessionId];
+      transport.lease.touch();
       await transport.transport.handleRequest(req, res);
     };
 
@@ -207,18 +263,33 @@ async function main() {
 
     // Legacy SSE endpoint for older clients
     app.get('/sse', async (req, res) => {
-      // Create SSE transport for legacy clients
-      const transport = new SSEServerTransport('/messages', res);
-      const server = createServer(runtime);
-      const session: SseSession = {
+      let session: SseSession | undefined;
+      const lease = sessionLimiter.acquire(() => expireSession(session));
+      if (!lease) {
+        rejectSessionCapacity(res);
+        return;
+      }
+      const { transport, server } = (() => {
+        try {
+          const server = createServer(runtime);
+          return { server, transport: new SSEServerTransport('/messages', res) };
+        } catch (error) {
+          lease.release();
+          throw error;
+        }
+      })();
+      session = {
         server,
         transport,
-        closed: false
+        closed: false,
+        lease
       };
 
       transports.sse[transport.sessionId] = session;
 
       transport.onclose = () => {
+        lease.release();
+        if (!session) return;
         if (transports.sse[transport.sessionId] === session) {
           delete transports.sse[transport.sessionId];
         }
@@ -236,6 +307,7 @@ async function main() {
       try {
         await server.connect(transport);
       } catch (error) {
+        lease.release();
         delete transports.sse[transport.sessionId];
         session.closed = true;
         void server.close().catch(closeError => {
@@ -250,21 +322,23 @@ async function main() {
       const sessionId = req.query.sessionId as string;
       const session = transports.sse[sessionId];
       if (session) {
+        session.lease.touch();
         await session.transport.handlePostMessage(req, res, req.body);
       } else {
         res.status(400).send('No transport found for sessionId');
       }
     });
 
-    // Read the port number from the environment variable; use the default port 3000 if it is not set.
-    const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
-
-    app.listen(PORT, '0.0.0.0', () => {
-      console.error(`✅ HTTP server running on port ${PORT}`)
+    const { port, host } = httpOptions!;
+    app.listen(port, host, () => {
+      console.error(`✅ HTTP server running on port ${port} (${host})`)
     });
   } else {
     console.error('ℹ️ HTTP server disabled, running in STDIO mode only')
   }
 }
 
-main().catch(console.error);
+main().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});

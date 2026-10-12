@@ -20,6 +20,8 @@ function createTestConfig(): AppConfig {
         playwrightPackage: 'auto',
         playwrightHeadless: true,
         playwrightNavigationTimeoutMs: 20000,
+        browserEgressEnforced: false,
+        browserAllowedPorts: [80, 443],
         enableCors: false,
         corsOrigin: '*',
         enableHttpServer: true

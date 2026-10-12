@@ -1,0 +1,414 @@
+[
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\adapters\\http\\localDaemon.ts",
+    "Hash": "37BA18A57581E23FABE0388C3FC5AF1BC51EF89B681F5E28465B9EF1691879A9"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\adapters\\http\\serverOptions.ts",
+    "Hash": "A7B70EE8A44CF79B987913916624084AFFA7FA265524A1A7558DBB5B60A20588"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\adapters\\http\\sessionLimiter.ts",
+    "Hash": "71BF031A5A5BF8EFA77A63F0291C32E3F0D25D20ACCD19FE59AFB72DE8646EB9"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\cli\\protocol.ts",
+    "Hash": "915B8204AEAEF621EFD381E9F63709C0938478720143567386861AE24FAE50F2"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\cli\\runCli.ts",
+    "Hash": "B8D9FDF715A1059F5FF0D67772E6BFACB5CE1C9D57565834A2846EC6323D84D9"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\config.ts",
+    "Hash": "DACB44A075926505480D8285D946BEAE8386720B21082E14549540330565974D"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\core\\fetch\\fetchServices.ts",
+    "Hash": "4CEC3DDD7611945A7D7D326F5E0116275F7F8795F0075C7060738168D9AA09AB"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\core\\search\\searchEngines.ts",
+    "Hash": "82699656C91B38ABAD8E4A95BD31FCDBFA6131B70A6AAFFBDE05F13EDDB90467"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\core\\search\\searchService.ts",
+    "Hash": "CC7564590457256BD525416DF53A730039DCE4A840BCEB718B74D7C227971342"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\core\\validation\\targetValidation.ts",
+    "Hash": "0CEB6BFD58B67D4CA9739A351E7848607BEE57638B918FC40C9C9CB86575F372"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\baidu\\baidu.ts",
+    "Hash": "0AD031EA7D35369EEC0519BBD193543C08A2CE4FF408035D7D06E9F26A583CD7"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\baidu\\index.ts",
+    "Hash": "02389838218F107535026B65EBA43734DB8CC505D8636391D7E6A3A348B3B8DA"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\bing\\bing.ts",
+    "Hash": "6C9068301D6F6F4028931D8254E5CFFA88EA55AD4D11E147BC521600388D1BB6"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\bing\\index.ts",
+    "Hash": "20894D0FAF8E856A695378751BB9874A49FB62382482E3B60D9717FDA46A946B"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\bing\\parser.ts",
+    "Hash": "33B5F374C06BFA7B1E3FB042175C8B6DC54FC8CD160F26CB53C348052FBF6154"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\brave\\brave.ts",
+    "Hash": "55EC6460C276DFD4CA4866B9AD27D82EAA87FE0B9FF7152566EAEEE565AD2A27"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\brave\\index.ts",
+    "Hash": "E31C74B601B9374F38B33505273F5B361D19CF180CF1E8F09EF8FD14DF08431C"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\csdn\\csdn.ts",
+    "Hash": "020844372797D5A0F3DF295F0D11EA437215BCEE72C1314FE66A984FB53C7996"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\csdn\\fetchCsdnArticle.ts",
+    "Hash": "837A426390E28E1957DF6BF96AB5564884ED1B81F4ACF8A4C7008220FE8BD5B8"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\csdn\\index.ts",
+    "Hash": "42824D033EE4359C203D6673118AAE2D85DA1B33262B520F21B49D24AEF34EBC"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\duckduckgo\\index.ts",
+    "Hash": "D4B5062C32662A3EC9DE98C264C8C8BE97AD3CFC9CB248F883A4452AD4215232"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\duckduckgo\\searchDuckDuckGo.ts",
+    "Hash": "C25D88D95197031ADA2CD001F24C4E24EFFC0D41E8EDAB744049E9B9E7751676"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\exa\\exa.ts",
+    "Hash": "BC933E6FD652FD6610ED918BC3D5463A3EFBC45597627403620294BD846B7E65"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\exa\\index.ts",
+    "Hash": "C6D60EB533E6FA3F9302FE34898C5E79A34CD396563788B2C9DDEF02796F2271"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\github\\github.ts",
+    "Hash": "79EB6CE7E0BA471D7A0197ED46E7A4760236C1BC3AC8E1B52E00FAF8F9A05939"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\github\\index.ts",
+    "Hash": "C8CC368FC499930B2E7E91BAF0791CD14B0546CA2ECEBA49CA277AD4435D0C83"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\hackernews\\hackernews.ts",
+    "Hash": "9D6D8430A7BD6E0D797F33D9700A4DB56056B17D6437AEB8CF469AF6AB92D6A5"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\hackernews\\index.ts",
+    "Hash": "E100356E091319B6723EF32969B4A7A339E389313355FE24FA49CE1AEA27C107"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\juejin\\fetchJuejinArticle.ts",
+    "Hash": "1C94CE5D4C86C99B6F57EE19576D638F06FDDF54C4C85D0F009F83A44C17A1D9"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\juejin\\index.ts",
+    "Hash": "19D2722AE0E8E8B58F71C44786BBABAB84A7AB9979D0CDBD397130C072A78453"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\juejin\\juejin.ts",
+    "Hash": "94CFE1E4ADA686EC55EA487F855BAA040244F0C400B2D11CCD962D1320791C16"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\linuxdo\\fetchLinuxDoArticle.ts",
+    "Hash": "E2791D2C2E58D79DF176CDD8BB18B1731B5C0665FA11D2AB1E0B9B6E9A49B04A"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\linuxdo\\index.ts",
+    "Hash": "C68A019DEFB6F234F908E32241465227E1B991B6C29EB4639C90AF790DBF0A37"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\linuxdo\\linuxdo.ts",
+    "Hash": "056945DEFA05CD19A744CC4F86DE2D07D7E634E53E991662A390978361B00F7F"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\sogou\\index.ts",
+    "Hash": "A005030C62009DEDF5AAAC03A402B082347F68A7C9C6A35D6491E2661BE35ED5"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\sogou\\sogou.ts",
+    "Hash": "C1CAE380AF54484F35436F4DAF32A5CAF3A683A4F7318BA9E87AA7EB323E00F5"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\startpage\\index.ts",
+    "Hash": "0AC8278FD94974D6A90A2AEC184AA3DE68A1E451126CF4EFD940F0FD06FBA778"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\startpage\\startpage.ts",
+    "Hash": "D89283D9573BF5F9EC86F400CAD72F828AA65963D193790E41ADB9EE076F4731"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\web\\fetchWebContent.ts",
+    "Hash": "1EB14A5CADF0D6D060F83767755A36AD0AFE230C79D47BE3A8CE86D896EEFE5D"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\web\\index.ts",
+    "Hash": "57C95F93C1B1F3F112DAEEE413ECBA5622BA2CC12CF9780B776F547CD99BFF1B"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\zhihu\\fetchZhihuArticle.ts",
+    "Hash": "8320074829B94530FC797D36B786BF762A79AFBF8475B0F4EC758AEA0A675E4B"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\zhihu\\index.ts",
+    "Hash": "A088F78A44B848282F8DEAD3C4A4421FB6AEC309AD8130E19C9372C9A85B0663"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\engines\\zhihu\\zhihu.ts",
+    "Hash": "3E740ED11A8F11F9B230B68E2628F933C67C8A3F1C9253D0355E15AACBC24245"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\index.ts",
+    "Hash": "10E084E2B91D6321EF2FD0E7C42DA2BF2482A4824B071B62168E1E82C9B5B7B7"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\runtime\\createRuntime.ts",
+    "Hash": "91E7E0B29BCEBF3176E62B43F8529B28FDBA9674071BA2A4C59DBD09B2C72596"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\runtime\\runtimeSelection.ts",
+    "Hash": "F14C68FA2BC435D61274C18CC8C8CF1E029017DA53639CA19DE3FB465FB2685A"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\runtime\\runtimeTypes.ts",
+    "Hash": "C0469ABE6F53E022A20804960E8E19D8243F8FC3E429A18FD5D748BAE5D80631"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\fetchCsdnArticleTests.ts",
+    "Hash": "B24C0CDCA9654F97A0E65888B6C17CE78079DC43CCD8E5B2D4C91216F97ED418"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\fetchJuejinArticleTests.ts",
+    "Hash": "B4823AFE29EA77412DFFDB670408F70CA4AD7DA248BF2F817A71E8A7AA4C7235"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-article-fetch-live.ts",
+    "Hash": "D627145BF92AEE5C3BC50CA914CB2993AF5AF8A87E8820FECFD9374EA9589958"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-baidu.ts",
+    "Hash": "AE9410C104AD210D4B482A7242A33AA86BBB5A79934BEFEFE3ABD2D1BFEC7B11"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-bing-http.ts",
+    "Hash": "6513790AECF116E8738D716E746D3E28E074415D476EC004C705B2F223A32FEC"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-bing-live.ts",
+    "Hash": "A77F1388E6AAD03AED1089176F606CE517940F20A81A329B6DAAE02913A5D019"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-bing-parser.ts",
+    "Hash": "E7D26CCD5E06255F53826AABDD9CA7842941C54FABF076BE7A814D93D856980B"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-bing-playwright-cross-restart-concurrency.ts",
+    "Hash": "914A13951E6FED60EB6F06A01F92DB605D67FD13D9D7C35CCEE7B50F041052DC"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-bing.ts",
+    "Hash": "867451A2E0EDA38F0C34191C0B4FA6032D80465A4C59EEA3084CF99C82E4C90E"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-brave.ts",
+    "Hash": "627B00B649D3B44C145292BDF5BB1C5C3A36218F37282EA3A7BD7010F5FD0393"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-browser-path-guard.ts",
+    "Hash": "133A045591ACB6C8994413D122707E50D6B7CC3FFC33E0E89DD14FE77CBA12A5"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-browser-redirect-safety.ts",
+    "Hash": "24D039EB0CDDF4566C84D0D5824C57BF9BA5CEB42A715F0EA90712543E2302A4"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-browser-sharing.ts",
+    "Hash": "45C5E9EA389E5A3932BD5CD6391D2E22F3B2AFD1D17C793EC742C2B39D5BC0BB"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-cli-search.ts",
+    "Hash": "750244AA44D9557CCC212D8D389B0BB28F415B445EF75546CCE6CF9BA07C9A7B"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-core-fetch-services.ts",
+    "Hash": "2E5DDC515D3846AC187B4DC70AF13EA90F3DBEC5B3086D4B6E19399DBE19065F"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-core-search.ts",
+    "Hash": "8C66B42B5D06FC2CBD201AA68CD314AB10124C212CDC30B8DB769EC19F041450"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-core-target-validation.ts",
+    "Hash": "C45A046A13BC76C0EB34A880EEF8D6AA9478FA561E39268498D3B8D8AC54CBFA"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-csdn.ts",
+    "Hash": "2A612ADA376B2EF03B1DE5A693D085C0E3C8BFE92A340E817D30EFCFE01AFE56"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-destination-ip-filter.ts",
+    "Hash": "6F119759503D2381463C705DA45ABA257D5E536D61F8FFD18DB7DA98F9CB9611"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-dialog-capture.ts",
+    "Hash": "D4438D0CC9EED5D7E0B2A6B23BD3BAB1FC5F62B54739DE3944ABFD2F4E2FAD91"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-duckduckgo-preload-url.ts",
+    "Hash": "11B97B95FFB735A5DAA69F953F7282A37D8C0E9221A1F9C5A46BB3FBA6C2CBE0"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-duckduckgo.ts",
+    "Hash": "7AF5EACC3255758D50424825EA0805AB6F91FA90E218F6087876CD2E959B6EB0"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-engine-normalization.ts",
+    "Hash": "3F7A1675B18134A3B67518701F3BF62C58777719EFD429835C8F7B8C3D5C7EBB"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-exa.ts",
+    "Hash": "0515CC114840489DFF67B75902684A1BDBB5BE4DCACAC3BD066E6A9056C15FDE"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-github.ts",
+    "Hash": "E52891834C89207E7AA92569B1A955A54DCD1B35064B96E33628971C9210827A"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-hackernews.ts",
+    "Hash": "590AB80B0060F1A4EDDC01C6450698DC3AF91935F7CB9CCD8B383FDA6A4BA24A"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-http-request-options.ts",
+    "Hash": "F41626FA457C67331901D873FB3D29066160C9591CB094F1805488EF2338340B"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-juejin.ts",
+    "Hash": "FE6A02208366A133BB52C6A1A788770227D4FD9EF85F827EB79941A0C01CD208"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-linuxdo.ts",
+    "Hash": "DD1ECFB1E441CC4319692758A9EEF6BF961184973014E1233FEB8E854607B7CA"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-local-daemon.ts",
+    "Hash": "4A3885BDD39F7D3137B8DCA96B8637C1ADFF0DFDB8B2A8C9ADDFB06B1D5A8FD9"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-mcp-adapter.ts",
+    "Hash": "ACFFC57D39FC4E1FBF78AC3B00E7CA1895C738D2CBDFB84CE48D1856548ECE21"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-mcp-resource-limits.ts",
+    "Hash": "8E55BAA4DDD66F0D9C8E7FCD9BB0D4BB31B1FE9EBAF5A05B50A32FB5610A6098"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-no-window.ts",
+    "Hash": "68325673AB0C1C56CB321AFD674D2FFD67A2CC96A587300A7C537FEA67BF99CE"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-page-pool-lock.ts",
+    "Hash": "55150BC67ECF226E341DEAB0D7A5E9BF8675DD23A9990E85CBC52E8B530F30B5"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-redirect-safety.ts",
+    "Hash": "B17EC26DC293E80F856EB34FF305D3D180BB249F2F019AB1F25C6382E1DF7C24"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-resource-limits.ts",
+    "Hash": "3651B0BC5A13A3290C9AAEA209EE95524ADC4863667BAC2E791F7360E7C8E3E5"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-runtime.ts",
+    "Hash": "F824D71BB6A861664015828A571FACDFD40E5B8A486B46496193B542C34BB219"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-sogou.ts",
+    "Hash": "C12D1CF921B07B7DEA6D24DE560B645E36CAFE3FFC77CD773B2E5CC827411F40"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-startpage.ts",
+    "Hash": "F83104F55605C49A55F54CA43F83F3946B16D8C8383839A7196AB8D540CDDDB5"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-url-safety.ts",
+    "Hash": "7204D923E0D747DE874AB6AE1F253623D6B3672BBA2C5310CD42EF3880995F63"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-web-content-live.ts",
+    "Hash": "D415AEA2AA9FAF3B8B22E8194D458D8342F76F9D7C1731A9A4443DA12951D6BF"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-web-content.ts",
+    "Hash": "FFC3FF83BD076E8DA88B179FD110500461E9B3243DACDF59E2C9F9774E953E9C"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\test\\test-zhihu.ts",
+    "Hash": "9F3F992E4B8AE3A322652E441F512735F6010C46F50D5D0BD9EAAF68F8963033"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\tools\\runCurrentTests.ts",
+    "Hash": "9955E2C9762CEA0AF05CEFBF7A237E89CAF9881B2E6465B0EEB9AF2A6C960749"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\tools\\setupTools.ts",
+    "Hash": "09E01CC07FE9CE067D4DD1AB21A198C4CC3E7675E377FA0850E21ED2F447E2DC"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\types\\koffi.d.ts",
+    "Hash": "CC8A45BCBCA2D844B31C0C7B12DF0057B3239F8470D20BFEC15472BE03635C6A"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\types\\playwright.d.ts",
+    "Hash": "3007A8ECCE43C578D816D2A07C89BBF57539B77AEB38E2B18F71B9F980598A90"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\types.ts",
+    "Hash": "28FD4CAD56415E3B4FFE3D737CC4094FFFA67CB6B82B6558CAA11B706F28A3E2"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\utils\\browserCookies.ts",
+    "Hash": "99DED915CE8029BBD15C8D0383F3BF48A1415608C7117CA6859FD7763B3DBAD4"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\utils\\browserPaths.ts",
+    "Hash": "A3D6B5BC166B924EBF5B0180410FE908C92BD62E4CE8BD0993ED24EE8F3CA276"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\utils\\httpRequest.ts",
+    "Hash": "F076A42B5D406AE81D8F2F5542B48EBB3C24C386729AF294C46A6F2F59B8EE6F"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\utils\\nativeInterop.ts",
+    "Hash": "C949FA9363407552AECC355E9DFD33AD5BCAD7F2804CE95CC060B956C807FE07"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\utils\\playwrightClient.ts",
+    "Hash": "F2C78BAFD76C03B7B342C1F2E872FCF7B92FB8E7833D3F0B22A90356CE4E1DF6"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\utils\\resourceLimits.ts",
+    "Hash": "B36AA2411339A6D44073F0C9A64685016F0360D5A2B18C0FB12165FE7347E875"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\utils\\urlSafety.ts",
+    "Hash": "C6F2D98B25E1837595032A2476C46750756709459074A8A6B05A907C6804A8AF"
+  },
+  {
+    "Path": "D:\\fosun\\open-webSearchEE\\src\\version.ts",
+    "Hash": "297BBA33978A319E1A51F311D5329647756F82496E7B250AFB81907DD3E678C4"
+  }
+]

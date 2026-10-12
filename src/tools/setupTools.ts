@@ -1,5 +1,6 @@
 // tools/setupTools.ts
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { RESOURCE_LIMITS } from '../utils/resourceLimits.js';
 import { z } from 'zod';
 import {
     normalizeEngineName,
@@ -105,7 +106,9 @@ export const setupTools = (server: McpServer, runtime: OpenWebSearchRuntime): vo
         .describe('Optional search mode override. Start with the default auto (or omit searchMode); only retry with playwright when the request-based results fail, come back empty, or are clearly blocked or low-quality.')
         .optional();
 
-    const enginesInputSchema = z.array(getEngineInputSchema()).min(1).default([runtime.config.defaultSearchEngine])
+    const enginesInputSchema = z.array(getEngineInputSchema()).min(1).max(RESOURCE_LIMITS.maxEngineInputs)
+        .refine(engines => new Set(engines).size <= RESOURCE_LIMITS.maxSearchEngines, 'Use at most 3 different engines')
+        .default([runtime.config.defaultSearchEngine])
         .transform(requestedEngines => resolveRequestedEngines(
             requestedEngines,
             runtime.config.allowedSearchEngines,
@@ -113,8 +116,8 @@ export const setupTools = (server: McpServer, runtime: OpenWebSearchRuntime): vo
         ) as [SupportedSearchEngine, ...SupportedSearchEngine[]]);
 
     const searchBaseSchema = {
-        query: z.string().min(1, "Search query must not be empty"),
-        limit: z.number().min(1).max(50).default(10),
+        query: z.string().min(1, "Search query must not be empty").max(RESOURCE_LIMITS.maxQueryChars),
+        limit: z.number().int().min(1).max(50).default(10),
         engines: enginesInputSchema
     };
 
@@ -125,7 +128,7 @@ export const setupTools = (server: McpServer, runtime: OpenWebSearchRuntime): vo
         engines: [SupportedSearchEngine, ...SupportedSearchEngine[]];
     };
 
-    const executeSearch = async ({query, limit, searchMode, engines}: SearchToolInput) => {
+    const executeSearch = async ({query, limit = 10, searchMode, engines}: SearchToolInput) => {
         try {
             const resolvedEngines = resolveRequestedEngines(
                 engines ?? [runtime.config.defaultSearchEngine],
@@ -325,10 +328,10 @@ export const setupTools = (server: McpServer, runtime: OpenWebSearchRuntime): vo
                 includeLinks: z.boolean().optional(),
                 renderMode: z.enum(['request', 'auto', 'browser']).optional()
             },
-            async ({url, maxChars = 30000, readability, includeLinks, renderMode}) => {
+            async ({url, maxChars = 30000, readability, includeLinks, renderMode}, extra) => {
                 try {
                     console.error(`Fetching web content: ${url}`);
-                    const result = await runtime.services.fetchWeb.execute({ url, maxChars, readability, includeLinks, renderMode });
+                    const result = await runtime.services.fetchWeb.execute({ url, maxChars, readability, includeLinks, renderMode, signal: extra?.signal });
 
                     return {
                         content: [{

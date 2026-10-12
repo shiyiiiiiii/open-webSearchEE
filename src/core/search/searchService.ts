@@ -1,6 +1,7 @@
 import { SearchResult } from '../../types.js';
 import { AppConfig } from '../../config.js';
-import { distributeLimit } from './searchEngines.js';
+import { distributeLimit, resolveRequestedEngines } from './searchEngines.js';
+import { RESOURCE_LIMITS, ResourceLimitError } from '../../utils/resourceLimits.js';
 
 export type SearchExecutionContext = {
     searchMode?: AppConfig['searchMode'];
@@ -41,55 +42,77 @@ function classifyEngineError(error: unknown): SearchExecutionFailure['code'] {
 }
 
 export function createSearchService(engineMap: SearchEngineExecutorMap) {
+    let activeSearches = 0;
     return {
         async execute({ query, engines, limit, searchMode }: SearchExecutionInput): Promise<SearchExecutionResult> {
             const cleanQuery = query.trim();
             if (!cleanQuery) {
                 throw new Error('Query string cannot be empty');
             }
+            if (cleanQuery.length > RESOURCE_LIMITS.maxQueryChars) {
+                throw new Error(`Query must contain at most ${RESOURCE_LIMITS.maxQueryChars} characters`);
+            }
+            if (!Number.isInteger(limit) || limit < 1 || limit > 50) {
+                throw new Error('Limit must be an integer between 1 and 50');
+            }
+            engines = resolveRequestedEngines(engines, [], '');
+            if (activeSearches >= RESOURCE_LIMITS.maxConcurrentSearches) {
+                throw new ResourceLimitError('Concurrent search limit reached (4); retry later');
+            }
+            activeSearches++;
+            try {
 
-            const limits = distributeLimit(limit, engines.length);
-            const partialFailures: SearchExecutionFailure[] = [];
-            const effectiveSearchMode = resolveSearchModeOverride(searchMode);
+                const limits = distributeLimit(limit, engines.length);
+                const partialFailures: SearchExecutionFailure[] = [];
+                const effectiveSearchMode = resolveSearchModeOverride(searchMode);
 
-            const tasks = engines.map(async (engine, index) => {
-                const executor = engineMap[engine];
-                const engineLimit = limits[index];
+                const tasks = engines.map(async (engine, index) => {
+                    const executor = engineMap[engine];
+                    const engineLimit = limits[index];
+                    if (engineLimit === 0) return [];
 
-                if (!executor) {
-                    partialFailures.push({
-                        engine,
-                        code: 'unsupported_engine',
-                        message: `Unsupported search engine: ${engine}`
-                    });
-                    return [];
-                }
-
-                try {
-                    return await executor(cleanQuery, engineLimit, { searchMode: effectiveSearchMode });
-                } catch (error) {
-                    // 强制 Playwright 而配置无效属于明确的配置错误，直接上抛，由各入口以 browser_unavailable 错误响应。
-                    if ((error as { code?: unknown })?.code === 'browser_unavailable') {
-                        throw error;
+                    if (!executor) {
+                        partialFailures.push({
+                            engine,
+                            code: 'unsupported_engine',
+                            message: `Unsupported search engine: ${engine}`
+                        });
+                        return [];
                     }
-                    partialFailures.push({
-                        engine,
-                        code: classifyEngineError(error),
-                        message: error instanceof Error ? error.message : String(error)
-                    });
-                    return [];
-                }
-            });
 
-            const results = (await Promise.all(tasks)).flat().slice(0, limit);
+                    try {
+                        return await executor(cleanQuery, engineLimit, { searchMode: effectiveSearchMode });
+                    } catch (error) {
+                        // 强制 Playwright 而配置无效属于明确的配置错误，直接上抛，由各入口以 browser_unavailable 错误响应。
+                        if ((error as { code?: unknown })?.code === 'browser_unavailable') {
+                            throw error;
+                        }
+                        partialFailures.push({
+                            engine,
+                            code: classifyEngineError(error),
+                            message: error instanceof Error ? error.message : String(error)
+                        });
+                        return [];
+                    }
+                });
 
-            return {
-                query: cleanQuery,
-                engines,
-                totalResults: results.length,
-                results,
-                partialFailures
-            };
+                // Retain the concurrency slot until every engine finishes, including
+                // when one engine raises a fatal browser configuration error.
+                const outcomes = await Promise.allSettled(tasks);
+                const rejected = outcomes.find(outcome => outcome.status === 'rejected');
+                if (rejected?.status === 'rejected') throw rejected.reason;
+                const results = outcomes.flatMap(outcome => outcome.status === 'fulfilled' ? outcome.value : []).slice(0, limit);
+
+                return {
+                    query: cleanQuery,
+                    engines,
+                    totalResults: results.length,
+                    results,
+                    partialFailures
+                };
+            } finally {
+                activeSearches--;
+            }
         }
     };
 }

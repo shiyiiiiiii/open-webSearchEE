@@ -1,3 +1,4 @@
+import { makeControlledBrowserMock } from './helpers/controlledBrowserMock.js';
 ﻿import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { fileURLToPath } from 'node:url';
 import { config } from '../config.js';
@@ -183,59 +184,30 @@ async function runCase(testCase: TestCase): Promise<boolean> {
     }
 }
 
-// 假竞速浏览器：只实现竞速层用到的方法面（route/CDP 会话/cookies/goto/content 等），驱动 fetchWithCookiesRaceViaPlaywright 的真实竞速逻辑，无需启动真实浏览器即可断言 HTTP 臂胜出时的返回行为。导航守卫在这里是 no-op：公网 URL 校验已由测试 DNS 桩覆盖的 assertPublicHttpUrlResolved 调用链承担。
+// Drive the real race with a controlled context and a deliberately slower render.
 function makeFakeRaceBrowser(): any {
-    let nextTargetSeq = 1;
-
-    const makeSession = (targetId: string) => ({
-        send: async (method: string) => {
-            if (method === 'Target.getTargetInfo') {
-                return { targetInfo: { targetId } };
-            }
-            if (method === 'Browser.getWindowForTarget') {
-                return { windowId: 1 };
-            }
-            if (method === 'Browser.getWindowBounds') {
-                return { bounds: { left: 0, top: 0, width: 800, height: 600, windowState: 'normal' } };
-            }
-            return {};
-        }
-    });
-
-    const makePage = (targetId: string): any => {
-        let currentUrl = '';
-        return {
-            _targetId: targetId,
-            isClosed: () => false,
-            context: () => context,
-            route: async () => undefined,
-            goto: async (targetUrl: string) => { currentUrl = targetUrl; },
-            // 渲染臂刻意带真实延迟：真实浏览器渲染远慢于 HTTP，竞速层因此应由 HTTP 臂先胜出；若渲染臂即时返回，它会无条件抢先胜出而掩盖本用例要验证的 HTTP 臂重定向行为。
-            waitForLoadState: async () => new Promise<void>((resolve) => setTimeout(resolve, 400)),
-            waitForTimeout: async () => undefined,
-            content: async () => '<html><head><title>Fake Race Page</title></head><body>fake race render</body></html>',
-            url: () => currentUrl,
-            title: async () => 'Fake Race Page',
-            evaluate: async () => undefined
-        };
-    };
-
-    const context: any = {
-        pages: () => [],
-        newPage: async () => {
-            const page = makePage(`FAKE-RACE-${nextTargetSeq}`);
-            nextTargetSeq += 1;
+    process.env.OPEN_WEBSEARCH_PROFILE_DIR = `c03-test-race-${process.pid}`;
+    const { browser } = makeControlledBrowserMock();
+    const create = browser.newContext;
+    browser.newContext = async (options: any) => {
+        const context = await create(options);
+        context.cookies = async () => [{ name: 'race-cookie', value: '1' }];
+        const createPage = context.newPage;
+        context.newPage = async () => {
+            const page = await createPage();
+            let currentUrl = 'about:blank';
+            Object.assign(page, {
+                goto: async (target: string) => { currentUrl = target; },
+                waitForLoadState: async () => new Promise(resolve => setTimeout(resolve, 400)),
+                waitForTimeout: async () => undefined,
+                content: async () => '<html><body>fake race render</body></html>',
+                url: () => currentUrl, title: async () => 'Fake Race Page', evaluate: async () => undefined
+            });
             return page;
-        },
-        newCDPSession: async (page: any) => makeSession(page._targetId),
-        cookies: async () => [{ name: 'race-cookie', value: '1' }]
+        };
+        return context;
     };
-
-    return {
-        contexts: () => [context],
-        newContext: async () => context,
-        close: async () => undefined
-    };
+    return browser;
 }
 
 async function main(): Promise<void> {
@@ -690,23 +662,28 @@ async function main(): Promise<void> {
                     };
                 });
 
-                __setAxiosRequestForTests(async (config) => {
-                    const url = String(config.url || '');
-                    if (url.endsWith('/ssrf-target')) {
-                        throw new Error('Redirect target points to a private or local network address');
+                for (const safetyMessage of [
+                    'Redirect target points to a private or local network address',
+                    'DNS lookup 172.64.1.2(family:4, host:example.com) is not allowed. Because It is defined in denyIPAddressList.'
+                ]) {
+                    __setAxiosRequestForTests(async (config) => {
+                        const url = String(config.url || '');
+                        if (url.endsWith('/ssrf-target')) {
+                            throw new Error(safetyMessage);
+                        }
+                        throw new Error(`Unexpected mocked URL: ${url}`);
+                    });
+
+                    let failed = false;
+                    try {
+                        await fetchWebContent('https://example.com/ssrf-target', 5000);
+                    } catch {
+                        failed = true;
                     }
-                    throw new Error(`Unexpected mocked URL: ${url}`);
-                });
 
-                let failed = false;
-                try {
-                    await fetchWebContent('https://example.com/ssrf-target', 5000);
-                } catch {
-                    failed = true;
+                    assert(failed, 'safety error should stay fatal');
+                    assert(browserWasCalled === false, 'browser fallback must not be used to bypass safety errors');
                 }
-
-                assert(failed, 'safety error should stay fatal');
-                assert(browserWasCalled === false, 'browser fallback must not be used to bypass safety errors');
 
                 installAxiosMock();
             }
@@ -716,6 +693,9 @@ async function main(): Promise<void> {
             run: async () => {
                 const previousModulePath = config.playwrightModulePath;
                 const previousProxyEnabled = config.useProxy;
+                const previousEgress = { proxy: config.browserEgressProxyUrl, enforced: config.browserEgressEnforced };
+                config.browserEgressProxyUrl = 'http://127.0.0.1:3128';
+                config.browserEgressEnforced = true;
                 config.useProxy = false;
                 config.playwrightModulePath = fileURLToPath(new URL('../../test-assets/fake-playwright-launch-client.cjs', import.meta.url));
                 __resetPlaywrightClientForTests();
@@ -778,6 +758,8 @@ async function main(): Promise<void> {
                     assert(result.content.includes('Race redirect landed content'), 'redirected content should be extracted');
                 } finally {
                     config.useProxy = previousProxyEnabled;
+                    config.browserEgressProxyUrl = previousEgress.proxy;
+                    config.browserEgressEnforced = previousEgress.enforced;
                     config.playwrightModulePath = previousModulePath;
                     __resetPlaywrightClientForTests();
                     __setBrowserSessionOpenerForTests();

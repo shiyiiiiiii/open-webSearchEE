@@ -1,0 +1,2777 @@
+{
+  "generatedAt": "2026-10-09T03:01:54.425Z",
+  "scope": "Current workspace locked/resolved npm packages",
+  "inventoryCounts": {
+    "lockEntries": 187,
+    "uniqueLocked": 180,
+    "productionLockEntries": 171,
+    "developmentOnlyLockEntries": 16,
+    "installedEntries": 186,
+    "embeddedPackageMetadata": 2,
+    "uniqueQueried": 182
+  },
+  "npmPackageSummary": {
+    "info": 0,
+    "low": 0,
+    "moderate": 3,
+    "high": 7,
+    "critical": 0,
+    "total": 10
+  },
+  "advisorySummary": {
+    "total": 55,
+    "uniqueCves": 54,
+    "severity": {
+      "MODERATE": 42,
+      "HIGH": 8,
+      "LOW": 5
+    }
+  },
+  "crossValidation": {
+    "npm": "55 intrinsic advisories, 10 affected packages including one propagated parent",
+    "osv": "182 package/version queries including 2 embedded metadata packages",
+    "trivy": "180 locked package versions, 55 advisory IDs",
+    "differences": []
+  },
+  "hashesUnchanged": {
+    "package.json": "162d31e182536181b957bf6b35b2a1296661565db6da3583f098002e1b0b3b5c",
+    "package-lock.json": "be7c9c2e316a1c6906623a5a7c192178a3a601a4c384f3ed142c8ab4ea4d0250"
+  },
+  "findings": [
+    {
+      "id": "GHSA-92pp-h63x-v22m",
+      "cves": [
+        "CVE-2026-39406"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        }
+      ],
+      "title": "@hono/node-server: Middleware bypass via repeated slashes in serveStatic",
+      "published": "2026-04-08T00:16:39Z",
+      "modified": "2026-09-10T03:51:01.299551704Z",
+      "source": "https://github.com/advisories/GHSA-92pp-h63x-v22m",
+      "affected": [
+        {
+          "name": "@hono/node-server",
+          "version": "1.19.11",
+          "locations": [
+            "node_modules/@hono/node-server"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "1.19.13"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → @hono/node-server@1.19.11"
+          ],
+          "assessment": "SDK Streamable HTTP transport 使用 getRequestListener；命中公告均要求 serveStatic 静态文件服务。当前代码未使用 serveStatic，未发现公告对应调用路径。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-frvp-7c67-39w9",
+      "cves": [],
+      "severity": "MODERATE",
+      "cvssScore": 5.9,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "title": "Node.js Adapter for Hono: Path traversal in `serve-static` on Windows via encoded backslash (`%5C`)",
+      "published": "2026-07-21T18:17:25Z",
+      "modified": "2026-09-10T03:50:51.945277237Z",
+      "source": "https://github.com/advisories/GHSA-frvp-7c67-39w9",
+      "affected": [
+        {
+          "name": "@hono/node-server",
+          "version": "1.19.11",
+          "locations": [
+            "node_modules/@hono/node-server"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "2.0.0"
+                },
+                {
+                  "fixed": "2.0.5"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "1.19.15"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → @hono/node-server@1.19.11"
+          ],
+          "assessment": "SDK Streamable HTTP transport 使用 getRequestListener；命中公告均要求 serveStatic 静态文件服务。当前代码未使用 serveStatic，未发现公告对应调用路径。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-6qxp-vccf-f47h",
+      "cves": [
+        "CVE-2026-104850"
+      ],
+      "severity": "HIGH",
+      "cvssScore": 7.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "title": "MCP TypeScript SDK: OAuth client could send credentials to an authorization server chosen by the MCP server",
+      "published": "2026-10-06T15:35:44Z",
+      "modified": "2026-10-06T15:46:47.143033168Z",
+      "source": "https://github.com/advisories/GHSA-6qxp-vccf-f47h",
+      "affected": [
+        {
+          "name": "@modelcontextprotocol/sdk",
+          "version": "1.27.1",
+          "locations": [
+            "node_modules/@modelcontextprotocol/sdk"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "1.12.0"
+                },
+                {
+                  "fixed": "1.31.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1"
+          ],
+          "assessment": "公告针对 HTTP OAuth 客户端。本项目导入服务端 McpServer 和服务端 transport，未发现 SDK 客户端 OAuth 调用；官方公告明确服务端不受该漏洞影响。仍建议升级以消除供应链版本命中。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-26pp-8wgv-hjvm",
+      "cves": [
+        "CVE-2026-56762"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+      ],
+      "title": "Hono missing validation of cookie name on write path in setCookie()",
+      "published": "2026-04-08T00:17:02Z",
+      "modified": "2026-09-24T18:45:10.903668809Z",
+      "source": "https://github.com/advisories/GHSA-26pp-8wgv-hjvm",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.12"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-2gcr-mfcq-wcc3",
+      "cves": [
+        "CVE-2026-47676"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        }
+      ],
+      "title": "Hono: app.mount() strips mount prefix using undecoded path, causing incorrect routing for percent-encoded paths",
+      "published": "2026-06-04T18:01:00Z",
+      "modified": "2026-09-10T03:51:07.554753223Z",
+      "source": "https://github.com/advisories/GHSA-2gcr-mfcq-wcc3",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.21"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-3hrh-pfw6-9m5x",
+      "cves": [
+        "CVE-2026-47675"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "title": "Hono: Cookie helper does not sanitize sameSite and priority, allowing Set-Cookie injection",
+      "published": "2026-06-04T17:59:25Z",
+      "modified": "2026-09-10T03:50:55.293982711Z",
+      "source": "https://github.com/advisories/GHSA-3hrh-pfw6-9m5x",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.21"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-458j-xx4x-4375",
+      "cves": [
+        "CVE-2026-56761"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "title": "hono Improperly Handles JSX Attribute Names Allows HTML Injection in hono/jsx SSR",
+      "published": "2026-04-16T01:02:24Z",
+      "modified": "2026-09-10T03:50:42.733990619Z",
+      "source": "https://github.com/advisories/GHSA-458j-xx4x-4375",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.14"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-54fx-42gc-7vw4",
+      "cves": [
+        "CVE-2026-71848"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+      ],
+      "title": "Hono: Algorithmic Complexity DoS in Language Middleware",
+      "published": "2026-08-07T18:36:31Z",
+      "modified": "2026-09-10T03:50:53.311438629Z",
+      "source": "https://github.com/advisories/GHSA-54fx-42gc-7vw4",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "4.12.0"
+                },
+                {
+                  "fixed": "4.12.34"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-69xw-7hcm-h432",
+      "cves": [
+        "CVE-2026-44455"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.7,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N"
+        }
+      ],
+      "title": "hono/jsx has Unvalidated JSX Tag Names that May Allow HTML Injection",
+      "published": "2026-05-06T23:49:43Z",
+      "modified": "2026-09-10T03:50:45.797738339Z",
+      "source": "https://github.com/advisories/GHSA-69xw-7hcm-h432",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.16"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-79qm-7rj5-m7r9",
+      "cves": [
+        "CVE-2026-71849"
+      ],
+      "severity": "LOW",
+      "cvssScore": 3.7,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        }
+      ],
+      "title": "Hono: Proxy Helper does not remove response headers listed in the `Connection` header",
+      "published": "2026-08-07T18:38:48Z",
+      "modified": "2026-09-10T03:51:13.317395159Z",
+      "source": "https://github.com/advisories/GHSA-79qm-7rj5-m7r9",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "4.7.0"
+                },
+                {
+                  "fixed": "4.12.34"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-88fw-hqm2-52qc",
+      "cves": [
+        "CVE-2026-54290"
+      ],
+      "severity": "HIGH",
+      "cvssScore": 7.1,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N"
+        }
+      ],
+      "title": "hono: CORS Middleware reflects any Origin with credentials when `origin` defaults to the wildcard",
+      "published": "2026-06-16T14:15:39Z",
+      "modified": "2026-09-10T03:50:48.939674527Z",
+      "source": "https://github.com/advisories/GHSA-88fw-hqm2-52qc",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.25"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-8j4g-w8fx-2239",
+      "cves": [
+        "CVE-2026-69207"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+      ],
+      "title": "Hono: ReDoS in CORS middleware via Access-Control-Request-Headers",
+      "published": "2026-08-03T20:23:30Z",
+      "modified": "2026-09-10T03:51:13.583285977Z",
+      "source": "https://github.com/advisories/GHSA-8j4g-w8fx-2239",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.34"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-9vqf-7f2p-gf9v",
+      "cves": [
+        "CVE-2026-44456"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 6.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "Hono: bodyLimit() can be bypassed for chunked / unknown-length requests",
+      "published": "2026-05-06T23:50:10Z",
+      "modified": "2026-09-10T03:50:46.398393701Z",
+      "source": "https://github.com/advisories/GHSA-9vqf-7f2p-gf9v",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.16"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-crvj-82cr-hjcx",
+      "cves": [
+        "CVE-2026-84363"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.9,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+        }
+      ],
+      "title": "Hono: Query parser reads parameters after the URL fragment, causing cache-key and proxy interpretation differentials",
+      "published": "2026-09-08T21:22:50Z",
+      "modified": "2026-09-08T21:30:04.756349206Z",
+      "source": "https://github.com/advisories/GHSA-crvj-82cr-hjcx",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.13.5"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-f23p-vx2j-j53r",
+      "cves": [
+        "CVE-2026-71850"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.8,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "title": "Hono: `memo()` retains SSR output across requests, leading to cross-user data disclosure",
+      "published": "2026-08-07T18:42:01Z",
+      "modified": "2026-09-10T03:51:13.947851047Z",
+      "source": "https://github.com/advisories/GHSA-f23p-vx2j-j53r",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "3.8.0"
+                },
+                {
+                  "fixed": "4.12.34"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-f577-qrjj-4474",
+      "cves": [
+        "CVE-2026-47673"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.8,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "Hono: JWT middleware accepts any Authorization scheme, not only Bearer",
+      "published": "2026-06-04T17:52:04Z",
+      "modified": "2026-09-10T03:50:49.224229164Z",
+      "source": "https://github.com/advisories/GHSA-f577-qrjj-4474",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.21"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-g6gw-c38x-mqfc",
+      "cves": [
+        "CVE-2026-84364"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+      ],
+      "title": "Hono: Unbounded dot-notation nesting in `parseBody()` can cause memory exhaustion",
+      "published": "2026-09-08T21:23:02Z",
+      "modified": "2026-09-08T21:30:05.512225825Z",
+      "source": "https://github.com/advisories/GHSA-g6gw-c38x-mqfc",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.13.5"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-gqvv-2mrq-wpjv",
+      "cves": [
+        "CVE-2026-84365"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 6.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N"
+        }
+      ],
+      "title": "Hono: Incomplete fix for CVE-2026-39408: `toSSG()` still writes files outside the output directory",
+      "published": "2026-09-08T21:23:51Z",
+      "modified": "2026-09-08T21:30:04.760578762Z",
+      "source": "https://github.com/advisories/GHSA-gqvv-2mrq-wpjv",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.13.5"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-hm8q-7f3q-5f36",
+      "cves": [
+        "CVE-2026-44459"
+      ],
+      "severity": "LOW",
+      "cvssScore": 3.8,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "Hono has improper validation of NumericDate claims (exp, nbf, iat) in JWT verify()",
+      "published": "2026-05-09T00:45:19Z",
+      "modified": "2026-09-10T03:51:05.786966268Z",
+      "source": "https://github.com/advisories/GHSA-hm8q-7f3q-5f36",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.18"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-hvrm-45r6-mjfj",
+      "cves": [
+        "CVE-2026-59896"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 6.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N"
+        }
+      ],
+      "title": "hono/jsx does not isolate context per request, leading to cross-request data disclosure",
+      "published": "2026-07-21T18:34:19Z",
+      "modified": "2026-09-10T03:50:12.326975538Z",
+      "source": "https://github.com/advisories/GHSA-hvrm-45r6-mjfj",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "4.11.8"
+                },
+                {
+                  "fixed": "4.12.27"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-hxh3-vqpv-xpqv",
+      "cves": [
+        "CVE-2026-93981"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.7,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N"
+        }
+      ],
+      "title": "hono/jsx renders plain strings unescaped in boundary components, leading to XSS",
+      "published": "2026-09-30T23:46:16Z",
+      "modified": "2026-10-01T00:00:05.750907953Z",
+      "source": "https://github.com/advisories/GHSA-hxh3-vqpv-xpqv",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.13.7"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-j6c9-x7qj-28xf",
+      "cves": [
+        "CVE-2026-54287"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "title": "hono: AWS Lambda adapter merges multiple `Set-Cookie` headers into one value, dropping cookies on ALB single-header and Lattice",
+      "published": "2026-06-16T14:08:40Z",
+      "modified": "2026-09-10T03:50:49.966830179Z",
+      "source": "https://github.com/advisories/GHSA-j6c9-x7qj-28xf",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.25"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-p77w-8qqv-26rm",
+      "cves": [
+        "CVE-2026-44457"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        }
+      ],
+      "title": "Hono's Cache Middleware ignores Vary: Authorization / Vary: Cookie leading to cross-user cache leakage",
+      "published": "2026-05-09T00:28:46Z",
+      "modified": "2026-09-10T03:51:06.651980667Z",
+      "source": "https://github.com/advisories/GHSA-p77w-8qqv-26rm",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.18"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-qp7p-654g-cw7p",
+      "cves": [
+        "CVE-2026-44458"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "title": "Hono has CSS Declaration Injection via Style Object Values in JSX SSR",
+      "published": "2026-05-09T00:46:44Z",
+      "modified": "2026-09-10T03:50:47.323895256Z",
+      "source": "https://github.com/advisories/GHSA-qp7p-654g-cw7p",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.18"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-r5rp-j6wh-rvv4",
+      "cves": [
+        "CVE-2026-39410"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.8,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "Hono: Non-breaking space prefix bypass in cookie name handling in getCookie()",
+      "published": "2026-04-08T00:17:21Z",
+      "modified": "2026-09-10T03:51:02.862741526Z",
+      "source": "https://github.com/advisories/GHSA-r5rp-j6wh-rvv4",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.12"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-rv63-4mwf-qqc2",
+      "cves": [
+        "CVE-2026-54288"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 6.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "hono: Body Limit Middleware can be bypassed on AWS Lambda by understating `Content-Length`",
+      "published": "2026-06-16T14:32:49Z",
+      "modified": "2026-09-10T03:50:50.504641908Z",
+      "source": "https://github.com/advisories/GHSA-rv63-4mwf-qqc2",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.25"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-w62v-xxxg-mg59",
+      "cves": [
+        "CVE-2026-59895"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 6.1,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+        }
+      ],
+      "title": "Hono: Server-Side XSS via JSX Escaping Bypass in cx() Utility",
+      "published": "2026-07-21T18:33:50Z",
+      "modified": "2026-09-10T03:51:12.371507758Z",
+      "source": "https://github.com/advisories/GHSA-w62v-xxxg-mg59",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "4.0.0"
+                },
+                {
+                  "fixed": "4.12.27"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-wgpf-jwqj-8h8p",
+      "cves": [
+        "CVE-2026-54289"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.8,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "hono: Lambda@Edge adapter keeps only the last value of a repeated request header, dropping the rest",
+      "published": "2026-06-16T14:32:31Z",
+      "modified": "2026-09-10T03:50:50.847189873Z",
+      "source": "https://github.com/advisories/GHSA-wgpf-jwqj-8h8p",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.25"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-wmmm-f939-6g9c",
+      "cves": [
+        "CVE-2026-39407"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        }
+      ],
+      "title": "Hono: Middleware bypass via repeated slashes in serveStatic",
+      "published": "2026-04-08T00:16:45Z",
+      "modified": "2026-09-10T03:50:44.790565774Z",
+      "source": "https://github.com/advisories/GHSA-wmmm-f939-6g9c",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.12"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-wwfh-h76j-fc44",
+      "cves": [
+        "CVE-2026-54286"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.9,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "title": "hono: Path traversal in `serve-static` on Windows via encoded backslash (`%5C`)",
+      "published": "2026-06-16T14:09:03Z",
+      "modified": "2026-09-10T03:50:51.049920484Z",
+      "source": "https://github.com/advisories/GHSA-wwfh-h76j-fc44",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.25"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-xf4j-xp2r-rqqx",
+      "cves": [
+        "CVE-2026-39408"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": null,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N"
+        }
+      ],
+      "title": "Hono: Path traversal in toSSG() allows writing files outside the output directory",
+      "published": "2026-04-08T00:16:51Z",
+      "modified": "2026-09-10T03:51:03.934940424Z",
+      "source": "https://github.com/advisories/GHSA-xf4j-xp2r-rqqx",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "4.0.0"
+                },
+                {
+                  "fixed": "4.12.12"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-xgm2-5f3f-mvvc",
+      "cves": [
+        "CVE-2026-59897"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.8,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "Hono: API Gateway v1 adapter can drop a distinct repeated request header value during de-duplication",
+      "published": "2026-07-21T18:18:13Z",
+      "modified": "2026-09-10T03:50:53.167967172Z",
+      "source": "https://github.com/advisories/GHSA-xgm2-5f3f-mvvc",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "4.3.3"
+                },
+                {
+                  "fixed": "4.12.27"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-xpcf-pg52-r92g",
+      "cves": [
+        "CVE-2026-39409"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+        },
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+        }
+      ],
+      "title": "Hono has incorrect IP matching in ipRestriction() for IPv4-mapped IPv6 addresses",
+      "published": "2026-04-08T00:17:14Z",
+      "modified": "2026-09-10T03:50:44.898181069Z",
+      "source": "https://github.com/advisories/GHSA-xpcf-pg52-r92g",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.12"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-xrhx-7g5j-rcj5",
+      "cves": [
+        "CVE-2026-47674"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "title": "Hono: IP Restriction bypasses static deny rules for non-canonical IPv6 ",
+      "published": "2026-06-04T18:00:22Z",
+      "modified": "2026-09-10T03:51:09.776209033Z",
+      "source": "https://github.com/advisories/GHSA-xrhx-7g5j-rcj5",
+      "affected": [
+        {
+          "name": "hono",
+          "version": "4.12.7",
+          "locations": [
+            "node_modules/hono"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.12.21"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → hono@4.12.7"
+          ],
+          "assessment": "经 SDK 引入。命中项涉及 Hono 的静态文件、JSX、JWT、CORS、缓存、SSG、代理、语言等 API；当前 HTTP 入口使用 Express，未发现这些 Hono API 的业务调用。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-h3mg-xc3c-68pw",
+      "cves": [
+        "CVE-2026-101911"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": null,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
+        }
+      ],
+      "title": "ip-address: Address6 builds a parse diagnostic proportional to the input with no length bound, allowing a single long string to stall or crash the process",
+      "published": "2026-09-29T23:46:39Z",
+      "modified": "2026-09-30T00:00:04.407982988Z",
+      "source": "https://github.com/advisories/GHSA-h3mg-xc3c-68pw",
+      "affected": [
+        {
+          "name": "ip-address",
+          "version": "10.1.0",
+          "locations": [
+            "node_modules/ip-address"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "10.7.1"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express-rate-limit@8.3.1 → ip-address@10.1.0"
+          ],
+          "assessment": "经 SDK → express-rate-limit 引入。项目的 URL/IP 校验实际使用另一库 ipaddr.js，不应混淆两者；未发现项目使用 ip-address 的 HTML 输出/子网判断或启用 SDK OAuth 限流路由。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-j6r3-76f7-8jcv",
+      "cves": [
+        "CVE-2026-101912"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": null,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"
+        }
+      ],
+      "title": "ip-address: isInSubnet() and isHostInSubnet() compare addresses of different families as if they shared an address space, allowing an allowlist check to admit an address outside its range",
+      "published": "2026-09-29T23:46:52Z",
+      "modified": "2026-09-30T00:00:03.843448355Z",
+      "source": "https://github.com/advisories/GHSA-j6r3-76f7-8jcv",
+      "affected": [
+        {
+          "name": "ip-address",
+          "version": "10.1.0",
+          "locations": [
+            "node_modules/ip-address"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "10.7.1"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express-rate-limit@8.3.1 → ip-address@10.1.0"
+          ],
+          "assessment": "经 SDK → express-rate-limit 引入。项目的 URL/IP 校验实际使用另一库 ipaddr.js，不应混淆两者；未发现项目使用 ip-address 的 HTML 输出/子网判断或启用 SDK OAuth 限流路由。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-mwp4-54f8-5fhr",
+      "cves": [
+        "CVE-2026-69192"
+      ],
+      "severity": "HIGH",
+      "cvssScore": null,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:H/SI:N/SA:N"
+        }
+      ],
+      "title": "ip-address: Address4 decodes leading-zero octets as decimal while resolvers decode them as octal, allowing SSRF and trust-boundary bypass",
+      "published": "2026-08-03T19:59:44Z",
+      "modified": "2026-09-10T03:51:14.478555296Z",
+      "source": "https://github.com/advisories/GHSA-mwp4-54f8-5fhr",
+      "affected": [
+        {
+          "name": "ip-address",
+          "version": "10.1.0",
+          "locations": [
+            "node_modules/ip-address"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "10.3.1"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express-rate-limit@8.3.1 → ip-address@10.1.0"
+          ],
+          "assessment": "经 SDK → express-rate-limit 引入。项目的 URL/IP 校验实际使用另一库 ipaddr.js，不应混淆两者；未发现项目使用 ip-address 的 HTML 输出/子网判断或启用 SDK OAuth 限流路由。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-rpw4-54j3-4h4q",
+      "cves": [
+        "CVE-2026-101913"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": null,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:L/SI:N/SA:N"
+        }
+      ],
+      "title": "ip-address: Address6.isLinkLocal() recognizes fe80::/64 rather than fe80::/10, allowing SSRF and trust-boundary bypass to on-link hosts",
+      "published": "2026-09-28T20:43:55Z",
+      "modified": "2026-09-28T21:00:05.359993143Z",
+      "source": "https://github.com/advisories/GHSA-rpw4-54j3-4h4q",
+      "affected": [
+        {
+          "name": "ip-address",
+          "version": "10.1.0",
+          "locations": [
+            "node_modules/ip-address"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "10.5.1"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express-rate-limit@8.3.1 → ip-address@10.1.0"
+          ],
+          "assessment": "经 SDK → express-rate-limit 引入。项目的 URL/IP 校验实际使用另一库 ipaddr.js，不应混淆两者；未发现项目使用 ip-address 的 HTML 输出/子网判断或启用 SDK OAuth 限流路由。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-v2v4-37r5-5v8g",
+      "cves": [
+        "CVE-2026-42338"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": null,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"
+        }
+      ],
+      "title": "ip-address has XSS in Address6 HTML-emitting methods",
+      "published": "2026-05-05T21:50:58Z",
+      "modified": "2026-09-10T03:50:47.603301077Z",
+      "source": "https://github.com/advisories/GHSA-v2v4-37r5-5v8g",
+      "affected": [
+        {
+          "name": "ip-address",
+          "version": "10.1.0",
+          "locations": [
+            "node_modules/ip-address"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "10.1.1"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express-rate-limit@8.3.1 → ip-address@10.1.0"
+          ],
+          "assessment": "经 SDK → express-rate-limit 引入。项目的 URL/IP 校验实际使用另一库 ipaddr.js，不应混淆两者；未发现项目使用 ip-address 的 HTML 输出/子网判断或启用 SDK OAuth 限流路由。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-27v5-c462-wpq7",
+      "cves": [
+        "CVE-2026-4923"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.9,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "title": "path-to-regexp vulnerable to Regular Expression Denial of Service via multiple wildcards",
+      "published": "2026-03-27T22:23:52Z",
+      "modified": "2026-09-10T03:50:36.174856756Z",
+      "source": "https://github.com/advisories/GHSA-27v5-c462-wpq7",
+      "affected": [
+        {
+          "name": "path-to-regexp",
+          "version": "8.3.0",
+          "locations": [
+            "node_modules/router/node_modules/path-to-regexp"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.4.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → express@5.2.1 → router@2.2.0 → path-to-regexp@8.3.0",
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express@5.2.1 → router@2.2.0 → path-to-regexp@8.3.0"
+          ],
+          "assessment": "经 Express → router 引入。公告要求路由含多个通配符或连续可选组；当前业务路由为固定路径，未发现这类路由模式。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-j3q9-mxjg-w52f",
+      "cves": [
+        "CVE-2026-4926"
+      ],
+      "severity": "HIGH",
+      "cvssScore": 7.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "title": "path-to-regexp vulnerable to Denial of Service via sequential optional groups",
+      "published": "2026-03-27T22:23:27Z",
+      "modified": "2026-09-10T03:50:39.762014882Z",
+      "source": "https://github.com/advisories/GHSA-j3q9-mxjg-w52f",
+      "affected": [
+        {
+          "name": "path-to-regexp",
+          "version": "8.3.0",
+          "locations": [
+            "node_modules/router/node_modules/path-to-regexp"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.4.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → express@5.2.1 → router@2.2.0 → path-to-regexp@8.3.0",
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express@5.2.1 → router@2.2.0 → path-to-regexp@8.3.0"
+          ],
+          "assessment": "经 Express → router 引入。公告要求路由含多个通配符或连续可选组；当前业务路由为固定路径，未发现这类路由模式。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-4mjr-xmp4-gh2g",
+      "cves": [
+        "CVE-2026-82417"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.3,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
+        }
+      ],
+      "title": "qs: Denial of Service via Attacker Controlled isBuffer",
+      "published": "2026-09-02T14:45:13Z",
+      "modified": "2026-09-10T03:51:14.991984096Z",
+      "source": "https://github.com/advisories/GHSA-4mjr-xmp4-gh2g",
+      "affected": [
+        {
+          "name": "qs",
+          "version": "6.15.3",
+          "locations": [
+            "node_modules/qs"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "2.2.5"
+                },
+                {
+                  "fixed": "6.16.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → express@5.2.1 → qs@6.15.3",
+            "open-websearch → express@5.2.1 → body-parser@2.3.0 → qs@6.15.3",
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express@5.2.1 → qs@6.15.3",
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express@5.2.1 → body-parser@2.3.0 → qs@6.15.3"
+          ],
+          "assessment": "Express 与 body-parser 的传递依赖。当前入口仅启用 express.json()，Express 默认 query parser 为 simple；未发现 extended 查询解析或 urlencoded 中间件，对应触发条件未证实。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-x5fp-wj9c-mxmx",
+      "cves": [
+        "CVE-2026-82562"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 3.7,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        },
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
+        }
+      ],
+      "title": "qs array-limit bypass via bracket-key comma parsing",
+      "published": "2026-09-02T14:46:57Z",
+      "modified": "2026-09-10T03:50:54.569331980Z",
+      "source": "https://github.com/advisories/GHSA-x5fp-wj9c-mxmx",
+      "affected": [
+        {
+          "name": "qs",
+          "version": "6.15.3",
+          "locations": [
+            "node_modules/qs"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "6.14.2"
+                },
+                {
+                  "fixed": "6.16.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → express@5.2.1 → qs@6.15.3",
+            "open-websearch → express@5.2.1 → body-parser@2.3.0 → qs@6.15.3",
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express@5.2.1 → qs@6.15.3",
+            "open-websearch → @modelcontextprotocol/sdk@1.27.1 → express@5.2.1 → body-parser@2.3.0 → qs@6.15.3"
+          ],
+          "assessment": "Express 与 body-parser 的传递依赖。当前入口仅启用 express.json()，Express 默认 query parser 为 simple；未发现 extended 查询解析或 urlencoded 中间件，对应触发条件未证实。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-r3r9-wp5j-pq5g",
+      "cves": [
+        "CVE-2026-62985"
+      ],
+      "severity": "HIGH",
+      "cvssScore": 7.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "title": "request-filtering-agent: Synchronous throw from createConnection() for literal private-IP hosts bypasses req.on('error'), crashing the Node.js process",
+      "published": "2026-09-22T19:54:18Z",
+      "modified": "2026-09-22T20:00:05.170933615Z",
+      "source": "https://github.com/advisories/GHSA-r3r9-wp5j-pq5g",
+      "affected": [
+        {
+          "name": "request-filtering-agent",
+          "version": "3.2.0",
+          "locations": [
+            "node_modules/request-filtering-agent"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "3.2.1"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → request-filtering-agent@3.2.0"
+          ],
+          "assessment": "实际用于出站 HTTP/HTTPS 请求。当前 URL 校验在请求前拒绝私网字面量，并逐跳校验重定向；两项既有防护测试通过。该防护降低公告所述私网字面量触发路径的暴露，但不改变库版本命中，建议优先升级。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-35p6-xmwp-9g52",
+      "cves": [
+        "CVE-2026-6733"
+      ],
+      "severity": "LOW",
+      "cvssScore": 3.7,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "title": "undici vulnerable to HTTP response queue poisoning via keep-alive socket reuse",
+      "published": "2026-06-19T14:19:13Z",
+      "modified": "2026-09-10T03:51:07.666603424Z",
+      "source": "https://github.com/advisories/GHSA-35p6-xmwp-9g52",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "6.27.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.28.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.5.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-8xcm-r25x-g524",
+      "cves": [
+        "CVE-2026-16728"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.8,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "undici vulnerable to downstream response desynchronization via retry interceptor",
+      "published": "2026-08-03T19:24:33Z",
+      "modified": "2026-09-10T03:51:13.567076059Z",
+      "source": "https://github.com/advisories/GHSA-8xcm-r25x-g524",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "6.28.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.29.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.9.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-g8m3-5g58-fq7m",
+      "cves": [
+        "CVE-2026-11525"
+      ],
+      "severity": "LOW",
+      "cvssScore": 3.7,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "title": "undici vulnerable to Set-Cookie SameSite attribute downgrade via permissive substring matching",
+      "published": "2026-06-19T14:34:46Z",
+      "modified": "2026-09-10T03:51:08.663204806Z",
+      "source": "https://github.com/advisories/GHSA-g8m3-5g58-fq7m",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "6.27.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.28.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.5.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-m8rv-5g2x-5cg5",
+      "cves": [
+        "CVE-2026-15157"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.2,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "undici vulnerable to CRLF Injection via blob-like body 'type' property",
+      "published": "2026-08-03T19:33:53Z",
+      "modified": "2026-09-10T03:51:14.281925419Z",
+      "source": "https://github.com/advisories/GHSA-m8rv-5g2x-5cg5",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "6.28.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.29.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.9.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-p88m-4jfj-68fv",
+      "cves": [
+        "CVE-2026-9679"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 5.9,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+        }
+      ],
+      "title": "undici vulnerable to HTTP header injection via Set-Cookie percent-decoding",
+      "published": "2026-06-19T14:21:30Z",
+      "modified": "2026-09-10T03:51:09.228344843Z",
+      "source": "https://github.com/advisories/GHSA-p88m-4jfj-68fv",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "6.27.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.28.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.5.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-r53p-7pc4-xj5r",
+      "cves": [
+        "CVE-2026-18540"
+      ],
+      "severity": "LOW",
+      "cvssScore": 3.7,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+        }
+      ],
+      "title": "undici vulnerable to downstream response splitting via retry interceptor",
+      "published": "2026-09-29T18:22:07Z",
+      "modified": "2026-09-29T18:30:41.154532067Z",
+      "source": "https://github.com/advisories/GHSA-r53p-7pc4-xj5r",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "6.28.1"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.29.1"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.10.2"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-rfgv-xxqx-mfg5",
+      "cves": [
+        "CVE-2026-19534"
+      ],
+      "severity": "HIGH",
+      "cvssScore": 7.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "title": "undici vulnerable to Denial of Service via unrequested WebSocket subprotocol",
+      "published": "2026-09-29T18:21:33Z",
+      "modified": "2026-09-29T18:30:41.167602268Z",
+      "source": "https://github.com/advisories/GHSA-rfgv-xxqx-mfg5",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "6.7.0"
+                },
+                {
+                  "fixed": "6.28.1"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.29.1"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.10.2"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-v3r7-h72x-cjcm",
+      "cves": [
+        "CVE-2026-16729"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.8,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        }
+      ],
+      "title": "undici vulnerable to cookie attribute injection via unsanitized domain and unparsed setCookie fields",
+      "published": "2026-08-03T19:30:52Z",
+      "modified": "2026-09-10T03:51:14.535204629Z",
+      "source": "https://github.com/advisories/GHSA-v3r7-h72x-cjcm",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "6.28.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.29.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.9.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-vxpw-j846-p89q",
+      "cves": [
+        "CVE-2026-12151"
+      ],
+      "severity": "HIGH",
+      "cvssScore": 7.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "title": "undici WebSocket client vulnerable to denial of service via fragment count bypass",
+      "published": "2026-06-19T14:22:01Z",
+      "modified": "2026-09-10T03:50:12.291121037Z",
+      "source": "https://github.com/advisories/GHSA-vxpw-j846-p89q",
+      "affected": [
+        {
+          "name": "undici",
+          "version": "6.24.0",
+          "locations": [
+            "node_modules/undici"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "6.27.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.28.0"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.5.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → cheerio@1.0.0 → undici@6.24.0"
+          ],
+          "assessment": "锁文件中的 undici 经 Cheerio 引入；源码使用 cheerio.load，未发现 fromURL 或 Undici WebSocket/重试拦截器调用。Node 内置的 Undici 是另一个版本，见运行时补查。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-58qx-3vcg-4xpx",
+      "cves": [
+        "CVE-2026-45736"
+      ],
+      "severity": "MODERATE",
+      "cvssScore": 4.4,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N"
+        }
+      ],
+      "title": "ws: Uninitialized memory disclosure",
+      "published": "2026-05-18T19:02:40Z",
+      "modified": "2026-09-10T03:51:04.572514669Z",
+      "source": "https://github.com/advisories/GHSA-58qx-3vcg-4xpx",
+      "affected": [
+        {
+          "name": "ws",
+          "version": "8.18.2",
+          "locations": [
+            "node_modules/ws"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.20.1"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → jsdom@26.1.0 → ws@8.18.2"
+          ],
+          "assessment": "经 jsdom 引入。项目使用 new JSDOM(html)，未启用 runScripts 或外部资源加载，也未发现直接 ws 调用；当前网页解析路径未证实能触发这些 WebSocket 漏洞。"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-96hv-2xvq-fx4p",
+      "cves": [
+        "CVE-2026-48779"
+      ],
+      "severity": "HIGH",
+      "cvssScore": 7.5,
+      "cvssVectors": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ],
+      "title": "ws: Memory exhaustion DoS from tiny fragments and data chunks",
+      "published": "2026-06-15T16:34:23Z",
+      "modified": "2026-09-10T03:50:49.163643932Z",
+      "source": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
+      "affected": [
+        {
+          "name": "ws",
+          "version": "8.18.2",
+          "locations": [
+            "node_modules/ws"
+          ],
+          "developmentOnly": false,
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "1.1.0"
+                },
+                {
+                  "fixed": "5.2.5"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "6.0.0"
+                },
+                {
+                  "fixed": "6.2.4"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "7.0.0"
+                },
+                {
+                  "fixed": "7.5.11"
+                }
+              ]
+            },
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.21.0"
+                }
+              ]
+            }
+          ],
+          "dependencyChains": [
+            "open-websearch → jsdom@26.1.0 → ws@8.18.2"
+          ],
+          "assessment": "经 jsdom 引入。项目使用 new JSDOM(html)，未启用 runScripts 或外部资源加载，也未发现直接 ws 调用；当前网页解析路径未证实能触发这些 WebSocket 漏洞。"
+        }
+      ]
+    }
+  ]
+}

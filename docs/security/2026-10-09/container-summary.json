@@ -1,0 +1,170 @@
+{
+  "generatedAt": "2026-10-09T03:01:54.427Z",
+  "scanner": {
+    "version": "0.75.0",
+    "source": "https://github.com/aquasecurity/trivy/releases/tag/v0.75.0",
+    "archiveSha256": "4e43bd71a30f51aee39525f60f2b47043af77eb8df8fe082aae4372b69c6660f",
+    "database": {
+      "Version": 2,
+      "NextUpdate": "2026-10-10T01:16:59.530805697Z",
+      "UpdatedAt": "2026-10-09T01:16:59.530806077Z",
+      "DownloadedAt": "2026-10-09T02:49:05.8978464Z"
+    }
+  },
+  "images": [
+    {
+      "evidence": "trivy-compose-amd64.json",
+      "target": "ghcr.io/aas-ee/open-web-search@sha256:0b49c1103dd3c04f3500a3d13af7aaef01f43c31db8c9f6b0a124408de723167",
+      "platform": "linux/amd64",
+      "imageCreated": "2026-09-28T10:01:24.986746568Z",
+      "digests": [
+        "ghcr.io/aas-ee/open-web-search@sha256:0b49c1103dd3c04f3500a3d13af7aaef01f43c31db8c9f6b0a124408de723167"
+      ],
+      "os": {
+        "Family": "alpine",
+        "Name": "3.23.4"
+      },
+      "nodeVersion": "20.20.2",
+      "findings": 154,
+      "uniqueAdvisoryIds": 124,
+      "severity": {
+        "HIGH": 42,
+        "MEDIUM": 70,
+        "LOW": 40,
+        "CRITICAL": 2
+      },
+      "groups": [
+        {
+          "type": "alpine",
+          "packages": 18,
+          "findings": 51
+        },
+        {
+          "type": "node-pkg",
+          "packages": 393,
+          "findings": 103
+        }
+      ],
+      "applicationFindings": 65,
+      "npmToolchainFindings": 38,
+      "critical": [
+        {
+          "id": "CVE-2026-90711",
+          "name": "proxy-addr",
+          "installed": "2.0.7",
+          "fixed": "2.0.8",
+          "packagePath": "app/node_modules/proxy-addr/package.json",
+          "source": "https://github.com/jshttp/proxy-addr/security/advisories/GHSA-jqcg-44mw-7w3h"
+        },
+        {
+          "id": "CVE-2026-59873",
+          "name": "tar",
+          "installed": "6.2.1",
+          "fixed": "7.5.19",
+          "packagePath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+          "source": "https://github.com/isaacs/node-tar/security/advisories/GHSA-23hp-3jrh-7fpw"
+        }
+      ]
+    },
+    {
+      "evidence": "trivy-compose-arm64.json",
+      "target": "ghcr.io/aas-ee/open-web-search@sha256:7d0bab8503fb5e22adadb6cc42597b7fea58ec2fa6893bd1eb93c6abae061a52",
+      "platform": "linux/arm64",
+      "imageCreated": "2026-09-28T10:06:47.268939498Z",
+      "digests": [
+        "ghcr.io/aas-ee/open-web-search@sha256:7d0bab8503fb5e22adadb6cc42597b7fea58ec2fa6893bd1eb93c6abae061a52"
+      ],
+      "os": {
+        "Family": "alpine",
+        "Name": "3.23.4"
+      },
+      "nodeVersion": "20.20.2",
+      "findings": 154,
+      "uniqueAdvisoryIds": 124,
+      "severity": {
+        "HIGH": 42,
+        "MEDIUM": 70,
+        "LOW": 40,
+        "CRITICAL": 2
+      },
+      "groups": [
+        {
+          "type": "alpine",
+          "packages": 18,
+          "findings": 51
+        },
+        {
+          "type": "node-pkg",
+          "packages": 393,
+          "findings": 103
+        }
+      ],
+      "applicationFindings": 65,
+      "npmToolchainFindings": 38,
+      "critical": [
+        {
+          "id": "CVE-2026-90711",
+          "name": "proxy-addr",
+          "installed": "2.0.7",
+          "fixed": "2.0.8",
+          "packagePath": "app/node_modules/proxy-addr/package.json",
+          "source": "https://github.com/jshttp/proxy-addr/security/advisories/GHSA-jqcg-44mw-7w3h"
+        },
+        {
+          "id": "CVE-2026-59873",
+          "name": "tar",
+          "installed": "6.2.1",
+          "fixed": "7.5.19",
+          "packagePath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+          "source": "https://github.com/isaacs/node-tar/security/advisories/GHSA-23hp-3jrh-7fpw"
+        }
+      ]
+    },
+    {
+      "evidence": "trivy-node20-alpine-amd64.json",
+      "target": "node:20-alpine",
+      "platform": "linux/amd64",
+      "imageCreated": "2026-04-15T20:46:50.697160849Z",
+      "digests": [
+        "node@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293"
+      ],
+      "os": {
+        "Family": "alpine",
+        "Name": "3.23.4"
+      },
+      "nodeVersion": "20.20.2",
+      "findings": 89,
+      "uniqueAdvisoryIds": 64,
+      "severity": {
+        "HIGH": 26,
+        "MEDIUM": 27,
+        "LOW": 35,
+        "CRITICAL": 1
+      },
+      "groups": [
+        {
+          "type": "alpine",
+          "packages": 18,
+          "findings": 51
+        },
+        {
+          "type": "node-pkg",
+          "packages": 204,
+          "findings": 38
+        }
+      ],
+      "applicationFindings": 0,
+      "npmToolchainFindings": 38,
+      "critical": [
+        {
+          "id": "CVE-2026-59873",
+          "name": "tar",
+          "installed": "6.2.1",
+          "fixed": "7.5.19",
+          "packagePath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+          "source": "https://github.com/isaacs/node-tar/security/advisories/GHSA-23hp-3jrh-7fpw"
+        }
+      ]
+    }
+  ]
+}

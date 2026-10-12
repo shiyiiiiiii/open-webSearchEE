@@ -4,14 +4,14 @@ import * as cheerio from 'cheerio';
 import { AppConfig, config, getEffectiveSearchMode, checkPlaywrightModeConfiguration } from '../../config.js';
 import { SearchResult } from '../../types.js';
 import { parseBingSearchResults } from './parser.js';
-import { acquirePooledPlaywrightPage, getPlaywrightModuleSource, loadPlaywrightClient, openPlaywrightBrowser, retryOnBrowserCrash } from '../../utils/playwrightClient.js';
+import { withPlaywrightPage, getPlaywrightModuleSource, loadPlaywrightClient, retryOnBrowserCrash } from '../../utils/playwrightClient.js';
 import { buildAxiosRequestOptions as buildSharedAxiosRequestOptions } from '../../utils/httpRequest.js';
 
 const BING_BASE_URL = 'https://cn.bing.com/search';
 const BING_HOME_URL = 'https://www.bing.com/?mkt=zh-CN';
 const BING_REGIONAL_HOSTS = new Set(['cn.bing.com', 'www.bing.com']);
 const BING_MAX_REGIONAL_REDIRECTS = 1;
-const BROWSER_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+const BROWSER_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36';
 const SEARCH_INPUT_SELECTORS = [
     'input[name="q"]',
     'input[type="search"]',
@@ -186,10 +186,10 @@ async function setupAntiDetection(page: any): Promise<void> {
         delete (navigator as any).__proto__.webdriver;
 
         Object.defineProperty(navigator, 'userAgent', {
-            get: () => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            get: () => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36'
         });
         Object.defineProperty(navigator, 'platform', {
-            get: () => 'MacIntel'
+            get: () => 'Win32'
         });
         Object.defineProperty(navigator, 'languages', {
             get: () => ['zh-CN', 'zh', 'en-US', 'en']
@@ -563,7 +563,7 @@ async function openBingAndSearch(page: any, query: string): Promise<void> {
     if (typeof searchInput.fill === 'function') {
         await searchInput.fill(query, { timeout: getBingUiTimeoutMs() });
     } else {
-        await page.keyboard.press(process.platform === 'darwin' ? 'Meta+A' : 'Control+A').catch(() => undefined);
+        await page.keyboard.press('Control+A').catch(() => undefined);
         await page.keyboard.press('Backspace').catch(() => undefined);
         await page.keyboard.type(query);
     }
@@ -625,8 +625,7 @@ async function isPlaywrightAvailable(): Promise<boolean> {
             }
 
             try {
-                const session = await openPlaywrightBrowser({ antiBot: true });
-                await session.release();
+                await withPlaywrightPage({ poolKey: 'bing-probe', antiBot: true }, async () => undefined);
                 hasVerifiedPlaywrightAvailability = true;
                 return true;
             } catch (error) {
@@ -679,23 +678,7 @@ async function searchBingWithPlaywright(query: string, limit: number): Promise<S
 }
 
 async function searchBingWithPlaywrightOnce(query: string, limit: number): Promise<SearchResult[]> {
-    const playwright = await loadPlaywrightClient();
-    if (!playwright) {
-        throw new Error('Playwright client is not available. Install `playwright`/`playwright-core` manually or configure PLAYWRIGHT_MODULE_PATH.');
-    }
-
-    const session = await openPlaywrightBrowser({ antiBot: true });
-
-    try {
-        const { page, releasePage } = await acquirePooledPlaywrightPage(session.browser, {
-            poolKey: 'bing-search',
-            contextOptions: BROWSER_CONTEXT_OPTIONS,
-            preparePage: preparePlaywrightPage,
-            // 对 Bing 的真实交互流程，这里改成 false 后会稳定复现搜索页等待超时与查询被建议词改写的问题，
-            // 说明当前实现仍需要复用 connectOverCDP 暴露出来的现有 context 来保持搜索链路稳定。
-            preferExistingContext: true
-        });
-
+    return withPlaywrightPage({ poolKey: 'bing-search', antiBot: true, contextOptions: BROWSER_CONTEXT_OPTIONS, preparePage: preparePlaywrightPage }, async page => {
         try {
             const allResults: SearchResult[] = [];
             const seenUrls = new Set<string>();
@@ -749,12 +732,8 @@ async function searchBingWithPlaywrightOnce(query: string, limit: number): Promi
                 throw new Error('Bing Playwright mode did not return results for a site:-restricted query. Retry without the site: prefix.');
             }
             throw error;
-        } finally {
-            await releasePage();
         }
-    } finally {
-        await session.release();
-    }
+    });
 }
 
 export async function searchBing(

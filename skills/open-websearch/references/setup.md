@@ -102,6 +102,8 @@ Stage script:
 
 ## Browser-assisted / Playwright mode
 
+Browser jobs require `BROWSER_EGRESS_PROXY_URL` and `BROWSER_EGRESS_ENFORCED=true` after enforced networking on the actual browser host has been verified. See `docs/security/browser-egress.zh-CN.md`. These variables do not install a firewall. Every task uses an isolated context; do not recommend attaching personal login state or restoring a default-context fallback.
+
 Use when:
 - the user explicitly wants Bing Playwright mode
 - Bing auto fallback is expected but browser support is missing
@@ -116,7 +118,7 @@ Stage script:
 2. Confirm risky actions.
    - Ask before installing Playwright packages, downloading browser binaries, or changing browser endpoint configuration.
 3. Perform the smallest fitting path.
-   - local install: `npm install playwright` and `npx playwright install chromium`
+   - local install (Windows or Linux): `npm install playwright-core` and `npx playwright-core install chromium`
    - existing browser binary with a Playwright client (commonly `playwright-core`) and `PLAYWRIGHT_EXECUTABLE_PATH`
    - existing Playwright package via `PLAYWRIGHT_MODULE_PATH`
    - existing remote browser via `PLAYWRIGHT_WS_ENDPOINT` or `PLAYWRIGHT_CDP_ENDPOINT`

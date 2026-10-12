@@ -5,13 +5,15 @@ import { createRequire } from 'module';
 import { createServer } from 'net';
 import { tmpdir } from 'os';
 import path from 'path';
-import { config, getProxyUrl } from '../config.js';
+import { config } from '../config.js';
+import { BROWSER_NETWORK_ARGS, BrowserNetworkError, boundedBrowserCleanup, createControlledBrowserTask, getBrowserEgressProxy, isBrowserQuarantined, validateBrowserNetworkUrl, withBrowserDeadline } from './browserNetworkPolicy.js';
 import { getSystemBrowserCandidates } from './browserPaths.js';
 import { launchProcessOnHiddenDesktopWithPipes, readNamedPipeAsync, closeHandle, acquireNativeFileLock, tryNativeFileLock } from './nativeInterop.js';
 import type { NativeFileLockHandle } from './nativeInterop.js';
+import { RESOURCE_LIMITS, ResourceLimitError } from './resourceLimits.js';
 
-const PLAYWRIGHT_CONNECT_TIMEOUT_MS = Math.max(config.playwrightNavigationTimeoutMs, 30000);
-const PLAYWRIGHT_LOCAL_CDP_READINESS_TIMEOUT_MS = Math.max(config.playwrightNavigationTimeoutMs * 2, 60000);
+const PLAYWRIGHT_CONNECT_TIMEOUT_MS = RESOURCE_LIMITS.requestTimeoutMs;
+const PLAYWRIGHT_LOCAL_CDP_READINESS_TIMEOUT_MS = RESOURCE_LIMITS.requestTimeoutMs;
 // 修复 CDP ready 探测单次等待策略过硬的问题：从 1 秒开始指数退避，避免每轮都用同一个短超时窗口误判启动中的浏览器。
 const PLAYWRIGHT_LOCAL_CDP_READINESS_INITIAL_PROBE_TIMEOUT_MS = 1000;
 const PLAYWRIGHT_LOCAL_CDP_READINESS_POLL_INTERVAL_MS = 1000;
@@ -39,14 +41,18 @@ export type PlaywrightBrowserSession = {
 export type PooledPlaywrightPageSession = {
     context: any | null;
     page: any;
-    /** 将页面释放回进程内/跨进程页面池。 */
+    /** 关闭本任务的 context 并释放跨进程容量。 */
     releasePage(): Promise<void>;
+    run<T>(operation: () => Promise<T>): Promise<T>;
 };
 
-type AcquirePlaywrightPageOptions = {
+export type AcquirePlaywrightPageOptions = {
     poolKey?: string;
     contextOptions?: any;
+    prepareContext?: (context: any) => Promise<void>;
     preparePage?: (page: any) => Promise<void>;
+    signal?: AbortSignal;
+    /** Existing contexts cannot meet the network policy; true is rejected. */
     preferExistingContext?: boolean;
 };
 
@@ -96,25 +102,6 @@ type LocalBrowserProcessCandidate = {
     debugPort: number;
 };
 
-type PooledPlaywrightPageEntry = {
-    context: any | null;
-    page: any;
-    busy: boolean;
-    prepared: boolean;
-    pageTargetId: string;
-    pageLock: NativeFileLockHandle | null;
-};
-
-type BrowserPlaywrightPagePool = {
-    poolKey: string;
-    sharedContext: any | null;
-    entries: PooledPlaywrightPageEntry[];
-    preparePage?: (page: any) => Promise<void>;
-    contextOptions?: any;
-    preferExistingContext: boolean;
-    acquireLock: Promise<void> | null;
-};
-
 let playwrightModulePromise: Promise<PlaywrightModule | null> | null = null;
 let playwrightModuleSource: string | null = null;
 let playwrightUnavailableMessage: string | null = null;
@@ -135,7 +122,8 @@ const CROSS_PROCESS_BROWSER_SESSION_LOCK_DIR = path.join(tmpdir(), 'open-websear
 function getPersistentBrowserProfileDir(sessionMode: string): string {
     const baseDir = process.env.OPEN_WEBSEARCH_PROFILE_DIR
         || path.join(tmpdir(), 'open-websearch-browser-profiles');
-    return path.join(baseDir, sessionMode);
+    const policyId = createHash('sha256').update(config.browserEgressProxyUrl || '').digest('hex').slice(0, 12);
+    return path.join(baseDir, `${sessionMode}-c03-v1-${policyId}`);
 }
 
 /**
@@ -153,30 +141,6 @@ function cleanupStaleProfileLocks(profileDir: string): void {
     }
 }
 
-const browserPlaywrightPagePools = new WeakMap<any, Map<string, BrowserPlaywrightPagePool>>();
-
-// 用 CDP targetId（浏览器内全局唯一且跨连接稳定）作为锁文件标识，确保所有进程、所有复用池对同一物理页始终竞争同一把锁。
-// 锁路径不得混入 poolKey：不同复用池（如 bing-search 与 fetch-html）都会收编持久化 context 中的同一批物理页，若锁键含 poolKey，同一物理页会同时被两个池持有，导致一方导航页面时直接覆盖另一方的渲染状态。
-// 如果 CDP targetId 获取失败则直接抛出错误——没有任何本地生成的 ID
-// 能满足跨进程稳定性要求
-
-async function getPlaywrightPageTargetId(page: any): Promise<string> {
-    try {
-        const context = typeof page?.context === 'function' ? page.context() : null;
-        if (context && typeof context.newCDPSession === 'function') {
-            const session = await context.newCDPSession(page);
-            const info = await session.send('Target.getTargetInfo');
-            const targetId = info?.targetInfo?.targetId;
-            if (typeof targetId === 'string' && targetId.length > 0) {
-                return targetId;
-            }
-        }
-    } catch {}
-    // CDP targetId 获取失败：不能回退到本地生成的 ID，否则不同进程会为
-    // 同一物理页生成不同的锁标识，两个进程各自拿到锁并同时操作同一页。
-    throw new Error('无法获取 CDP targetId，跨进程页面锁需要浏览器提供全局唯一的页面标识');
-}
-
 export function getPageLockFilePath(pageTargetId: string): string {
     mkdirSync(CROSS_PROCESS_POOL_LOCK_DIR, { recursive: true });
     const keyHash = createHash('sha1').update(pageTargetId).digest('hex');
@@ -191,192 +155,6 @@ function getLocalBrowserSessionMode(headless: boolean, options?: { hideWindow?: 
     }
 
     return headless ? 'headless' : 'headed';
-}
-
-function getBrowserPlaywrightPagePool(browser: any, options?: AcquirePlaywrightPageOptions): BrowserPlaywrightPagePool {
-    let browserPools = browserPlaywrightPagePools.get(browser);
-    if (!browserPools) {
-        browserPools = new Map<string, BrowserPlaywrightPagePool>();
-        browserPlaywrightPagePools.set(browser, browserPools);
-    }
-
-    const poolKey = options?.poolKey ?? 'default';
-    let pool = browserPools.get(poolKey);
-    if (pool) {
-        return pool;
-    }
-
-    pool = {
-        poolKey,
-        sharedContext: null,
-        entries: [],
-        preparePage: options?.preparePage,
-        contextOptions: options?.contextOptions,
-        preferExistingContext: options?.preferExistingContext !== false,
-        acquireLock: null
-    };
-    browserPools.set(poolKey, pool);
-    return pool;
-}
-
-async function withPoolAcquireLock<T>(pool: BrowserPlaywrightPagePool, operation: () => Promise<T>): Promise<T> {
-    while (pool.acquireLock) {
-        await pool.acquireLock;
-    }
-
-    let releaseLock!: () => void;
-    pool.acquireLock = new Promise<void>((resolve) => {
-        releaseLock = resolve;
-    });
-
-    try {
-        return await operation();
-    } finally {
-        pool.acquireLock = null;
-        releaseLock();
-    }
-}
-
-function isPageClosed(page: any): boolean {
-    try {
-        return typeof page?.isClosed === 'function' ? page.isClosed() : false;
-    } catch {
-        return true;
-    }
-}
-
-type ExistingContextPageWindowBounds = {
-    left?: number;
-    top?: number;
-    width?: number;
-    height?: number;
-    windowState?: string;
-};
-
-async function getExistingContextPageWindowBounds(page: any): Promise<{ bounds: ExistingContextPageWindowBounds | null; unavailable: boolean }> {
-    try {
-        const context = typeof page?.context === 'function' ? page.context() : null;
-        if (!context || typeof context.newCDPSession !== 'function') {
-            return { bounds: null, unavailable: false };
-        }
-
-        const session = await context.newCDPSession(page);
-        const windowForTarget = await session.send('Browser.getWindowForTarget');
-        const boundsResult = await session.send('Browser.getWindowBounds', { windowId: windowForTarget.windowId });
-        return {
-            bounds: boundsResult?.bounds ?? null,
-            unavailable: false
-        };
-    } catch (error) {
-        const message = error instanceof Error ? error.message : String(error);
-        return {
-            bounds: null,
-            unavailable: /Browser\.getWindowForTarget\): Browser window not found/i.test(message)
-        };
-    }
-}
-
-async function isPopupLikePlaywrightPage(page: any): Promise<boolean> {
-    // 如果 CDP 已经拿不到这个 page 对应的 Browser window，就把它视为不安全页（可能是浏览器弹出窗口），不参与复用。
-    const { unavailable } = await getExistingContextPageWindowBounds(page);
-    return unavailable;
-}
-
-async function syncPoolWithReusableExistingContextPages(pool: BrowserPlaywrightPagePool, context: any): Promise<void> {
-    if (typeof context?.pages !== 'function') {
-        return;
-    }
-
-    const existingPages = context.pages();
-    if (!Array.isArray(existingPages)) {
-        return;
-    }
-
-    for (const page of existingPages) {
-        if (isPageClosed(page) || pool.entries.some((entry) => entry.page === page)) {
-            continue;
-        }
-
-        if (await isPopupLikePlaywrightPage(page)) {
-            continue;
-        }
-
-        if (pool.entries.some((entry) => entry.page === page)) {
-            continue;
-        }
-
-        // 收编所有当前可复用的现有标签页；当前唯一的排除规则是
-        // 该 page 在 CDP 层已经找不到对应 Browser window。
-        // await 之后仍要再次检查去重，否则并发扫描时仍可能把同一真实 page 重复塞进池子。
-        const pageTargetId = await getPlaywrightPageTargetId(page);
-        pool.entries.push({
-            context,
-            page,
-            busy: false,
-            prepared: false,
-            pageTargetId,
-            pageLock: null
-        });
-    }
-}
-
-async function createPooledPlaywrightPageEntry(browser: any, pool: BrowserPlaywrightPagePool): Promise<PooledPlaywrightPageEntry> {
-    if (pool.preferExistingContext && typeof browser.contexts === 'function') {
-        const contexts = browser.contexts();
-        if (Array.isArray(contexts) && contexts.length > 0 && typeof contexts[0].newPage === 'function') {
-            const context = contexts[0];
-            await syncPoolWithReusableExistingContextPages(pool, context);
-
-            const page = await context.newPage();
-            const pageTargetId = await getPlaywrightPageTargetId(page);
-            const entry: PooledPlaywrightPageEntry = {
-                context,
-                page,
-                busy: false,
-                prepared: false,
-                pageTargetId,
-                pageLock: null
-            };
-            pool.entries.push(entry);
-            return entry;
-        }
-    }
-
-    if (typeof browser.newContext === 'function') {
-        if (!pool.sharedContext) {
-            pool.sharedContext = await browser.newContext(pool.contextOptions);
-        }
-
-        const page = await pool.sharedContext.newPage();
-        const pageTargetId = await getPlaywrightPageTargetId(page);
-        const entry: PooledPlaywrightPageEntry = {
-            context: pool.sharedContext,
-            page,
-            busy: false,
-            prepared: false,
-            pageTargetId,
-            pageLock: null
-        };
-        pool.entries.push(entry);
-        return entry;
-    }
-
-    if (!pool.contextOptions && typeof browser.newPage === 'function') {
-        const page = await browser.newPage();
-        const pageTargetId = await getPlaywrightPageTargetId(page);
-        const entry: PooledPlaywrightPageEntry = {
-            context: null,
-            page,
-            busy: false,
-            prepared: false,
-            pageTargetId,
-            pageLock: null
-        };
-        pool.entries.push(entry);
-        return entry;
-    }
-
-    throw new Error('Connected Playwright browser does not support creating a pooled page');
 }
 
 export function isRecoverableLocalBrowserSessionError(error: unknown): boolean {
@@ -573,134 +351,67 @@ async function recoverLocalBrowserSessionBrowser(browser: any): Promise<any | nu
     return recoveredSession.browser;
 }
 
-async function acquirePooledPlaywrightPageOnce(
-    browser: any,
-    options?: AcquirePlaywrightPageOptions
-): Promise<PooledPlaywrightPageSession> {
-    const pool = getBrowserPlaywrightPagePool(browser, options);
-
-    const entry = await withPoolAcquireLock(pool, async () => {
-        // 同步现有标签页
-        if (pool.preferExistingContext && typeof browser.contexts === 'function') {
-            const contexts = browser.contexts();
-            if (Array.isArray(contexts) && contexts.length > 0) {
-                await syncPoolWithReusableExistingContextPages(pool, contexts[0]);
-            }
-        }
-
-        pool.entries = pool.entries.filter((candidate) => !isPageClosed(candidate.page));
-
-        // 逐一尝试获取标签页的 OS 级独占锁
-        let candidate: PooledPlaywrightPageEntry | null = null;
-        for (const poolEntry of pool.entries) {
-            if (poolEntry.busy) continue;
-
-            const lockPath = getPageLockFilePath(poolEntry.pageTargetId);
-            const lock = tryNativeFileLock(lockPath);
-            if (lock) {
-                poolEntry.pageLock = lock;
-                candidate = poolEntry;
-                break;
-            }
-        }
-
-        // 所有锁都被占用时持续新建标签页，直到当前进程成功拿到某一页的 OS 锁。
-        while (!candidate) {
-            const createdEntry = await createPooledPlaywrightPageEntry(browser, pool);
-            const lockPath = getPageLockFilePath(createdEntry.pageTargetId);
-            const lock = tryNativeFileLock(lockPath);
-            if (lock) {
-                createdEntry.pageLock = lock;
-                candidate = createdEntry;
-                break;
-            }
-
-            // 新建页刚落地就可能被其他进程抢占；保留该页在池中，继续创建下一页重试。
-        }
-
-        candidate.busy = true;
-        return candidate;
-    });
-
-    if (!entry.prepared) {
-        try {
-            if (pool.preparePage) {
-                await pool.preparePage(entry.page);
-            }
-            entry.prepared = true;
-        } catch (error) {
-            if (isPageClosed(entry.page)) {
-                // 修复 preparePage 失败且页面已关闭时只移除池条目、未释放 OS 页面锁的问题。
-                // daemon 长时间运行时该分支若反复触发，会导致 fd/native lock 句柄累积。
-                entry.pageLock?.release();
-                entry.pageLock = null;
-                pool.entries = pool.entries.filter((candidate) => candidate !== entry);
-            } else {
-                entry.pageLock?.release();
-                entry.pageLock = null;
-                entry.busy = false;
-            }
-            throw error;
-        }
+// A capacity pool, not a page/context pool. Every lease owns a fresh context.
+// OS locks apply across processes and browser/pool keys, including cookie jobs.
+function reserveBrowserCapacity(): NativeFileLockHandle {
+    mkdirSync(CROSS_PROCESS_POOL_LOCK_DIR, { recursive: true });
+    const namespace = createHash('sha256').update(process.env.OPEN_WEBSEARCH_PROFILE_DIR || 'default').digest('hex').slice(0, 16);
+    for (let slot = 0; slot < RESOURCE_LIMITS.maxBrowserPages; slot++) {
+        const lease = tryNativeFileLock(path.join(CROSS_PROCESS_POOL_LOCK_DIR, `browser-capacity-${namespace}-${slot}.lock`));
+        if (lease) return lease;
     }
-
-    const releasePage = async () => {
-        if (isPageClosed(entry.page)) {
-            entry.pageLock?.release();
-            entry.pageLock = null;
-            pool.entries = pool.entries.filter((candidate) => candidate !== entry);
-            return;
-        }
-
-        entry.pageLock?.release();
-        entry.pageLock = null;
-        entry.busy = false;
-    };
-
-    return {
-        context: entry.context,
-        page: entry.page,
-        releasePage
-    };
+    throw new ResourceLimitError('Browser page limit reached (4); retry later');
 }
 
-export async function acquirePooledPlaywrightPage(
-    browser: any,
-    options?: AcquirePlaywrightPageOptions
-): Promise<PooledPlaywrightPageSession> {
+async function createTaskPage(browser: any, options: AcquirePlaywrightPageOptions, lease: NativeFileLockHandle): Promise<PooledPlaywrightPageSession> {
     try {
-        return await acquirePooledPlaywrightPageOnce(browser, options);
-    } catch (error) {
-        if (!isRecoverableLocalBrowserSessionError(error)) {
-            throw error;
-        }
-
-        const recoveredBrowser = await recoverLocalBrowserSessionBrowser(browser);
-        if (!recoveredBrowser) {
-            throw error;
-        }
-
-        return acquirePooledPlaywrightPageOnce(recoveredBrowser, options);
-    }
-}
-
-function buildPlaywrightProxy(): { server: string; username?: string; password?: string } | undefined {
-    const effectiveProxyUrl = getProxyUrl();
-    if (!effectiveProxyUrl) {
-        return undefined;
-    }
-
-    try {
-        const proxyUrl = new URL(effectiveProxyUrl);
+        if (options.preferExistingContext) throw new BrowserNetworkError('browser_guard_unavailable', 'Existing browser contexts cannot be used by a controlled task');
+        const task = await createControlledBrowserTask(browser, options);
+        let released = false;
         return {
-            server: `${proxyUrl.protocol}//${proxyUrl.hostname}${proxyUrl.port ? `:${proxyUrl.port}` : ''}`,
-            username: proxyUrl.username ? decodeURIComponent(proxyUrl.username) : undefined,
-            password: proxyUrl.password ? decodeURIComponent(proxyUrl.password) : undefined
+            context: task.context, page: task.page, run: task.run,
+            releasePage: async () => {
+                if (released) return;
+                released = true;
+                try { await task.close(); } finally { lease.release(); }
+            }
         };
-    } catch (error) {
-        console.warn('Invalid proxy URL for Playwright, falling back without browser proxy:', error);
-        return undefined;
-    }
+    } catch (error) { lease.release(); throw error; }
+}
+
+export async function acquirePooledPlaywrightPage(browser: any, options: AcquirePlaywrightPageOptions = {}): Promise<PooledPlaywrightPageSession> {
+    return createTaskPage(browser, options, reserveBrowserCapacity());
+}
+
+// All production entry points use the same deadline, ownership and cleanup.
+export async function withPlaywrightPage<T>(
+    options: AcquirePlaywrightPageOptions & { url?: string; timeoutMs?: number; antiBot?: boolean; openBrowser?: () => Promise<PlaywrightBrowserSession> },
+    operation: (page: any, context: any) => Promise<T>
+): Promise<T> {
+    const lease = reserveBrowserCapacity();
+    let handedOff = false;
+    try {
+        return await withBrowserDeadline(async signal => {
+            let session: PlaywrightBrowserSession | undefined;
+            let task: PooledPlaywrightPageSession | undefined;
+            try {
+                if (options.url) await validateBrowserNetworkUrl(options.url);
+                if (signal.aborted) throw new BrowserNetworkError('browser_task_cancelled', 'Browser task deadline exceeded');
+                session = await (options.openBrowser ? options.openBrowser() : openPlaywrightBrowser({ antiBot: options.antiBot }));
+                if (signal.aborted) throw new BrowserNetworkError('browser_task_cancelled', 'Browser task deadline exceeded');
+                handedOff = true;
+                task = await createTaskPage(session.browser, { ...options, signal }, lease);
+                return await task.run(() => operation(task!.page, task!.context));
+            } finally {
+                if (task) await task.releasePage();
+                if (session) await boundedBrowserCleanup(session.release());
+            }
+        }, { signal: options.signal, timeoutMs: options.timeoutMs === undefined ? undefined : Math.max(1, Math.min(options.timeoutMs, RESOURCE_LIMITS.requestTimeoutMs)) });
+    } finally { if (!handedOff) lease.release(); }
+}
+
+function buildPlaywrightProxy(): { server: string; bypass: string } {
+    return getBrowserEgressProxy();
 }
 
 function normalizeLoadedPlaywrightModule(loaded: any): PlaywrightModule | null {
@@ -787,6 +498,8 @@ function buildLocalSessionKey(headless: boolean, hideWindow?: boolean): string {
         headless,
         hideWindow: hideWindow === true,
         executablePath: config.playwrightExecutablePath || '',
+        networkPolicy: 'c03-v1',
+        egressProxy: config.browserEgressProxyUrl || '',
     });
 }
 
@@ -803,9 +516,9 @@ function buildLocalSessionKey(headless: boolean, hideWindow?: boolean): string {
 function buildBrowserDomainKey(mode: LocalBrowserSessionMode): string {
     if (mode === 'headed') {
         const execPath = config.playwrightExecutablePath || getLocalBrowserExecutablePath();
-        return `headed:${execPath}`;
+        return `headed:${execPath}:c03-v1:${config.browserEgressProxyUrl || ''}`;
     }
-    return mode;
+    return `${mode}:c03-v1:${config.browserEgressProxyUrl || ''}`;
 }
 
 function getBrowserDomainHash(domainKey: string): string {
@@ -829,15 +542,15 @@ function getLocalBrowserSessionModeFromDomainKey(domainKey: string): LocalBrowse
         return 'headed';
     }
 
-    if (domainKey === 'hidden-headless') {
+    if (domainKey.startsWith('hidden-headless:')) {
         return 'hidden-headless';
     }
 
-    if (domainKey === 'hidden-headed') {
+    if (domainKey.startsWith('hidden-headed:')) {
         return 'hidden-headed';
     }
 
-    if (domainKey === 'headless') {
+    if (domainKey.startsWith('headless:')) {
         return 'headless';
     }
 
@@ -879,6 +592,7 @@ function listBrowserDomainMetadataEntries(): BrowserDomainMetadataEntry[] {
 
 function buildLocalBrowserProcessArgs(port: number, tempDir: string, headless = false): string[] {
     const args = [
+        ...BROWSER_NETWORK_ARGS,
         `--remote-debugging-port=${port}`,
         `--user-data-dir=${tempDir}`,
     ];
@@ -897,9 +611,6 @@ function buildLocalBrowserProcessArgs(port: number, tempDir: string, headless = 
             '--no-first-run',
             '--no-zygote',
             '--disable-gpu',
-            '--disable-web-security',
-            '--disable-features=IsolateOrigins,site-per-process',
-            '--disable-site-isolation-trials',
             '--disable-background-timer-throttling',
             '--disable-backgrounding-occluded-windows',
             '--disable-renderer-backgrounding',
@@ -920,9 +631,6 @@ function buildLocalBrowserProcessArgs(port: number, tempDir: string, headless = 
 
     if (proxy?.server) {
         args.push(`--proxy-server=${proxy.server}`);
-        if (proxy.username || proxy.password) {
-            console.warn('Playwright local browser process proxy authentication is not applied via command-line flags. Use WS/CDP mode if authenticated proxy support is required.');
-        }
     }
 
     return args;
@@ -2000,6 +1708,7 @@ async function launchStandardLocalBrowser(playwright: PlaywrightModule, sessionK
         headless,
         proxy: buildPlaywrightProxy(),
         args: [
+            ...BROWSER_NETWORK_ARGS,
             '--no-sandbox',
             '--disable-setuid-sandbox',
             '--disable-blink-features=AutomationControlled',
@@ -2080,6 +1789,9 @@ async function getOrCreateLocalBrowserSession(
 
     if (cachedLocalBrowserSession && cachedLocalBrowserSessionKey === sessionKey) {
         try {
+            if (isBrowserQuarantined(cachedLocalBrowserSession.browser)) {
+                throw new BrowserNetworkError('browser_guard_lost', 'Browser worker is quarantined');
+            }
             await cachedLocalBrowserSession.browser.version();
             return cachedLocalBrowserSession;
         } catch {
@@ -2287,7 +1999,8 @@ export async function loadPlaywrightClient(options?: LoadPlaywrightClientOptions
  * 在显式选择 playwright 模式时，各入口（MCP/CLI/daemon）据此返回明确错误，而不是降级为“成功但 0 条结果”；auto 模式的回退探测（isPlaywrightAvailable）仍然按 catch 语义处理，不受 code 影响。
  */
 export function asBrowserUnavailableError(error: unknown, context: string): Error {
-    const original = error instanceof Error ? error.message : String(error);
+    const original = (error instanceof Error ? error.message : String(error))
+        .replace(/\b(?:https?|wss?):\/\/[^\s"'<>]+/gi, '[browser endpoint]');
     const wrapped = new Error(`${context}: ${original}`);
     (wrapped as Error & { code?: string }).code = 'browser_unavailable';
     return wrapped;
@@ -2302,6 +2015,7 @@ const BROWSER_UNAVAILABLE_MESSAGE_RE =
  * 其次回退到已知消息特征。daemon 与 CLI 共用同一判定，避免两边分类漂移。
  */
 export function isBrowserUnavailableError(error: unknown): boolean {
+    if (error instanceof BrowserNetworkError) return true;
     if ((error as { code?: unknown })?.code === 'browser_unavailable') {
         return true;
     }
@@ -2310,12 +2024,13 @@ export function isBrowserUnavailableError(error: unknown): boolean {
 }
 
 /**
- * 打开浏览器会话。本地模式下所有调用方共享同一个持久化 profile 的浏览器进程（状态共享是有意设计，见 README 的 Browser state note）；
- * WS/CDP 模式下连接的浏览器状态由所连端点自行决定，若连接的是个人已登录浏览器，其登录态与个性化状态也会被本服务共享。
+ * 获取可复用的浏览器进程连接；所有业务页面由受控工厂创建在任务专用 context 内。
+ * WS/CDP 连接不会授权使用该浏览器的默认 context 或已有页面。
  */
 export async function openPlaywrightBrowser(
     options?: { antiBot?: boolean }
 ): Promise<PlaywrightBrowserSession> {
+    getBrowserEgressProxy();
     const playwright = await loadPlaywrightClient();
     if (!playwright) {
         throw asBrowserUnavailableError(
@@ -2332,7 +2047,7 @@ export async function openPlaywrightBrowser(
                 timeout: PLAYWRIGHT_CONNECT_TIMEOUT_MS
             });
         } catch (error) {
-            throw asBrowserUnavailableError(error, `Failed to connect to remote Playwright WebSocket endpoint ${config.playwrightWsEndpoint}`);
+            throw asBrowserUnavailableError(error, 'Failed to connect to remote Playwright WebSocket endpoint');
         }
         return {
             browser,
@@ -2347,7 +2062,7 @@ export async function openPlaywrightBrowser(
                 timeout: PLAYWRIGHT_CONNECT_TIMEOUT_MS
             });
         } catch (error) {
-            throw asBrowserUnavailableError(error, `Failed to connect to remote Playwright CDP endpoint ${config.playwrightCdpEndpoint}`);
+            throw asBrowserUnavailableError(error, 'Failed to connect to remote Playwright CDP endpoint');
         }
         return {
             browser,

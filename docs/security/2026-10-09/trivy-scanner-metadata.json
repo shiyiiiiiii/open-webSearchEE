@@ -1,0 +1,11 @@
+{
+  "version": "0.75.0",
+  "source": "https://github.com/aquasecurity/trivy/releases/tag/v0.75.0",
+  "archiveSha256": "4e43bd71a30f51aee39525f60f2b47043af77eb8df8fe082aae4372b69c6660f",
+  "database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-10T01:16:59.530805697Z",
+    "UpdatedAt": "2026-10-09T01:16:59.530806077Z",
+    "DownloadedAt": "2026-10-09T02:49:05.8978464Z"
+  }
+}

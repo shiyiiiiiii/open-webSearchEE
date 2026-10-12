@@ -1,0 +1,118 @@
+{"counts":{"lockEntries":187,"uniqueLocked":180,"productionLockEntries":171,"developmentOnlyLockEntries":16,"installedEntries":186,"embeddedPackageMetadata":2,"uniqueQueried":182},"missing":[{"name":"fsevents","version":"2.3.2","location":"node_modules/fsevents","developmentOnly":true,"optional":true,"directProduction":false,"directDevelopment":false,"integrity":"sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="}],"mismatched":[],"extraneous":[],"embeddedMetadata":[{"name":"benchmark","version":"1.0.0","location":"node_modules/fast-uri/benchmark","private":true,"kind":"Embedded package metadata; npm identity not assumed"},{"name":"cnoke","version":"4.0.3","location":"node_modules/koffi/src/cnoke","private":false,"kind":"Embedded package metadata; npm identity not assumed"}],"skipped":[]}
+OSV queried 100/182 package versions
+OSV queried 182/182 package versions
+{
+  "packageVersionsQueried": 182,
+  "affectedPackages": [
+    {
+      "name": "@hono/node-server",
+      "version": "1.19.11",
+      "ids": [
+        "GHSA-92pp-h63x-v22m",
+        "GHSA-frvp-7c67-39w9"
+      ]
+    },
+    {
+      "name": "@modelcontextprotocol/sdk",
+      "version": "1.27.1",
+      "ids": [
+        "GHSA-6qxp-vccf-f47h"
+      ]
+    },
+    {
+      "name": "hono",
+      "version": "4.12.7",
+      "ids": [
+        "GHSA-26pp-8wgv-hjvm",
+        "GHSA-2gcr-mfcq-wcc3",
+        "GHSA-3hrh-pfw6-9m5x",
+        "GHSA-458j-xx4x-4375",
+        "GHSA-54fx-42gc-7vw4",
+        "GHSA-69xw-7hcm-h432",
+        "GHSA-79qm-7rj5-m7r9",
+        "GHSA-88fw-hqm2-52qc",
+        "GHSA-8j4g-w8fx-2239",
+        "GHSA-9vqf-7f2p-gf9v",
+        "GHSA-crvj-82cr-hjcx",
+        "GHSA-f23p-vx2j-j53r",
+        "GHSA-f577-qrjj-4474",
+        "GHSA-g6gw-c38x-mqfc",
+        "GHSA-gqvv-2mrq-wpjv",
+        "GHSA-hm8q-7f3q-5f36",
+        "GHSA-hvrm-45r6-mjfj",
+        "GHSA-hxh3-vqpv-xpqv",
+        "GHSA-j6c9-x7qj-28xf",
+        "GHSA-p77w-8qqv-26rm",
+        "GHSA-qp7p-654g-cw7p",
+        "GHSA-r5rp-j6wh-rvv4",
+        "GHSA-rv63-4mwf-qqc2",
+        "GHSA-w62v-xxxg-mg59",
+        "GHSA-wgpf-jwqj-8h8p",
+        "GHSA-wmmm-f939-6g9c",
+        "GHSA-wwfh-h76j-fc44",
+        "GHSA-xf4j-xp2r-rqqx",
+        "GHSA-xgm2-5f3f-mvvc",
+        "GHSA-xpcf-pg52-r92g",
+        "GHSA-xrhx-7g5j-rcj5"
+      ]
+    },
+    {
+      "name": "ip-address",
+      "version": "10.1.0",
+      "ids": [
+        "GHSA-h3mg-xc3c-68pw",
+        "GHSA-j6r3-76f7-8jcv",
+        "GHSA-mwp4-54f8-5fhr",
+        "GHSA-rpw4-54j3-4h4q",
+        "GHSA-v2v4-37r5-5v8g"
+      ]
+    },
+    {
+      "name": "path-to-regexp",
+      "version": "8.3.0",
+      "ids": [
+        "GHSA-27v5-c462-wpq7",
+        "GHSA-j3q9-mxjg-w52f"
+      ]
+    },
+    {
+      "name": "qs",
+      "version": "6.15.3",
+      "ids": [
+        "GHSA-4mjr-xmp4-gh2g",
+        "GHSA-x5fp-wj9c-mxmx"
+      ]
+    },
+    {
+      "name": "request-filtering-agent",
+      "version": "3.2.0",
+      "ids": [
+        "GHSA-r3r9-wp5j-pq5g"
+      ]
+    },
+    {
+      "name": "undici",
+      "version": "6.24.0",
+      "ids": [
+        "GHSA-35p6-xmwp-9g52",
+        "GHSA-8xcm-r25x-g524",
+        "GHSA-g8m3-5g58-fq7m",
+        "GHSA-m8rv-5g2x-5cg5",
+        "GHSA-p88m-4jfj-68fv",
+        "GHSA-r53p-7pc4-xj5r",
+        "GHSA-rfgv-xxqx-mfg5",
+        "GHSA-v3r7-h72x-cjcm",
+        "GHSA-vxpw-j846-p89q"
+      ]
+    },
+    {
+      "name": "ws",
+      "version": "8.18.2",
+      "ids": [
+        "GHSA-58qx-3vcg-4xpx",
+        "GHSA-96hv-2xvq-fx4p"
+      ]
+    }
+  ],
+  "advisoryCount": 55
+}

@@ -21,6 +21,7 @@ export type FetchWebService = {
         readability?: boolean;
         includeLinks?: boolean;
         renderMode?: FetchWebContentOptions['renderMode'];
+        signal?: AbortSignal;
     }): Promise<FetchWebContentResult>;
 };
 

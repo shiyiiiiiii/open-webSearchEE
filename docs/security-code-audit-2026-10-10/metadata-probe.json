@@ -1,0 +1,41 @@
+{
+  "method": "Exact audited source functions in a VM with mocked Linux process and filesystem operations; not a cross-user integration exploit.",
+  "sourcePath": "src/utils/playwrightClient.ts",
+  "sourceLines": [
+    {
+      "name": "normalizeBrowserDomainMetadata",
+      "line": 960
+    },
+    {
+      "name": "cleanupStaleLocalBrowserSessions",
+      "line": 1380
+    },
+    {
+      "name": "createForceKill",
+      "line": 1696
+    }
+  ],
+  "acceptedNegativePid": -1,
+  "matchingBrowserFound": false,
+  "wouldSignalPidsOnLinux": [
+    1,
+    -1
+  ],
+  "wouldExecuteOnWindows": [
+    {
+      "command": "taskkill",
+      "args": [
+        "/F",
+        "/T",
+        "/PID",
+        "424242"
+      ]
+    }
+  ],
+  "wouldCleanProfilePaths": [
+    "AUDIT_UNVALIDATED_PATH",
+    "AUDIT_STALE_PROFILE"
+  ],
+  "actualProcessesSignalled": 0,
+  "actualFilesDeleted": 0
+}

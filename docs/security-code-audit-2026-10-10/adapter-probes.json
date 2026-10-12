@@ -1,0 +1,38 @@
+{
+  "fixture": "Both servers bind only 127.0.0.1 on ephemeral ports. Daemon operations use a stub; MCP tools/list does not fetch upstream data.",
+  "results": [
+    {
+      "test": "daemon-untrusted-host-and-origin",
+      "status": 200,
+      "calls": 1,
+      "response": {
+        "status": "ok",
+        "data": {
+          "url": "https://juejin.cn/post/1",
+          "content": "AUDIT_STUB"
+        },
+        "error": null,
+        "hint": null
+      }
+    },
+    {
+      "test": "mcp-no-auth-untrusted-host-origin",
+      "defaultBinding": {
+        "port": 3000,
+        "host": "0.0.0.0"
+      },
+      "initializeStatus": 200,
+      "allocatedSession": true,
+      "toolsListStatus": 200,
+      "toolListReturned": true
+    },
+    {
+      "test": "mcp-current-session-budget",
+      "configuredMaximum": 16,
+      "configuredIdleTimeoutMs": 300000,
+      "overflowStatus": 429,
+      "closedStatus": 200,
+      "replacementStatus": 200
+    }
+  ]
+}

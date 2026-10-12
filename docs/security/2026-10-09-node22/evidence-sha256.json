@@ -1,0 +1,73 @@
+{
+  "generatedAt": "2026-10-09T04:02:26.360Z",
+  "files": [
+    {
+      "filename": "build.log",
+      "sha256": "8fdcc3439080f819fb7695ea17411d4387eb55c608d6cec8b26232abbc8d9ba3"
+    },
+    {
+      "filename": "node22-release.json",
+      "sha256": "7f3decbfdc37341238446149864c1405e9f8a848326e31ec7f7484e4e9b41563"
+    },
+    {
+      "filename": "node22-SHASUMS256.txt",
+      "sha256": "0a46c27475d32560dd5ab059311b27557df28d65551754e866861fb520aa60cd"
+    },
+    {
+      "filename": "npm-audit-all.json",
+      "sha256": "f831a856b049cd2a6538c50320ca1cf26d194af67955da5c8fc08d7eb915370c"
+    },
+    {
+      "filename": "npm-test.log",
+      "sha256": "9d2a40f6a09c09004d74da5e60d844b0c8d6e016e95c3c3931acbfcdbb8af1b1"
+    },
+    {
+      "filename": "REPORT.zh-CN.md",
+      "sha256": "c0573822ffe38b10e0cfbf1a8ea3fe2f730b316f7bceaee4bba28c54b919b24b"
+    },
+    {
+      "filename": "runtime-undici-osv.json",
+      "sha256": "4e6f3c50c18e4f9aa14dce88b1578bedd29616fcd6d2baf1ec552e1af96cf804"
+    },
+    {
+      "filename": "summarize-node22.mjs",
+      "sha256": "1cbbe52774a41c55fd5c6e5ce3d9d2b415d2b10d3fd66c2308d5e8854321444f"
+    },
+    {
+      "filename": "summary-output.log",
+      "sha256": "f81a9bf42dd425486b3050950c2c4d79c607927a648ee350b9df60811b74daa4"
+    },
+    {
+      "filename": "test-runtime-provenance.json",
+      "sha256": "5d8cbcf227ba185107292b968b17f69ef6cd97d0aba3bceb1d0d06e629b8a3db"
+    },
+    {
+      "filename": "test-runtime.json",
+      "sha256": "a4acdd542c563faffd18bc2dfbf691ab3e469ec1204f8943d564045c85f178f6"
+    },
+    {
+      "filename": "trivy-node22-alpine-amd64.json",
+      "sha256": "4d0cde6a4b9c6b2a5a9237cd32a0f077b8902e723a5d1635bc1d52983bf42eae"
+    },
+    {
+      "filename": "trivy-node22-alpine-amd64.log",
+      "sha256": "e500f2621c00297b6653ee85d9115aa76fabc121786c34ca78e299e34dde0889"
+    },
+    {
+      "filename": "trivy-node22-alpine-arm64.json",
+      "sha256": "1b94c3ff59e252e15dee460296e5fa921a4be803e14efa58b5fe51e08a5a01cc"
+    },
+    {
+      "filename": "trivy-node22-alpine-arm64.log",
+      "sha256": "d4f4e480f2b800990f82269c3c63f314016ccae474c24bc2eca078a648cf9830"
+    },
+    {
+      "filename": "typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "filename": "validation.json",
+      "sha256": "bdef3c90acc5a2bc0c81785fca6cb67973062b2317fbcfd21647106231c094b1"
+    }
+  ]
+}

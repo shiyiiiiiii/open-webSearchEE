@@ -1,0 +1,29 @@
+{
+  "fetchedAt": "2026-10-09T02:47:22.621Z",
+  "image": "ghcr.io/aas-ee/open-web-search:latest",
+  "digest": "sha256:748f1d083c9930db8e8b5f017834e1efa9ec77844dbed01baef2acf3ad47e81a",
+  "manifest": {
+    "schemaVersion": 2,
+    "mediaType": "application/vnd.oci.image.index.v1+json",
+    "manifests": [
+      {
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "digest": "sha256:0b49c1103dd3c04f3500a3d13af7aaef01f43c31db8c9f6b0a124408de723167",
+        "size": 2387,
+        "platform": {
+          "architecture": "amd64",
+          "os": "linux"
+        }
+      },
+      {
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "digest": "sha256:7d0bab8503fb5e22adadb6cc42597b7fea58ec2fa6893bd1eb93c6abae061a52",
+        "size": 2387,
+        "platform": {
+          "architecture": "arm64",
+          "os": "linux"
+        }
+      }
+    ]
+  }
+}

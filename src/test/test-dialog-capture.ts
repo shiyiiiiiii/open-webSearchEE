@@ -13,6 +13,8 @@ import { fetchWebContent } from '../engines/web/index.js';
 import { shutdownLocalPlaywrightBrowserSessions } from '../utils/playwrightClient.js';
 
 const TEST_URL = 'https://support.clarivate.com/Endnote/s/article/EndNote-API-Support?language=en_US';
+// 页面提示曾使用旧文案；同时接受当前文案，仍验证只捕获一次。
+const MOVED_NOTICE_PATTERN = /(?:This page has been moved|Our Support Page Has Moved)/gi;
 
 let failed = 0;
 
@@ -40,10 +42,10 @@ async function main(): Promise<void> {
     const dialogTexts = result.dialogTexts ?? [];
     assert(dialogTexts.length > 0, 'dialogTexts is non-empty');
     const allText = dialogTexts.join(' ');
-    assert(allText.includes('This page has been moved'), 'contains "moved" text');
+    const movedCount = (allText.match(MOVED_NOTICE_PATTERN) || []).length;
+    assert(movedCount > 0, 'contains "moved" text');
 
     // "moved" 文本必须只出现一次
-    const movedCount = (allText.match(/This page has been moved/g) || []).length;
     assert(movedCount === 1, `"moved" appears exactly once (got ${movedCount})`);
 
     // 相同文本必须只出现一次（无重复）
@@ -54,7 +56,7 @@ async function main(): Promise<void> {
     // 测试 2：fetchWebContent 最终输出中 "moved" 只能出现一次
     console.log('\nTest 2: fetchWebContent final output');
     const webResult = await fetchWebContent(TEST_URL, 10000);
-    const movedInFinal = (webResult.content.match(/This page has been moved/g) || []).length;
+    const movedInFinal = (webResult.content.match(MOVED_NOTICE_PATTERN) || []).length;
     assert(movedInFinal === 1, `"moved" in final output appears exactly once (got ${movedInFinal})`);
     assert(webResult.content.includes('RSServices API'), 'final output contains article text');
 

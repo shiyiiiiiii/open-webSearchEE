@@ -23,6 +23,14 @@ Or choose a port:
 node build/index.js serve --port 3211
 ```
 
+Use `--local-only` to force loopback binding even when a host override is configured:
+
+```bash
+node build/index.js serve --port 3211 --local-only
+```
+
+`LOCAL_ONLY=true` has the same effect. Bare MCP startup accepts `--port PORT --local-only`; its default port is 3000, separate from the daemon's 3210.
+
 Check status through the CLI:
 
 ```bash
@@ -182,7 +190,7 @@ Notes:
 - `maxChars` is optional, integer `1000-200000`, default `30000`
 - `renderMode` is optional: `request` uses HTTP only, `auto` (default) uses request with browser fallback, and `browser` renders directly with Playwright
 - `readability` and `includeLinks` are optional booleans; `includeLinks` applies to successful Readability output
-- `browser` returns a clear error if Playwright or its configured browser target is unavailable
+- `browser` requires a controlled egress proxy and enforced networking on the browser host (`BROWSER_EGRESS_PROXY_URL`, `BROWSER_EGRESS_ENFORCED=true`). See [browser deployment and acceptance](security/browser-egress.zh-CN.md). Missing egress, unsupported guards, or an unavailable browser fail clearly. Client disconnects cancel the fetch and close its task context
 - returns the full structured web-fetch payload
 
 Example:
@@ -280,6 +288,12 @@ curl --noproxy '*' -X POST http://127.0.0.1:3210/fetch-linuxdo \
 ```
 
 ## Notes
+
+- Searches accept at most 3 different engines and 16 input entries, deduplicate aliases, skip zero-budget engines, and limit queries to 2048 characters. At most 4 searches run concurrently per runtime.
+- All fetch endpoints share a process-wide limit of 4 concurrent fetches. Capacity exhaustion returns HTTP 429 with `error.code=resource_limit`, `retryable=true`, and a `Retry-After` header.
+- Outbound HTTP requests are capped at 15 seconds and 2 MiB. Manual redirect chains share a deadline including DNS preflight. Browser startup and multi-stage retrieval can take longer than one HTTP request.
+- MCP HTTP and legacy SSE share a 4-session quota and expire sessions after 3 minutes of inactivity. These quotas are separate from the local daemon's HTTP requests.
+- Browser jobs share a maximum of 4 capacity leases per profile namespace across processes. Each job creates and closes its own guarded context; Cookie caching is bounded to 64 entries with a 5-minute TTL.
 
 - The local daemon is separate from the MCP HTTP endpoints such as `/mcp` and `/sse`.
 - `--daemon-url` and `--spawn` are CLI options, not HTTP request parameters.

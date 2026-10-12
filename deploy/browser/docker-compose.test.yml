@@ -1,0 +1,21 @@
+services:
+  app:
+    environment:
+      BROWSER_ALLOWED_PORTS: 80,443,8080
+  browser:
+    environment:
+      BROWSER_ALLOWED_PORTS: 80,443,8080
+  proxy:
+    environment:
+      BROWSER_ALLOWED_PORTS: 80,443,8080
+  canary:
+    build:
+      context: ../..
+      dockerfile: deploy/browser/Dockerfile
+    entrypoint: [node, build/tools/browserEgressCanary.js]
+    networks:
+      control: { ipv4_address: 172.30.0.5 }
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    read_only: true
+    tmpfs: [/tmp]

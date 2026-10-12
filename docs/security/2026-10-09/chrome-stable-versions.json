@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-09T02:52:51.831Z",
+  "source": "https://versionhistory.googleapis.com/v1/chrome/platforms/win/channels/stable/versions?pageSize=5",
+  "versions": [
+    {
+      "name": "chrome/platforms/win/channels/stable/versions/156.0.8078.12",
+      "version": "156.0.8078.12"
+    },
+    {
+      "name": "chrome/platforms/win/channels/stable/versions/155.0.8059.40",
+      "version": "155.0.8059.40"
+    },
+    {
+      "name": "chrome/platforms/win/channels/stable/versions/155.0.8059.39",
+      "version": "155.0.8059.39"
+    },
+    {
+      "name": "chrome/platforms/win/channels/stable/versions/155.0.8059.26",
+      "version": "155.0.8059.26"
+    },
+    {
+      "name": "chrome/platforms/win/channels/stable/versions/155.0.8059.12",
+      "version": "155.0.8059.12"
+    }
+  ],
+  "nextPageToken": "1795590150"
+}

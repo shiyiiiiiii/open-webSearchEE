@@ -69,6 +69,13 @@ function sendError(
     res.status(statusCode).json(createErrorEnvelope(code, message, options));
 }
 
+function sendResourceLimit(res: express.Response, error: unknown): boolean {
+    if ((error as { code?: unknown })?.code !== 'resource_limit') return false;
+    res.setHeader('Retry-After', '1');
+    sendError(res, 429, 'resource_limit', error instanceof Error ? error.message : String(error), { retryable: true });
+    return true;
+}
+
 function parseRequestedEngines(runtime: OpenWebSearchRuntime, engines: unknown): SupportedSearchEngine[] {
     if (engines === undefined) {
         return [runtime.config.defaultSearchEngine as SupportedSearchEngine];
@@ -228,6 +235,7 @@ export async function startLocalDaemon(
             });
             res.json(createSuccessEnvelope(result));
         } catch (error) {
+            if (sendResourceLimit(res, error)) return;
             const message = error instanceof Error ? error.message : String(error);
             const errorCode = (error as { code?: unknown })?.code;
 
@@ -278,6 +286,7 @@ export async function startLocalDaemon(
                 throw new Error('Invalid public HTTP(S) URL');
             }
         } catch (error) {
+            if (sendResourceLimit(res, error)) return;
             const message = error instanceof Error ? error.message : String(error);
             sendError(res, 400, 'validation_failed', message, {
                 hint: 'Use a public HTTP(S) URL, keep maxChars within the supported range, pass readability/includeLinks only as booleans, and use renderMode request, auto, or browser.'
@@ -285,10 +294,16 @@ export async function startLocalDaemon(
             return;
         }
 
+        const cancellation = new AbortController();
+        const abort = () => cancellation.abort();
+        const onClose = () => { if (!res.writableEnded) abort(); };
+        req.once('aborted', abort);
+        res.once('close', onClose);
         try {
-            const result = await runtime.services.fetchWeb.execute(input);
+            const result = await runtime.services.fetchWeb.execute({ ...input, signal: cancellation.signal });
             res.json(createSuccessEnvelope(result));
         } catch (error) {
+            if (sendResourceLimit(res, error)) return;
             const message = error instanceof Error ? error.message : String(error);
             // code 优先（browser_unavailable），消息特征只作未带 code 的历史错误回退。
             const browserUnavailable = isBrowserUnavailableError(error);
@@ -298,6 +313,9 @@ export async function startLocalDaemon(
                     ? 'Configure a usable Playwright client and browser target, or retry with renderMode request/auto.'
                     : 'Verify that the target is reachable and retry. Use renderMode request to avoid browser rendering.'
             });
+        } finally {
+            req.off('aborted', abort);
+            res.off('close', onClose);
         }
     });
 
@@ -318,6 +336,7 @@ export async function startLocalDaemon(
                 content: result
             }));
         } catch (error) {
+            if (sendResourceLimit(res, error)) return;
             const message = error instanceof Error ? error.message : String(error);
             sendError(res, 400, 'validation_failed', message, {
                 hint: 'Use a valid GitHub repository URL in HTTPS or SSH form.'
@@ -334,6 +353,7 @@ export async function startLocalDaemon(
                 content: result.content
             }));
         } catch (error) {
+            if (sendResourceLimit(res, error)) return;
             const message = error instanceof Error ? error.message : String(error);
             sendError(res, 400, 'validation_failed', message, {
                 hint: 'Use a valid blog.csdn.net article URL.'
@@ -350,6 +370,7 @@ export async function startLocalDaemon(
                 content: result.content
             }));
         } catch (error) {
+            if (sendResourceLimit(res, error)) return;
             const message = error instanceof Error ? error.message : String(error);
             sendError(res, 400, 'validation_failed', message, {
                 hint: 'Use a valid juejin.cn post URL.'
@@ -366,6 +387,7 @@ export async function startLocalDaemon(
                 content: result.content
             }));
         } catch (error) {
+            if (sendResourceLimit(res, error)) return;
             const message = error instanceof Error ? error.message : String(error);
             sendError(res, 400, 'validation_failed', message, {
                 hint: 'Use a valid linux.do topic JSON URL.'

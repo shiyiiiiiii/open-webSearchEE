@@ -148,19 +148,15 @@ function winDesktop(): WinDesktopBindings {
     return _winDesktop;
 }
 
-// Unix libc 绑定（延迟初始化）
+// Linux libc 绑定（延迟初始化）
 interface UnixLockBindings {
     flock: (...args: any[]) => any;
 }
 let _unixLock: UnixLockBindings | undefined;
 
 function getUnixLibcCandidates(): string[] {
-    if (process.platform === 'darwin') {
-        return ['libSystem.B.dylib'];
-    }
-
     // 修复 Docker Alpine 兼容性问题：Alpine 默认是 musl，不一定存在 glibc 的 libc.so.6。
-    // 这里保留 glibc 优先级，同时增加 musl libc 名称 fallback，避免 node:20-alpine 下本地文件锁初始化失败。
+    // 这里保留 glibc 优先级，同时增加 musl libc 名称 fallback，避免 Alpine 下本地文件锁初始化失败。
     return [
         'libc.so.6',
         'libc.musl-x86_64.so.1',
@@ -172,6 +168,9 @@ function getUnixLibcCandidates(): string[] {
 }
 
 function unixLock(): UnixLockBindings {
+    if (process.platform !== 'linux') {
+        throw new Error(`Native file locks support Windows and Linux only; unsupported platform: ${process.platform}`);
+    }
     if (_unixLock) return _unixLock;
     const k = koffi();
     let libc: ReturnType<typeof k.load> | null = null;
@@ -219,7 +218,7 @@ const LOCK_NB = 4;
 /**
  * 跨平台的同步独占文件锁。
  * - Windows: CreateFileW + LockFileEx (OS 级锁，进程死亡后自动释放)
- * - Linux/macOS: open + flock(LOCK_EX) (OS 级锁，进程死亡后自动释放)
+ * - Linux: open + flock(LOCK_EX) (OS 级锁，进程死亡后自动释放)
  */
 export function withNativeFileLock<T>(lockFilePath: string, operation: () => T): T {
     if (process.platform === 'win32') {

@@ -1,0 +1,40 @@
+{
+  "limits": {
+    "requestTimeoutMs": 15000,
+    "maxResponseBytes": 2097152,
+    "maxSearchEngines": 3,
+    "maxEngineInputs": 16,
+    "maxQueryChars": 2048,
+    "maxConcurrentSearches": 4,
+    "maxConcurrentFetches": 4,
+    "maxMcpSessions": 16,
+    "sessionIdleTimeoutMs": 300000,
+    "maxBrowserPages": 4,
+    "maxCookieCacheEntries": 64
+  },
+  "results": [
+    {
+      "test": "current-session-ttl-boundary",
+      "maximum": 16,
+      "idleTimeoutMs": 300000,
+      "expired": 16
+    },
+    {
+      "test": "dedup-zero-budget-and-input-bounds",
+      "calls": 1,
+      "passed": true
+    },
+    {
+      "test": "search-and-fetch-concurrency",
+      "searches": 4,
+      "fetches": 4,
+      "passed": true
+    },
+    {
+      "test": "http-absolute-timeout",
+      "requestedMs": 30,
+      "actualMs": 39,
+      "passed": true
+    }
+  ]
+}

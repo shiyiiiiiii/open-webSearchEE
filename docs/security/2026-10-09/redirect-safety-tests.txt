@@ -1,0 +1,23 @@
+
+> open-websearch@2.2.0 test:redirect-safety
+> tsc && node build/test/test-redirect-safety.js
+
+🔍 Default search engine: bing
+🔍 No search engine restrictions, all available engines can be used
+🔍 Search mode: AUTO (currently only affects Bing)
+🌐 No proxy configured (set USE_PROXY=true to enable)
+🔐 fetchWebContent TLS verification is enabled
+🧭 Playwright client source: auto
+🧭 Playwright headless: true
+🧭 Playwright navigation timeout: 20000ms
+🖥️ Server mode: BOTH
+🔒 CORS disabled (set ENABLE_CORS=true to enable)
+✅ redirect to literal private IPv4 is rejected
+✅ redirect to [::1] (bracketed IPv6 loopback) is rejected
+✅ redirect to 169.254.169.254 (IMDS) is rejected
+✅ redirect to hostname that DNS-resolves to 127.0.0.1 is rejected
+✅ public-to-public redirect is followed and responseUrl tracks final hop
+✅ redirect chain exceeding maxRedirects is rejected
+✅ relative Location header resolves against current URL
+
+Redirect safety tests passed.

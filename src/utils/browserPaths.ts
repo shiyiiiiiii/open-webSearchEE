@@ -25,12 +25,7 @@ export function getSystemBrowserCandidates(): string[] {
         if (localAppData) {
             candidates.push(`${localAppData}\\Google\\Chrome\\Application\\chrome.exe`);
         }
-    } else if (process.platform === 'darwin') {
-        candidates.push(
-            '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-            '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
-        );
-    } else {
+    } else if (process.platform === 'linux') {
         candidates.push('/usr/bin/google-chrome', '/usr/bin/chromium-browser', '/usr/bin/chromium', '/usr/bin/microsoft-edge');
     }
 
